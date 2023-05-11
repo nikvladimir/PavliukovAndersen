@@ -2,7 +2,6 @@ package com.example.pavliukovandersen
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.pavliukovandersen.FirstFragment
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,7 +11,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.fragmentContainer, FirstFragment())
+        fragmentTransaction.replace(R.id.fragmentContainerText, FirstFragment())
+        fragmentTransaction.replace(R.id.fragmentContainerEditText, SecondFragment())
         fragmentTransaction.commit()
     }
 }
