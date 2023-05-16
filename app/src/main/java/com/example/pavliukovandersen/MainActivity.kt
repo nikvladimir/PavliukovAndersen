@@ -11,8 +11,8 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.fragmentContainerText, FirstFragment())
-        fragmentTransaction.replace(R.id.fragmentContainerEditText, SecondFragment())
+        fragmentTransaction.replace(R.id.fragmentContainerText, TextViewFragment())
+        fragmentTransaction.replace(R.id.fragmentContainerEditText, EditTextFragment())
         fragmentTransaction.commit()
     }
 }

@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 
-class SecondFragment : Fragment() {
+class EditTextFragment : Fragment() {
     private lateinit var editText: EditText
 
     override fun onCreateView(
@@ -18,7 +18,7 @@ class SecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_second, container, false)
+        val view = inflater.inflate(R.layout.fragment_edit_text, container, false)
 
         editText = view.findViewById(R.id.editText)
 
