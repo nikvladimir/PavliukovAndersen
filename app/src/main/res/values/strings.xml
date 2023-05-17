@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PavliukovAndersen</string>
     <string name="enter_text">Enter text</string>
+    <string name="alert_button">Alert button</string>
 </resources>

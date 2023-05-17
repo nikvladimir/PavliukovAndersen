@@ -10,7 +10,8 @@
         android:id="@+id/fragmentContainerText"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerThird"
+        android:background="@color/backGroundGray"
+        app:layout_constraintBottom_toTopOf="@+id/alertButton"
         app:layout_constraintEnd_toStartOf="@+id/fragmentContainerEditText"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -19,15 +20,18 @@
         android:id="@+id/fragmentContainerEditText"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragmentContainerThird"
+        android:background="@color/backGroundGray"
+        app:layout_constraintBottom_toTopOf="@+id/alertButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/fragmentContainerText"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
-        android:id="@+id/fragmentContainerThird"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+    <Button
+        android:id="@+id/alertButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/alert_button"
+        android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
