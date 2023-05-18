@@ -4,6 +4,8 @@ import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlin.random.Random
 
 val GEOMETRIC_SHAPES = listOf(
@@ -14,6 +16,9 @@ val GEOMETRIC_SHAPES = listOf(
 class MainActivity : AppCompatActivity() {
 
     private lateinit var alertButton: Button
+
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: ShapesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +33,12 @@ class MainActivity : AppCompatActivity() {
 
         alertButton = findViewById(R.id.alertButton)
         alertButton.setOnClickListener { showAlertDialog() }
+
+        recyclerView = findViewById(R.id.recyclerView)
+        adapter = ShapesAdapter(GEOMETRIC_SHAPES)
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun showAlertDialog() {
