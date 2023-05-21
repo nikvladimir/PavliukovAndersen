@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/textViewFragment">
+
+    <fragment
+        android:id="@+id/textViewFragment"
+        android:name="com.example.pavliukovandersen.TextViewFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/fragment_text_view" >
+        <action
+            android:id="@+id/action_editTextFragment_to_i2"
+            app:destination="@id/editTextFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editTextFragment"
+        android:name="com.example.pavliukovandersen.EditTextFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/fragment_edit_text" >
+        <action
+            android:id="@+id/action_i2_to_i3"
+            app:destination="@id/recyclerViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/recyclerViewFragment"
+        android:name="com.example.pavliukovandersen.RecyclerViewFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/fragment_recycler_view" >
+        <action
+            android:id="@+id/action_i3_to_editTextFragment"
+            app:destination="@id/textViewFragment" />
+    </fragment>
+</navigation>
