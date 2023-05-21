@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavliukovandersen.databinding.ActivityMainBinding
 import kotlin.random.Random
 
 val GEOMETRIC_SHAPES = listOf(
@@ -27,18 +28,18 @@ class MainActivity : AppCompatActivity() {
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
-        fragmentTransaction.replace(R.id.fragmentContainerText, TextViewFragment())
-        fragmentTransaction.replace(R.id.fragmentContainerEditText, EditTextFragment())
-        fragmentTransaction.commit()
-
-        alertButton = findViewById(R.id.alertButton)
-        alertButton.setOnClickListener { showAlertDialog() }
-
-        recyclerView = findViewById(R.id.recyclerView)
-        adapter = ShapesAdapter(GEOMETRIC_SHAPES)
-
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+//        fragmentTransaction.replace(R.id.fragmentContainerText, TextViewFragment())
+//        fragmentTransaction.replace(R.id.fragmentContainerEditText, EditTextFragment())
+//        fragmentTransaction.commit()
+//
+//        alertButton = findViewById(R.id.alertButton)
+//        alertButton.setOnClickListener { showAlertDialog() }
+//
+//        recyclerView = findViewById(R.id.recyclerView)
+//        adapter = ShapesAdapter(GEOMETRIC_SHAPES)
+//
+//        recyclerView.adapter = adapter
+//        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun showAlertDialog() {
