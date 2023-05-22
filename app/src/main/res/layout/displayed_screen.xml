@@ -15,13 +15,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <include
-        android:id="@+id/included_displayed_screen"
-        layout="@layout/fragment_text_view"
+    <FrameLayout
+        android:id="@+id/displayed_screen_fl"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_displayed_screen" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_displayed_screen"
+        android:background="@color/backGroundGray"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

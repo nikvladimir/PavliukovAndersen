@@ -3,35 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/textViewFragment">
+    app:startDestination="@id/Lesson1Fragment">
 
     <fragment
-        android:id="@+id/textViewFragment"
+        android:id="@+id/Lesson1Fragment"
         android:name="com.example.pavliukovandersen.TextViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/fragment_text_view" >
         <action
-            android:id="@+id/action_editTextFragment_to_i2"
-            app:destination="@id/editTextFragment" />
+            android:id="@+id/action_Lesson1_to_Lesson2"
+            app:destination="@id/Lesson2Fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/editTextFragment"
+        android:id="@+id/Lesson2Fragment"
         android:name="com.example.pavliukovandersen.EditTextFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/fragment_edit_text" >
         <action
-            android:id="@+id/action_i2_to_i3"
-            app:destination="@id/recyclerViewFragment" />
+            android:id="@+id/action_Lesson2_to_Lesson3"
+            app:destination="@id/Lesson3Fragment" />
     </fragment>
 
     <fragment
-        android:id="@+id/recyclerViewFragment"
+        android:id="@+id/Lesson3Fragment"
         android:name="com.example.pavliukovandersen.RecyclerViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/fragment_recycler_view" >
         <action
-            android:id="@+id/action_i3_to_editTextFragment"
-            app:destination="@id/textViewFragment" />
+                android:id="@+id/action_Lesson3_to_Lesson2"
+            app:destination="@id/Lesson1Fragment" />
     </fragment>
 </navigation>

@@ -5,9 +5,15 @@
     <group>
         <item
             android:id="@+id/Lesson1"
-            android:title="Lesson1" />
+            android:title="@string/lesson_1"
+            android:icon="@drawable/menu_drawer_picture"/>
         <item
             android:id="@+id/Lesson2"
-            android:title="Lesson2" />
+            android:title="@string/lesson_2"
+            android:icon="@drawable/menu_drawer_picture"/>
+        <item
+            android:id="@+id/Lesson3"
+            android:title="@string/lesson_3"
+            android:icon="@drawable/menu_drawer_picture"/>
     </group>
 </menu>
