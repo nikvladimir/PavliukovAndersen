@@ -6,21 +6,35 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class ViewPagerLesson1 : Fragment() {
+    private lateinit var adapter: L1PagerAdapter
+    private lateinit var viewPager: ViewPager2
+    private lateinit var tabLayout: TabLayout
+    private var tabNames: Array<String> = arrayOf(
+        "TextView", "EditText", "RecyclerView"
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.lesson1_view_pager, container, false)
+        val view = inflater.inflate(R.layout.lesson1_view_pager, container, false)
+        tabLayout = view.findViewById(R.id.tab_layout_l1)
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager: ViewPager2 = view.findViewById(R.id.lesson1_viewpager)
-        val adapter = L1PagerAdapter(this)
+        adapter = L1PagerAdapter(this)
+        viewPager = view.findViewById(R.id.lesson1_viewpager)
         viewPager.adapter = adapter
+
+        TabLayoutMediator(tabLayout, viewPager) { tab, index ->
+            tab.text = tabNames[index]
+        }.attach()
     }
 }
