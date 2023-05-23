@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/Lesson1Fragment"
-        android:name="com.example.pavliukovandersen.TextViewFragment"
+        android:name="com.example.pavliukovandersen.L1TextViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/l1_fragment_text_view" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/Lesson3Fragment"
-        android:name="com.example.pavliukovandersen.RecyclerViewFragment"
+        android:name="com.example.pavliukovandersen.L1RecyclerViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/l1_fragment_recycler_view" >
         <action

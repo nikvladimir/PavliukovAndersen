@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 
-class TextViewFragment : Fragment() {
+class L1TextViewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
