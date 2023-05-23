@@ -10,13 +10,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 
-class EditTextFragment : Fragment() {
+class L1EditTextFragment : Fragment() {
     private lateinit var editText: EditText
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.l1_fragment_edit_text, container, false)
 
@@ -25,18 +23,12 @@ class EditTextFragment : Fragment() {
         editText.addTextChangedListener(
             object : TextWatcher {
                 override fun beforeTextChanged(
-                    s: CharSequence,
-                    start: Int,
-                    count: Int,
-                    after: Int
+                    s: CharSequence, start: Int, count: Int, after: Int
                 ) {
                 }
 
                 override fun onTextChanged(
-                    s: CharSequence,
-                    start: Int,
-                    count: Int,
-                    before: Int
+                    s: CharSequence, start: Int, count: Int, before: Int
                 ) {
                 }
 

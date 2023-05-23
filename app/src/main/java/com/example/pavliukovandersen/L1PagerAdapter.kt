@@ -10,7 +10,7 @@ class L1PagerAdapter(fa: Fragment) : FragmentStateAdapter(fa) {
     override fun createFragment(position: Int): Fragment {
         return when (position) {
             0 -> L1TextViewFragment()
-            1 -> EditTextFragment()
+            1 -> L1EditTextFragment()
             else -> L1RecyclerViewFragment()
         }
     }

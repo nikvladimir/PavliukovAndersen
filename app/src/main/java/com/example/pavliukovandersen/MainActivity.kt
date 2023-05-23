@@ -17,14 +17,7 @@ val GEOMETRIC_SHAPES = listOf(
 )
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var conf: AppBarConfiguration
-    private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var alertButton: Button
-
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: ShapesAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, Lesson1ViewPager())
+        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, ViewPagerLesson1())
             .commit()
 
         binding.apply {
@@ -40,35 +33,21 @@ class MainActivity : AppCompatActivity() {
             navigationMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.Lesson1 -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, L1TextViewFragment()
+                        R.id.displayed_screen_fl, ViewPagerLesson1()
                     ).commit()
 
                     R.id.Lesson2 -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, Lesson2ViewPager()
+                        R.id.displayed_screen_fl, ViewPagerLesson2()
                     ).commit()
 
                     R.id.Lesson3 -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, Lesson3ViewPager()
+                        R.id.displayed_screen_fl, ViewPagerLesson3()
                     ).commit()
                 }
                 activityMainDrawer.closeDrawer(GravityCompat.START)
                 true
             }
         }
-
-
-//        fragmentTransaction.replace(R.id.fragmentContainerText, TextViewFragment())
-//        fragmentTransaction.replace(R.id.fragmentContainerEditText, EditTextFragment())
-//        fragmentTransaction.commit()
-//
-//        alertButton = findViewById(R.id.alertButton)
-//        alertButton.setOnClickListener { showAlertDialog() }
-//
-//        recyclerView = findViewById(R.id.recyclerView)
-//        adapter = ShapesAdapter(GEOMETRIC_SHAPES)
-//
-//        recyclerView.adapter = adapter
-//        recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun showAlertDialog() {
@@ -77,10 +56,7 @@ class MainActivity : AppCompatActivity() {
         alertDialogBuilder.setTitle("Alert")
         alertDialogBuilder.setMessage(messageForAlert)
 
-        alertDialogBuilder.setPositiveButton("OK") { dialog, which ->
-            // Positive button clicked
-            // Perform any action here
-        }
+        alertDialogBuilder.setPositiveButton("OK") { _, _ -> }
 
         val alertDialog = alertDialogBuilder.create()
         alertDialog.show()

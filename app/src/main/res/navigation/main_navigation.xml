@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/Lesson2Fragment"
-        android:name="com.example.pavliukovandersen.EditTextFragment"
+        android:name="com.example.pavliukovandersen.L1EditTextFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/l1_fragment_edit_text" >
         <action

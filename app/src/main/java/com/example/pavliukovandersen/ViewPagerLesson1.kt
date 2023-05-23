@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.widget.ViewPager2
 
-class Lesson1ViewPager : Fragment() {
+class ViewPagerLesson1 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -19,7 +19,7 @@ class Lesson1ViewPager : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val viewPager: ViewPager2 = view.findViewById(R.id.viewpager)
+        val viewPager: ViewPager2 = view.findViewById(R.id.lesson1_viewpager)
         val adapter = L1PagerAdapter(this)
         viewPager.adapter = adapter
     }
