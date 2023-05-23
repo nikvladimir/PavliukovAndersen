@@ -18,7 +18,7 @@ class EditTextFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_edit_text, container, false)
+        val view = inflater.inflate(R.layout.l1_fragment_edit_text, container, false)
 
         editText = view.findViewById(R.id.editText)
 

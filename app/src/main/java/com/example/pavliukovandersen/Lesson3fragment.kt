@@ -16,6 +16,6 @@ class Lesson3fragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_lesson3fragment, container, false)
+        return inflater.inflate(R.layout.lesson3fragment, container, false)
     }
 }

@@ -9,7 +9,7 @@
         android:id="@+id/Lesson1Fragment"
         android:name="com.example.pavliukovandersen.TextViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/fragment_text_view" >
+        tools:layout="@layout/l1_fragment_text_view" >
         <action
             android:id="@+id/action_Lesson1_to_Lesson2"
             app:destination="@id/Lesson2Fragment" />
@@ -19,7 +19,7 @@
         android:id="@+id/Lesson2Fragment"
         android:name="com.example.pavliukovandersen.EditTextFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/fragment_edit_text" >
+        tools:layout="@layout/l1_fragment_edit_text" >
         <action
             android:id="@+id/action_Lesson2_to_Lesson3"
             app:destination="@id/Lesson3Fragment" />
@@ -29,7 +29,7 @@
         android:id="@+id/Lesson3Fragment"
         android:name="com.example.pavliukovandersen.RecyclerViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/fragment_recycler_view" >
+        tools:layout="@layout/l1_fragment_recycler_view" >
         <action
                 android:id="@+id/action_Lesson3_to_Lesson2"
             app:destination="@id/Lesson1Fragment" />

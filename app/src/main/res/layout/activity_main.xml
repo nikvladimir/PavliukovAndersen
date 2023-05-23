@@ -7,8 +7,27 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
-    tools:openDrawer="start"
-    >
+    tools:openDrawer="start">
+
+    <FrameLayout
+        android:id="@+id/displayed_screen_fl"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/backGroundGray"/>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigationMenu"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#D3D2D2"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/menu_drawer" />
 
     <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
     <!--        android:layout_width="match_parent"-->
@@ -54,21 +73,5 @@
     <!--            app:layout_constraintStart_toStartOf="parent" />-->
 
     <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
-    <include
-        layout="@layout/displayed_screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigationMenu"
-        android:layout_width="200dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#D3D2D2"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

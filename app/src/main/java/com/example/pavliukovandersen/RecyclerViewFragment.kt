@@ -34,7 +34,7 @@ class RecyclerViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recycler_view, container, false)
+        return inflater.inflate(R.layout.l1_fragment_recycler_view, container, false)
     }
 
     companion object {

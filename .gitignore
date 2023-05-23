@@ -97,3 +97,4 @@ lint/tmp/
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
 .idea/misc.xml
+.idea/deploymentTargetDropDown.xml
