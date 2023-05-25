@@ -10,7 +10,6 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
 class ViewPagerLesson1 : Fragment() {
-    private lateinit var adapter: L1PagerAdapter
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private var tabNames: Array<String> = arrayOf(
@@ -29,9 +28,8 @@ class ViewPagerLesson1 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = L1PagerAdapter(this)
         viewPager = view.findViewById(R.id.lesson1_viewpager)
-        viewPager.adapter = adapter
+        viewPager.adapter = L1PagerAdapter(this)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, index ->
             tab.text = tabNames[index]
