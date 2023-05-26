@@ -13,7 +13,7 @@ import kotlin.random.Random
 
 val GEOMETRIC_SHAPES = listOf(
     "circle", "oval", "triangle", "square", "rectangle",
-    "rhombus", "kite", "hexagon", "octagon", "semicircle"
+    "rhombus", "kite", "hexagon", "octagon", "arrow"
 )
 
 class MainActivity : AppCompatActivity() {
