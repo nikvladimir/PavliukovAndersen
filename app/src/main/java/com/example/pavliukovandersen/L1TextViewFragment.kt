@@ -15,12 +15,11 @@ class L1TextViewFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.l1_fragment_text_view, container, false)
+        val tvHello: TextView = view.findViewById(R.id.tvHello)
+        val tvAndersen: TextView = view.findViewById(R.id.tvAndersen)
 
-        val helloTextView: TextView = view.findViewById(R.id.helloTextView)
-        val andersenTextView: TextView = view.findViewById(R.id.andersenTextView)
-
-        helloTextView.text = "Hello"
-        andersenTextView.text = "Andersen"
+        tvHello.text = "Hello"
+        tvAndersen.text = "Andersen"
 
         return view
     }

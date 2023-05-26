@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 class L1RecyclerViewFragment : Fragment() {
     private lateinit var adapter: L1RecyclerAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var shapesArrayList: ArrayList<ShapeData>
+    private lateinit var shapesArrayList: ArrayList<ShapeElement>
 
     lateinit var imageId: Array<Int>
     lateinit var heading: Array<String>
 
     private fun dataInitialize() {
 
-        shapesArrayList = arrayListOf<ShapeData>()
+        shapesArrayList = arrayListOf<ShapeElement>()
 
         imageId = arrayOf(
             R.drawable.arrow,
@@ -47,17 +47,12 @@ class L1RecyclerViewFragment : Fragment() {
             getString(R.string.head_triangle)
         )
 
-        for (i in imageId.indices) {
-            shapesArrayList.add(ShapeData(imageId[i], heading[i]))
-        }
+        for (i in imageId.indices) shapesArrayList.add(ShapeElement(imageId[i], heading[i]))
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.l1_fragment_recycler_view, container, false)
-    }
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? = inflater.inflate(R.layout.l1_fragment_recycler_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -70,8 +65,7 @@ class L1RecyclerViewFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun showDialog(shapeName: String) {
-        val dialogFragment = L1DialogFragment.newInstance(shapeName)
-        dialogFragment.show(requireActivity().supportFragmentManager, "dialog")
-    }
+    private fun showDialog(shapeName: String) = L1DialogFragment
+        .newInstance(shapeName)
+        .show(requireActivity().supportFragmentManager, "dialog")
 }

@@ -25,14 +25,10 @@ class L1EditTextFragment : Fragment() {
                 ) {
                 }
 
-                override fun onTextChanged(
-                    s: CharSequence, start: Int, count: Int, before: Int
-                ) {
-                }
+                override fun onTextChanged(s: CharSequence, start: Int, count: Int, before: Int) {}
 
-                override fun afterTextChanged(s: Editable) {
-                    Toast.makeText(context, s.toString(), Toast.LENGTH_SHORT).show()
-                }
+                override fun afterTextChanged(s: Editable) = Toast
+                    .makeText(context, s.toString(), Toast.LENGTH_SHORT).show()
             })
         return view
     }

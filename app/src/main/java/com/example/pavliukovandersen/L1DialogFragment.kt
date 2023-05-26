@@ -9,7 +9,6 @@ class L1DialogFragment : DialogFragment() {
 
     companion object {
         private const val SHAPE_NAME_KEY = "shape_name_key"
-
         fun newInstance(userInput: String): L1DialogFragment {
             val fragment = L1DialogFragment()
             val args = Bundle()

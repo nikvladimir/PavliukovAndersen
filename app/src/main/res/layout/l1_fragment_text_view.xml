@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/helloTextView"
+        android:id="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="text1"
@@ -14,7 +14,7 @@
         android:textSize="50sp" />
 
     <TextView
-        android:id="@+id/andersenTextView"
+        android:id="@+id/tvAndersen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="text2"

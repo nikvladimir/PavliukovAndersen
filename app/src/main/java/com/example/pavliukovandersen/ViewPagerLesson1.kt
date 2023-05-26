@@ -12,9 +12,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class ViewPagerLesson1 : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-    private var tabNames: Array<String> = arrayOf(
-        "TextView", "EditText", "RecyclerView"
-    )
+    private var tabNames: Array<String> = arrayOf("TextView", "EditText", "RecyclerView")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
