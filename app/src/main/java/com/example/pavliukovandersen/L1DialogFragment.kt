@@ -8,12 +8,12 @@ import androidx.fragment.app.DialogFragment
 class L1DialogFragment : DialogFragment() {
 
     companion object {
-        private const val ARG_USER_INPUT = "user_input"
+        private const val SHAPE_NAME_KEY = "shape_name_key"
 
         fun newInstance(userInput: String): L1DialogFragment {
             val fragment = L1DialogFragment()
             val args = Bundle()
-            args.putString(ARG_USER_INPUT, userInput)
+            args.putString(SHAPE_NAME_KEY, userInput)
             fragment.arguments = args
             return fragment
         }
@@ -21,8 +21,8 @@ class L1DialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         AlertDialog.Builder(requireActivity())
-            .setTitle("My dialog")
-            .setMessage(arguments?.getString(ARG_USER_INPUT) ?: "no message")
-            .setPositiveButton("okey") { _, _ -> }
+            .setTitle("Shape is")
+            .setMessage(arguments?.getString(SHAPE_NAME_KEY) ?: "no message")
+            .setPositiveButton("Thanks") { _, _ -> }
             .create()
 }

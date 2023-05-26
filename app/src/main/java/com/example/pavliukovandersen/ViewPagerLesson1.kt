@@ -31,8 +31,7 @@ class ViewPagerLesson1 : Fragment() {
         viewPager = view.findViewById(R.id.lesson1_viewpager)
         viewPager.adapter = L1PagerAdapter(this)
 
-        TabLayoutMediator(tabLayout, viewPager) { tab, index ->
-            tab.text = tabNames[index]
-        }.attach()
+        TabLayoutMediator(tabLayout, viewPager) { tab, index -> tab.text = tabNames[index] }
+            .attach()
     }
 }

@@ -17,7 +17,7 @@ class L1RecyclerViewFragment : Fragment() {
     lateinit var imageId: Array<Int>
     lateinit var heading: Array<String>
 
-    private fun dataInitialize(){
+    private fun dataInitialize() {
 
         shapesArrayList = arrayListOf<ShapeData>()
 
@@ -47,9 +47,8 @@ class L1RecyclerViewFragment : Fragment() {
             getString(R.string.head_triangle)
         )
 
-        for (i in imageId.indices){
-            val shapeData = ShapeData(imageId[i], heading[i])
-            shapesArrayList.add(shapeData)
+        for (i in imageId.indices) {
+            shapesArrayList.add(ShapeData(imageId[i], heading[i]))
         }
     }
 
@@ -71,8 +70,8 @@ class L1RecyclerViewFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun showDialog() {
-        val dialogFragment = L1DialogFragment.newInstance("test test test")
+    private fun showDialog(shapeName: String) {
+        val dialogFragment = L1DialogFragment.newInstance(shapeName)
         dialogFragment.show(requireActivity().supportFragmentManager, "dialog")
     }
 }

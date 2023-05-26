@@ -17,9 +17,7 @@ class L1EditTextFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.l1_fragment_edit_text, container, false)
-
         editText = view.findViewById(R.id.editText)
-
         editText.addTextChangedListener(
             object : TextWatcher {
                 override fun beforeTextChanged(
@@ -33,14 +31,9 @@ class L1EditTextFragment : Fragment() {
                 }
 
                 override fun afterTextChanged(s: Editable) {
-                    val entredText = s.toString()
-                    showToast(entredText)
+                    Toast.makeText(context, s.toString(), Toast.LENGTH_SHORT).show()
                 }
             })
         return view
-    }
-
-    private fun showToast(text: String) {
-        Toast.makeText(context, text, Toast.LENGTH_SHORT).show()
     }
 }

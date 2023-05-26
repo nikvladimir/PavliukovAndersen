@@ -1,20 +1,10 @@
 package com.example.pavliukovandersen
 
-import android.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import androidx.core.view.GravityCompat
-import androidx.navigation.NavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.recyclerview.widget.RecyclerView
 import com.example.pavliukovandersen.databinding.ActivityMainBinding
-import kotlin.random.Random
 
-val GEOMETRIC_SHAPES = listOf(
-    "circle", "oval", "triangle", "square", "rectangle",
-    "rhombus", "kite", "hexagon", "octagon", "arrow"
-)
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
@@ -29,7 +19,6 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         binding.apply {
-
             navigationMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.Lesson1 -> fragmentManager.beginTransaction().replace(
@@ -48,23 +37,5 @@ class MainActivity : AppCompatActivity() {
                 true
             }
         }
-    }
-
-    private fun showAlertDialog() {
-        val alertDialogBuilder = AlertDialog.Builder(this)
-        val messageForAlert = getRandomElementWithIndexFromList(GEOMETRIC_SHAPES)
-        alertDialogBuilder.setTitle("Alert")
-        alertDialogBuilder.setMessage(messageForAlert)
-
-        alertDialogBuilder.setPositiveButton("OK") { _, _ -> }
-
-        val alertDialog = alertDialogBuilder.create()
-        alertDialog.show()
-    }
-
-    private fun getRandomElementWithIndexFromList(list: List<String>): String {
-        val randomIndex = Random.nextInt(0, list.size)
-        val randomElement = list[randomIndex]
-        return "$randomIndex ($randomElement)"
     }
 }
