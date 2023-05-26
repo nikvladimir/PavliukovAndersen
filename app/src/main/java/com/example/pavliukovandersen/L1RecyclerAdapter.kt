@@ -6,11 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.imageview.ShapeableImageView
 
-class L1RecyclerAdapter(private val newsList: ArrayList<ShapeData>, val toast: Toast) :
+class L1RecyclerAdapter(
+    private val newsList: ArrayList<ShapeData>,
+    val showDialog : () -> Unit
+    ) :
     RecyclerView.Adapter<L1RecyclerAdapter.MyViewHolder>() {
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,8 +32,8 @@ class L1RecyclerAdapter(private val newsList: ArrayList<ShapeData>, val toast: T
         var currentItem = newsList[position]
         holder.titleImage.setImageResource(currentItem.titleImage)
         holder.tvHeading.text = currentItem.heading
-        holder.item.setOnClickListener{
-   toast
+        holder.item.setOnClickListener {
+            showDialog()
             Log.d(this.toString(), "LOG toast")
         }
     }

@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -65,11 +64,15 @@ class L1RecyclerViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         dataInitialize()
         val layoutManager = LinearLayoutManager(context)
-        val toast = Toast.makeText(context, "TOAAAAAST",  Toast.LENGTH_SHORT)
         recyclerView = view.findViewById(R.id.recyclerViewFragment)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = L1RecyclerAdapter(shapesArrayList, toast)
+        adapter = L1RecyclerAdapter(shapesArrayList, ::showDialog)
         recyclerView.adapter = adapter
+    }
+
+    private fun showDialog() {
+        val dialogFragment = L1DialogFragment.newInstance("test test test")
+        dialogFragment.show(requireActivity().supportFragmentManager, "dialog")
     }
 }
