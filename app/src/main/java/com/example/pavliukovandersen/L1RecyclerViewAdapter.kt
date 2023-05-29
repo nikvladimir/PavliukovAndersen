@@ -26,7 +26,7 @@ class L1RecyclerViewAdapter(
         ElementViewHolder(
             LayoutInflater
                 .from(parent.context)
-                .inflate(R.layout.recycler_view_item, parent, false)
+                .inflate(R.layout.l1_recycler_view_item, parent, false)
         )
 
     override fun onBindViewHolder(holder: ElementViewHolder, position: Int) {

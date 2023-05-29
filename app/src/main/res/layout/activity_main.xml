@@ -27,6 +27,9 @@
         android:background="#D3D2D2"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/menu_drawer" />
+        app:itemTextColor="@color/navTextIconColor"
+        app:menu="@menu/menu_drawer"
+        app:itemIconTint="@color/navTextIconColor" />
+    
 
 </androidx.drawerlayout.widget.DrawerLayout>
