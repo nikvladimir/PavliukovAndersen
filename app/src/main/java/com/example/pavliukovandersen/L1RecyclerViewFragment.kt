@@ -12,43 +12,24 @@ import androidx.recyclerview.widget.RecyclerView
 class L1RecyclerViewFragment : Fragment() {
     private lateinit var adapter: L1RecyclerAdapter
     private lateinit var recyclerView: RecyclerView
-    private lateinit var shapesArrayList: ArrayList<ShapeElement>
+    private lateinit var shapesArrayList: List<ShapeElement>
 
-    lateinit var imageId: Array<Int>
-    lateinit var heading: Array<String>
-
-    private fun dataInitialize() {
-
-        shapesArrayList = arrayListOf<ShapeElement>()
-
-        imageId = arrayOf(
-            R.drawable.arrow,
-            R.drawable.circle,
-            R.drawable.hexagon,
-            R.drawable.kite,
-            R.drawable.oval,
-            R.drawable.octagon,
-            R.drawable.rectangle,
-            R.drawable.shape,
-            R.drawable.square,
-            R.drawable.triangle,
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        shapesArrayList = listOf(
+            ShapeElement(getString(R.string.arrow), R.drawable.arrow),
+            ShapeElement(getString(R.string.circle), R.drawable.circle),
+            ShapeElement(getString(R.string.hexagon), R.drawable.hexagon),
+            ShapeElement(getString(R.string.kite), R.drawable.kite),
+            ShapeElement(getString(R.string.oval), R.drawable.oval),
+            ShapeElement(getString(R.string.octagon), R.drawable.octagon),
+            ShapeElement(getString(R.string.rectangle), R.drawable.rectangle),
+            ShapeElement(getString(R.string.shape), R.drawable.shape),
+            ShapeElement(getString(R.string.square), R.drawable.square),
+            ShapeElement(getString(R.string.triangle), R.drawable.triangle)
         )
-
-        heading = arrayOf(
-            getString(R.string.head_arrow),
-            getString(R.string.head_circle),
-            getString(R.string.head_hexagon),
-            getString(R.string.head_kite),
-            getString(R.string.head_oval),
-            getString(R.string.head_octagon),
-            getString(R.string.head_rectangle),
-            getString(R.string.head_shape),
-            getString(R.string.head_square),
-            getString(R.string.head_triangle)
-        )
-
-        for (i in imageId.indices) shapesArrayList.add(ShapeElement(imageId[i], heading[i]))
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -56,7 +37,6 @@ class L1RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInitialize()
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerViewFragment)
         recyclerView.layoutManager = layoutManager

@@ -7,16 +7,16 @@
     <string name="lesson_2">Lesson 2</string>
     <string name="lesson_3">Lesson 3</string>
 
-    <string name="head_arrow">arrow</string>
-    <string name="head_circle">circle</string>
-    <string name="head_hexagon">hexagon</string>
-    <string name="head_kite">kite</string>
-    <string name="head_oval">oval</string>
-    <string name="head_octagon">octagon</string>
-    <string name="head_rectangle">rectangle</string>
-    <string name="head_shape">shape</string>
-    <string name="head_square">square</string>
-    <string name="head_triangle">triangle</string>
+    <string name="arrow">arrow</string>
+    <string name="circle">circle</string>
+    <string name="hexagon">hexagon</string>
+    <string name="kite">kite</string>
+    <string name="oval">oval</string>
+    <string name="octagon">octagon</string>
+    <string name="rectangle">rectangle</string>
+    <string name="shape">shape</string>
+    <string name="square">square</string>
+    <string name="triangle">triangle</string>
 
     <string name="tv_form_name">some form name</string>
 
