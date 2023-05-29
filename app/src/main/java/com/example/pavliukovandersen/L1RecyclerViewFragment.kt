@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class L1RecyclerViewFragment : Fragment() {
-    private lateinit var adapter: L1RecyclerAdapter
+    private lateinit var adapter: L1RecyclerViewAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var shapesArrayList: List<ShapeElement>
 
@@ -41,7 +41,7 @@ class L1RecyclerViewFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recyclerViewFragment)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = L1RecyclerAdapter(shapesArrayList, ::showDialog)
+        adapter = L1RecyclerViewAdapter(shapesArrayList, ::showDialog)
         recyclerView.adapter = adapter
     }
 

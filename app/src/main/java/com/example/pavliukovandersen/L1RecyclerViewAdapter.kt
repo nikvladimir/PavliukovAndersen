@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class L1RecyclerAdapter(
+class L1RecyclerViewAdapter(
     private val elements: List<ShapeElement>,
     val showDialog: (shapeName: String) -> Unit
-) : RecyclerView.Adapter<L1RecyclerAdapter.ElementViewHolder>() {
+) : RecyclerView.Adapter<L1RecyclerViewAdapter.ElementViewHolder>() {
 
     override fun getItemCount() = elements.size
 
