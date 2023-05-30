@@ -21,15 +21,14 @@
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigationMenu"
-        android:layout_width="200dp"
+        android:layout_width="@dimen/nav_v_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="#D3D2D2"
+        android:background="@color/backGroundGray"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_header"
         app:itemIconTint="@color/navTextIconColor"
         app:itemTextColor="@color/navTextIconColor"
         app:menu="@menu/menu_drawer" />
-
 
 </androidx.drawerlayout.widget.DrawerLayout>

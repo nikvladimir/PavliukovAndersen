@@ -18,18 +18,16 @@ class L1EditTextFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.l1_fragment_edit_text, container, false)
         editText = view.findViewById(R.id.editText)
-        editText.addTextChangedListener(
-            object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence, start: Int, count: Int, after: Int
-                ) {
-                }
-
-                override fun onTextChanged(s: CharSequence, start: Int, count: Int, before: Int) {}
-
-                override fun afterTextChanged(s: Editable) = Toast
-                    .makeText(context, s.toString(), Toast.LENGTH_SHORT).show()
-            })
+        editText.toastTextListener { s -> Toast.makeText(context, s, Toast.LENGTH_SHORT).show() }
         return view
+    }
+
+    private fun EditText.toastTextListener(afterTextChanged: (String) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(editable: Editable) { afterTextChanged.invoke(editable.toString())
+            }
+        })
     }
 }

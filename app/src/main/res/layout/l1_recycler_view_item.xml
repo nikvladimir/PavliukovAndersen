@@ -10,9 +10,9 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivImage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_margin="8dp"
+        android:layout_width="@dimen/rec_v_image_size"
+        android:layout_height="@dimen/rec_v_image_size"
+        android:layout_margin="@dimen/rec_v_margin_small"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/arrow" />
@@ -20,8 +20,8 @@
     <TextView
         android:id="@+id/tvElementName"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_margin="8dp"
+        android:layout_height="@dimen/rec_v_text_height"
+        android:layout_margin="@dimen/rec_v_margin_small"
         android:gravity="fill_vertical"
         android:text="@string/tv_form_name"
         android:textColor="@color/black"

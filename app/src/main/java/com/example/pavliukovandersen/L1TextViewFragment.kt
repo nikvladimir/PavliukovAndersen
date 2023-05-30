@@ -18,8 +18,8 @@ class L1TextViewFragment : Fragment() {
         val tvHello: TextView = view.findViewById(R.id.tvHello)
         val tvAndersen: TextView = view.findViewById(R.id.tvAndersen)
 
-        tvHello.text = "Hello"
-        tvAndersen.text = "Andersen"
+        tvHello.text = getString(R.string.hello)
+        tvAndersen.text = getString(R.string.company_name)
 
         return view
     }

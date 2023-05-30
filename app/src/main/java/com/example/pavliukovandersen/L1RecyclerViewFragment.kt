@@ -16,18 +16,7 @@ class L1RecyclerViewFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        shapesArrayList = listOf(
-            ShapeElement(getString(R.string.arrow), R.drawable.arrow),
-            ShapeElement(getString(R.string.circle), R.drawable.circle),
-            ShapeElement(getString(R.string.hexagon), R.drawable.hexagon),
-            ShapeElement(getString(R.string.kite), R.drawable.kite),
-            ShapeElement(getString(R.string.oval), R.drawable.oval),
-            ShapeElement(getString(R.string.octagon), R.drawable.octagon),
-            ShapeElement(getString(R.string.rectangle), R.drawable.rectangle),
-            ShapeElement(getString(R.string.shape), R.drawable.shape),
-            ShapeElement(getString(R.string.square), R.drawable.square),
-            ShapeElement(getString(R.string.triangle), R.drawable.triangle)
-        )
+        getListOfShapeElements()
     }
 
 
@@ -48,4 +37,18 @@ class L1RecyclerViewFragment : Fragment() {
     private fun showDialog(shapeName: String) = L1DialogFragment
         .newInstance(shapeName)
         .show(requireActivity().supportFragmentManager, "dialog")
+
+    private fun getListOfShapeElements() =
+        listOf(
+            ShapeElement(getString(R.string.arrow), R.drawable.arrow),
+            ShapeElement(getString(R.string.circle), R.drawable.circle),
+            ShapeElement(getString(R.string.hexagon), R.drawable.hexagon),
+            ShapeElement(getString(R.string.kite), R.drawable.kite),
+            ShapeElement(getString(R.string.oval), R.drawable.oval),
+            ShapeElement(getString(R.string.octagon), R.drawable.octagon),
+            ShapeElement(getString(R.string.rectangle), R.drawable.rectangle),
+            ShapeElement(getString(R.string.shape), R.drawable.shape),
+            ShapeElement(getString(R.string.square), R.drawable.square),
+            ShapeElement(getString(R.string.triangle), R.drawable.triangle)
+        )
 }
