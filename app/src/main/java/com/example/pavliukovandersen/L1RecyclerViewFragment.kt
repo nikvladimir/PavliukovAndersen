@@ -28,10 +28,12 @@ class L1RecyclerViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerViewFragment)
-        recyclerView.layoutManager = layoutManager
-        recyclerView.setHasFixedSize(true)
+        recyclerView.apply {
+        layoutManager = layoutManager
+        setHasFixedSize(true)
         adapter = L1RecyclerViewAdapter(shapesArrayList, ::showDialog)
-        recyclerView.adapter = adapter
+        adapter = adapter
+        }
     }
 
     private fun showDialog(shapeName: String) = L1DialogFragment
