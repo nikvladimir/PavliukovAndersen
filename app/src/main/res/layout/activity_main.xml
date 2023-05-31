@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:theme="@style/AppTheme"
     tools:context=".MainActivity"
     tools:openDrawer="start">
 
@@ -29,6 +30,22 @@
         app:headerLayout="@layout/drawer_header"
         app:itemIconTint="@color/navTextIconColor"
         app:itemTextColor="@color/navTextIconColor"
-        app:menu="@menu/menu_drawer" />
+        app:menu="@menu/menu_drawer">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switch1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/night_mode"
+                android:textColor="@color/navTextIconColor"
+                app:thumbTint="@color/switchThumbTint" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>

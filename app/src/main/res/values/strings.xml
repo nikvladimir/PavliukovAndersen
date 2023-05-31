@@ -23,4 +23,5 @@
     <string name="company_name">Andersen</string>
     <string name="creators_name">Vladimir Pavliukov</string>
     <string name="default_text">default text</string>
+    <string name="night_mode">Night Mode</string>
 </resources>

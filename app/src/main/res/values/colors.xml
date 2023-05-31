@@ -5,4 +5,7 @@
     <color name="red">#F34747</color>
     <color name="backGroundGray">#C8C7C7</color>
     <color name="navTextIconColor">#4D4D4D</color>
+    <color name="switchThumbTint">#C8C7C7</color>
+    <color name="l1_tv_color">#FF000000</color>
+    <color name="l1_image_color">#FF000000</color>
 </resources>
