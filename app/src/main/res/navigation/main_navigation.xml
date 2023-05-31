@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/Lesson1Fragment">
+
+    <fragment
+        android:id="@+id/Lesson1Fragment"
+        android:name="com.example.pavliukovandersen.L1TextViewFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/l1_fragment_text_view" >
+        <action
+            android:id="@+id/action_Lesson1_to_Lesson2"
+            app:destination="@id/Lesson2Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Lesson2Fragment"
+        android:name="com.example.pavliukovandersen.L1EditTextFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/l1_fragment_edit_text" >
+        <action
+            android:id="@+id/action_Lesson2_to_Lesson3"
+            app:destination="@id/Lesson3Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/Lesson3Fragment"
+        android:name="com.example.pavliukovandersen.L1RecyclerViewFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/l1_fragment_recycler_view" >
+        <action
+                android:id="@+id/action_Lesson3_to_Lesson2"
+            app:destination="@id/Lesson1Fragment" />
+    </fragment>
+</navigation>

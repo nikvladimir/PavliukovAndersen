@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">PavliukovAndersen</string>
+    <string name="enter_text">Enter text</string>
+    <string name="alert_button">Alert button</string>
+
+    <string name="lesson_1">Lesson 1</string>
+    <string name="lesson_2">Lesson 2</string>
+    <string name="lesson_3">Lesson 3</string>
+
+    <string name="arrow">arrow</string>
+    <string name="circle">circle</string>
+    <string name="hexagon">hexagon</string>
+    <string name="kite">kite</string>
+    <string name="oval">oval</string>
+    <string name="octagon">octagon</string>
+    <string name="rectangle">rectangle</string>
+    <string name="shape">shape</string>
+    <string name="square">square</string>
+    <string name="triangle">triangle</string>
+
+    <string name="tv_form_name">some form name</string>
+    <string name="hello">Hello</string>
+    <string name="company_name">Andersen</string>
+    <string name="creators_name">Vladimir Pavliukov</string>
+    <string name="default_text">default text</string>
+    <string name="night_mode">Night Mode</string>
+</resources>

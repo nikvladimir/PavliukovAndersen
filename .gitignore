@@ -35,6 +35,7 @@ proguard/
 
 # Android Studio captures folder
 captures/
+/captures
 
 # IntelliJ
 *.iml
@@ -87,3 +88,13 @@ lint/tmp/
 # lint/reports/
 
 .DS_Store
+
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.idea/misc.xml
+.idea/deploymentTargetDropDown.xml
