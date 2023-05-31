@@ -5,12 +5,12 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 
-class L1DialogFragment : DialogFragment() {
+class T1DialogFragment : DialogFragment() {
 
     companion object {
         private const val SHAPE_NAME_KEY = "shape_name_key"
-        fun newInstance(userInput: String): L1DialogFragment {
-            val fragment = L1DialogFragment()
+        fun newInstance(userInput: String): T1DialogFragment {
+            val fragment = T1DialogFragment()
             val args = Bundle()
             args.putString(SHAPE_NAME_KEY, userInput)
             fragment.arguments = args

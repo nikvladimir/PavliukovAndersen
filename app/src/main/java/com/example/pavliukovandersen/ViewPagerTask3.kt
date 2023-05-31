@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class ViewPagerLesson3 : Fragment() {
+class ViewPagerTask3 : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.lesson3_view_pager, container, false)
+    ): View? = inflater.inflate(R.layout.task3_view_pager, container, false)
 }

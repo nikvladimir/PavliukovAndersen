@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".L1RecyclerViewFragment">
+    tools:context=".T1EditTextFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewFragment"
+    <EditText
+        android:id="@+id/editText"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/l1_recycler_view_item" />
+        android:hint="@string/enter_text"
+        android:textSize="@dimen/text_size_very_big" />
+
 </FrameLayout>

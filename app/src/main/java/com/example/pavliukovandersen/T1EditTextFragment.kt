@@ -10,13 +10,13 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 
-class L1EditTextFragment : Fragment() {
+class T1EditTextFragment : Fragment() {
     private lateinit var editText: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.l1_fragment_edit_text, container, false)
+        val view = inflater.inflate(R.layout.t1_fragment_edit_text, container, false)
         editText = view.findViewById(R.id.editText)
         editText.toastTextListener { s -> Toast.makeText(context, s, Toast.LENGTH_SHORT).show() }
         return view

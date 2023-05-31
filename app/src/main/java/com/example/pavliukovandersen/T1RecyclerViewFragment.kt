@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 
-class L1RecyclerViewFragment : Fragment() {
+class T1RecyclerViewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var shapesArrayList: List<ShapeElement>
 
@@ -20,7 +20,7 @@ class L1RecyclerViewFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.l1_fragment_recycler_view, container, false)
+    ): View? = inflater.inflate(R.layout.t1_fragment_recycler_view, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,11 +28,11 @@ class L1RecyclerViewFragment : Fragment() {
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
-            adapter = L1RecyclerViewAdapter(shapesArrayList, ::showDialog)
+            adapter = T1RecyclerViewAdapter(shapesArrayList, ::showDialog)
         }
     }
 
-    private fun showDialog(shapeName: String) = L1DialogFragment
+    private fun showDialog(shapeName: String) = T1DialogFragment
         .newInstance(shapeName)
         .show(requireActivity().supportFragmentManager, "dialog")
 

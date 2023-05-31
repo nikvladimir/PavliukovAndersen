@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 
 
-class L1TextViewFragment : Fragment() {
+class T1TextViewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.l1_fragment_text_view, container, false)
+        val view = inflater.inflate(R.layout.t1_fragment_text_view, container, false)
         val tvHello: TextView = view.findViewById(R.id.tvHello)
         val tvAndersen: TextView = view.findViewById(R.id.tvAndersen)
 
