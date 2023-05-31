@@ -10,15 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 class L1RecyclerViewFragment : Fragment() {
-    private lateinit var adapter: L1RecyclerViewAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var shapesArrayList: List<ShapeElement>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getListOfShapeElements()
+        shapesArrayList = getListOfShapeElements()
     }
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -26,13 +24,11 @@ class L1RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.recyclerViewFragment)
         recyclerView.apply {
-        layoutManager = layoutManager
-        setHasFixedSize(true)
-        adapter = L1RecyclerViewAdapter(shapesArrayList, ::showDialog)
-        adapter = adapter
+            layoutManager = LinearLayoutManager(context)
+            setHasFixedSize(true)
+            adapter = L1RecyclerViewAdapter(shapesArrayList, ::showDialog)
         }
     }
 
