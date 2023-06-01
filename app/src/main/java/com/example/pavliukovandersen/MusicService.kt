@@ -5,6 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
+import android.content.SharedPreferences
 import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
@@ -14,6 +15,7 @@ class MusicService : Service() {
     private val binder = LocalBinder()
     private lateinit var player: MediaPlayer
     private var isPaused: Boolean = false
+    private lateinit var sharedPreferences: SharedPreferences
 
     inner class LocalBinder : Binder() {
         fun getService(): MusicService = this@MusicService
@@ -21,6 +23,9 @@ class MusicService : Service() {
 
     override fun onBind(intent: Intent): IBinder {
         player = MediaPlayer.create(this, R.raw.sonne)
+        sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
+        val position = sharedPreferences.getInt("position", 0)
+        player.seekTo(position)
         return binder
     }
 
@@ -44,8 +49,15 @@ class MusicService : Service() {
 
     override fun onDestroy() {
         super.onDestroy()
-        player.stop()
-        player.release()
+        val editor = sharedPreferences.edit()
+        editor.apply {
+            putInt("position", player.currentPosition)
+            apply()
+        }
+        player.apply {
+            stop()
+            release()
+        }
     }
 
     private fun startForegroundService() {
