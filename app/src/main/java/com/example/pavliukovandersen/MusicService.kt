@@ -1,5 +1,8 @@
 package com.example.pavliukovandersen
 
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.media.MediaPlayer
@@ -25,6 +28,7 @@ class MusicService : Service() {
         if (!player.isPlaying) {
             player.start()
             isPaused = false
+            startForegroundService()
         }
     }
 
@@ -42,5 +46,25 @@ class MusicService : Service() {
         super.onDestroy()
         player.stop()
         player.release()
+    }
+
+    private fun startForegroundService() {
+        createNotificationChannel()
+
+        val notification = Notification.Builder(this, "MusicServiceChannel")
+            .setContentTitle("Artist")
+            .setContentText("Composition")
+            .setSmallIcon(R.drawable.arrow)
+            .build()
+
+        startForeground(1, notification)
+    }
+
+    private fun createNotificationChannel() {
+        val channel = NotificationChannel(
+            "MusicServiceChannel", "Music Service", NotificationManager.IMPORTANCE_DEFAULT
+        )
+        val manager = getSystemService(NotificationManager::class.java)
+        manager.createNotificationChannel(channel)
     }
 }

@@ -67,9 +67,9 @@ class T2MusicPlayer : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        if (isBound) {
-            requireActivity().unbindService(connection)
-            isBound = false
-        }
+//        if (isBound) {
+//            requireActivity().unbindService(connection)
+//            isBound = false
+//        }
     }
 }
