@@ -24,4 +24,7 @@
     <string name="creators_name">Vladimir Pavliukov</string>
     <string name="default_text">default text</string>
     <string name="night_mode">Night Mode</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+    <string name="stop">stop</string>
 </resources>

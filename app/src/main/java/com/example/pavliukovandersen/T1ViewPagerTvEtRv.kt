@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class ViewPagerTask1 : Fragment() {
+class T1ViewPagerTvEtRv : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
     private var tabNames: Array<String> = arrayOf("TextView", "EditText", "RecyclerView")

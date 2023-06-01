@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ViewPagerTask1">
+    tools:context=".T1ViewPagerTvEtRv">
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tab_layout_l1"
