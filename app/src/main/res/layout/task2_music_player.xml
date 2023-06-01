@@ -4,27 +4,102 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:orientation="vertical"
     tools:context=".T2MusicPlayer">
 
-    <Button
-        android:id="@+id/play_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/play" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/pause_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/pause" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/stop_button"
-        android:layout_width="wrap_content"
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:text="@string/heading_song_name" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:gravity="center"
+                    android:padding="10dip"
+                    android:text="@string/heading_artist" />
+
+                <TextView
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:gravity="center"
+                    android:padding="10dip"
+                    android:text="@string/heading_genre" />
+            </TableRow>
+
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tvSongName"
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:padding="10dp"
+                    android:text="@string/heading_song_name" />
+
+                <TextView
+                    android:id="@+id/tvArtist"
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:padding="10dip"
+                    android:text="@string/heading_artist" />
+
+                <TextView
+                    android:id="@+id/tvGenre"
+                    android:layout_weight="1"
+                    android:background="@drawable/table_border"
+                    android:padding="10dip"
+                    android:text="@string/heading_genre" />
+            </TableRow>
+
+
+        </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center"
-        android:text="@string/stop" />
+        android:layout_gravity="bottom"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="@string/play" />
+
+        <Button
+            android:id="@+id/pause_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="@string/pause" />
+
+        <Button
+            android:id="@+id/stop_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center"
+            android:text="@string/stop" />
+
+    </LinearLayout>
 
 </LinearLayout>
