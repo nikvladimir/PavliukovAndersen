@@ -2,5 +2,7 @@
 
     <style name="Base.Theme.PavliukovAndersen" parent="Theme.Material3.DayNight.NoActionBar" />
 
-    <style name="Theme.PavliukovAndersen" parent="Base.Theme.PavliukovAndersen" />
+    <style name="Theme.PavliukovAndersen" parent="Base.Theme.PavliukovAndersen" >
+        <item name="android:statusBarColor">@color/backGroundGray</item>
+    </style>
 </resources>
