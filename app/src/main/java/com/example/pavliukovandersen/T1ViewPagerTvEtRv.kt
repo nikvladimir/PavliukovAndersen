@@ -19,14 +19,14 @@ class T1ViewPagerTvEtRv : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.task1_view_pager, container, false)
-        tabLayout = view.findViewById(R.id.tab_layout_l1)
+        tabLayout = view.findViewById(R.id.t1_tab_layout_)
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewPager = view.findViewById(R.id.lesson1_viewpager)
+        viewPager = view.findViewById(R.id.t1_viewpager)
         viewPager.adapter = T1PagerAdapter(this)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, index -> tab.text = tabNames[index] }

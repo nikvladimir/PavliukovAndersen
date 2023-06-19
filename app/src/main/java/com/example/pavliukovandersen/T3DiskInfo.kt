@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class ViewPagerTask3 : Fragment() {
+class T3DiskInfo : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.task3_view_pager, container, false)
+    ): View? = inflater.inflate(R.layout.task3_disk_info, container, false)
 }

@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T2MusicPlayer())
+        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T3DiskInfo())
             .commit()
 
         nightModeSwitch = binding.switch1
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
 
                     R.id.Lesson3 -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, ViewPagerTask3()
+                        R.id.displayed_screen_fl, T3DiskInfo()
                     ).commit()
                 }
                 activityMainDrawer.closeDrawer(GravityCompat.START)

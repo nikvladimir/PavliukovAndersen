@@ -6,14 +6,14 @@
         <item
             android:id="@+id/Lesson1"
             android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/lesson_1" />
+            android:title="@string/tv_et_rv" />
         <item
             android:id="@+id/Lesson2"
             android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/lesson_2" />
+            android:title="@string/music_player" />
         <item
             android:id="@+id/Lesson3"
             android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/lesson_3" />
+            android:title="@string/disk_info" />
     </group>
 </menu>

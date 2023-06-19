@@ -1,14 +1,16 @@
 package com.example.pavliukovandersen
 
 import android.os.Bundle
+import android.os.Environment
 import android.text.Editable
 import android.text.TextWatcher
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+
 
 class T1EditTextFragment : Fragment() {
     private lateinit var editText: EditText
@@ -26,8 +28,15 @@ class T1EditTextFragment : Fragment() {
         this.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(editable: Editable) { afterTextChanged.invoke(editable.toString())
+            override fun afterTextChanged(editable: Editable) {
+                afterTextChanged.invoke(editable.toString())
             }
         })
     }
+
+    private fun isExternalStorageAvailable(): Boolean {
+        val extStorageState = Environment.getExternalStorageState()
+        return Environment.MEDIA_MOUNTED == extStorageState
+    }
+
 }
