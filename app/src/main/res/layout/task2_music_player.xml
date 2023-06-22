@@ -1,76 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".T2MusicPlayer">
+    tools:context=".T2MusicPlayerFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TableLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TableRow>
-
-                <TextView
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:gravity="center"
-                    android:padding="10dp"
-                    android:text="@string/heading_song_name" />
-
-                <TextView
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:gravity="center"
-                    android:padding="10dip"
-                    android:text="@string/heading_artist" />
-
-                <TextView
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:gravity="center"
-                    android:padding="10dip"
-                    android:text="@string/heading_genre" />
-            </TableRow>
-
-
-            <TableRow>
-
-                <TextView
-                    android:id="@+id/tvSongName"
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:padding="10dp"
-                    android:text="@string/heading_song_name" />
-
-                <TextView
-                    android:id="@+id/tvArtist"
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:padding="10dip"
-                    android:text="@string/heading_artist" />
-
-                <TextView
-                    android:id="@+id/tvGenre"
-                    android:layout_weight="1"
-                    android:background="@drawable/table_border"
-                    android:padding="10dip"
-                    android:text="@string/heading_genre" />
-            </TableRow>
-
-
-        </TableLayout>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <LinearLayout
@@ -99,6 +45,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:text="@string/stop" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:clickable="true"
+            android:contentDescription="TODO"
+            android:src="@android:drawable/ic_input_add" />
+
 
     </LinearLayout>
 
