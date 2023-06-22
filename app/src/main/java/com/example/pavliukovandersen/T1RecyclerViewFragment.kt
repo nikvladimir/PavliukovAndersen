@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class T1RecyclerViewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private lateinit var shapesArrayList: List<ShapeElement>
+    private lateinit var shapesArrayList: List<T1DataShapeElement>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,15 +38,15 @@ class T1RecyclerViewFragment : Fragment() {
 
     private fun getListOfShapeElements() =
         listOf(
-            ShapeElement(getString(R.string.arrow), R.drawable.arrow),
-            ShapeElement(getString(R.string.circle), R.drawable.circle),
-            ShapeElement(getString(R.string.hexagon), R.drawable.hexagon),
-            ShapeElement(getString(R.string.kite), R.drawable.kite),
-            ShapeElement(getString(R.string.oval), R.drawable.oval),
-            ShapeElement(getString(R.string.octagon), R.drawable.octagon),
-            ShapeElement(getString(R.string.rectangle), R.drawable.rectangle),
-            ShapeElement(getString(R.string.shape), R.drawable.shape),
-            ShapeElement(getString(R.string.square), R.drawable.square),
-            ShapeElement(getString(R.string.triangle), R.drawable.triangle)
+            T1DataShapeElement(getString(R.string.arrow), R.drawable.arrow),
+            T1DataShapeElement(getString(R.string.circle), R.drawable.circle),
+            T1DataShapeElement(getString(R.string.hexagon), R.drawable.hexagon),
+            T1DataShapeElement(getString(R.string.kite), R.drawable.kite),
+            T1DataShapeElement(getString(R.string.oval), R.drawable.oval),
+            T1DataShapeElement(getString(R.string.octagon), R.drawable.octagon),
+            T1DataShapeElement(getString(R.string.rectangle), R.drawable.rectangle),
+            T1DataShapeElement(getString(R.string.shape), R.drawable.shape),
+            T1DataShapeElement(getString(R.string.square), R.drawable.square),
+            T1DataShapeElement(getString(R.string.triangle), R.drawable.triangle)
         )
 }

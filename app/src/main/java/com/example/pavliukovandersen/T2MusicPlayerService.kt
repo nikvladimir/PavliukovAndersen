@@ -10,7 +10,7 @@ import android.media.MediaPlayer
 import android.os.Binder
 import android.os.IBinder
 
-class MusicService : Service() {
+class T2MusicPlayerService : Service() {
 
     private val binder = LocalBinder()
     private lateinit var player: MediaPlayer
@@ -18,11 +18,11 @@ class MusicService : Service() {
     private lateinit var sharedPreferences: SharedPreferences
 
     inner class LocalBinder : Binder() {
-        fun getService(): MusicService = this@MusicService
+        fun getService(): T2MusicPlayerService = this@T2MusicPlayerService
     }
 
     override fun onBind(intent: Intent): IBinder {
-        player = MediaPlayer.create(this, R.raw.sonne)
+        player = MediaPlayer.create(this, R.raw.korol_i_shut_dva_druga)
         sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
         val position = sharedPreferences.getInt("position", 0)
         player.seekTo(position)

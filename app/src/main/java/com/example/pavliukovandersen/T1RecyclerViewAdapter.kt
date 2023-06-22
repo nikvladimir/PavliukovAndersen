@@ -8,14 +8,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class T1RecyclerViewAdapter(
-    private val elements: List<ShapeElement>,
+    private val elements: List<T1DataShapeElement>,
     val showDialog: (shapeName: String) -> Unit
 ) : RecyclerView.Adapter<T1RecyclerViewAdapter.ElementViewHolder>() {
 
     override fun getItemCount() = elements.size
 
     inner class ElementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(element: ShapeElement) {
+        fun bind(element: T1DataShapeElement) {
             itemView.findViewById<TextView>(R.id.tvElementName).text = element.shapeName
             itemView.findViewById<ImageView>(R.id.ivImage).setImageResource(element.imageResId)
             itemView.setOnClickListener { showDialog(element.shapeName) }

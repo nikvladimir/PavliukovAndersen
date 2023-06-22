@@ -15,7 +15,11 @@
         android:theme="@style/Theme.PavliukovAndersen"
         tools:targetApi="33">
         <activity
+            android:name=".T2ViewPlayListFilter"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
+            android:label="Vladimir project"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MusicService" />
+        <service android:name=".T2MusicPlayerService" />
     </application>
 
 </manifest>
