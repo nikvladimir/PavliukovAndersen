@@ -2,7 +2,8 @@ package com.example.pavliukovandersen
 
 class Constants {
     companion object {
-        // DBHelper
+        // DBHelper for playlist
+        const val DB_NAME = "playlist"
         const val PL_TABLE_NAME = "Userdata"
         private const val PL_COLUMN_1 = "artist"  // artist
         private const val PL_COLUMN_2 = "song_name"  // song_name
@@ -19,7 +20,7 @@ class Constants {
         const val SELECT_ALL_FROM_PL = "SELECT * FROM $PL_TABLE_NAME"
         //            "CREATE TABLE IF NOT EXISTS Userdata (id INTEGER PRIMARY KEY, artist TEXT, song_name TEXT, genre TEXT, file_name TEXT)"
 
-        const val FILL_THE_PL_TABLE = "INSERT INTO $PL_TABLE_NAME " +
+        const val FILLING_THE_PL_TABLE = "INSERT INTO $PL_TABLE_NAME " +
                 "($PL_COLUMN_1, $PL_COLUMN_2, $PL_COLUMN_3, $PL_COLUMN_4) VALUES " +
                 "('Rammstein', 'Links-2-3-4', 'Metal', 'rammstein_links_2_3_4.mp3'), " +
                 "('Rammstein', 'Du hast', 'Metal', 'rammstein_du_hast.mp3'), " +

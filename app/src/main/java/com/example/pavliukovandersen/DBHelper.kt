@@ -6,19 +6,20 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 
-private const val tableName = Constants.PL_TABLE_NAME
+private const val dbName = Constants.DB_NAME
+private const val DBVersion = 1
 
-class DBHelper(context: Context) : SQLiteOpenHelper(
-    context, tableName, null, 1
-) {
+class DBHelper(context: Context) :
+    SQLiteOpenHelper(context, dbName, null, DBVersion) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Constants.CREATE_PL_TABLE)
-        db?.execSQL(Constants.FILL_THE_PL_TABLE)
+        db?.execSQL(Constants.FILLING_THE_PL_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL(Constants.DROP_PL_TABLE)
+        onCreate(db)
     }
 
     fun gettext(): Cursor? {
