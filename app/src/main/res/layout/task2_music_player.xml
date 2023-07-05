@@ -17,6 +17,8 @@
             android:id="@+id/recycler"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -46,15 +48,13 @@
             android:layout_gravity="bottom|center"
             android:text="@string/stop" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+
+        <ImageButton
+            android:id="@+id/filterButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:clickable="true"
-            android:contentDescription="TODO"
-            android:src="@android:drawable/ic_input_add" />
-
+            android:src="@drawable/baseline_filter_alt_24"
+            android:backgroundTint="@color/t2_filter_background_color"/>
 
     </LinearLayout>
 

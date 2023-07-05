@@ -24,7 +24,7 @@
         android:layout_margin="@dimen/rec_v_margin_small"
         android:gravity="fill_vertical"
         android:text="@string/tv_form_name"
-        android:textColor="@color/l1_tv_color"
+        android:textColor="@color/t1_tv_color"
         android:textSize="16sp"
         android:textStyle="bold" />
 
