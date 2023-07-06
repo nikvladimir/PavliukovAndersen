@@ -2,13 +2,13 @@ package com.example.pavliukovandersen
 
 import android.R.layout.simple_spinner_item
 import android.R.layout.simple_spinner_dropdown_item
+import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pavliukovandersen.databinding.T2ActivityPlayListFilterBinding
 
@@ -19,7 +19,6 @@ class T2PlayListFilterActivity : AppCompatActivity() {
     private lateinit var artistSpinner: Spinner
     private lateinit var genreSpinner: Spinner
     private lateinit var binding: T2ActivityPlayListFilterBinding
-    private lateinit var artistArray: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,37 +40,56 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         genreSpinner.adapter = genreAdapter
 
         artistSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, index: Int, id: Long) {
+                val selectedItem = parent.getItemAtPosition(index).toString()
+                if (selectedItem != "Выберите исполнителя:") switchToActivity(MainActivity::class.java)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
+        genreSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                Toast.makeText(applicationContext, selectedItem, Toast.LENGTH_SHORT).show()
+                if (selectedItem != "Выберите жанр:") switchToActivity(MainActivity::class.java)
             }
+
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
+
+        val backButton = binding.backButton
+        backButton.setOnClickListener() { switchToActivity(MainActivity::class.java) }
     }
 
     private fun getArtistList(): ArrayList<String> {
         val cursor: Cursor? = dbh.queryArtist()
-        artistArray = ArrayList()
+        val artistsList = arrayListOf("Выберите исполнителя:")
         while (cursor!!.moveToNext()) {
             val artistName = cursor.getString(0)
-            artistArray.add(artistName)
+            artistsList.add(artistName)
         }
         cursor.close()
-        return artistArray
+        return artistsList
     }
 
     private fun getGenreList(): ArrayList<String> {
         val cursor: Cursor? = dbh.queryGenre()
-        artistArray = ArrayList()
+        val genresList = arrayListOf("Выберите жанр:")
         while (cursor!!.moveToNext()) {
             val artistName = cursor.getString(0)
-            artistArray.add(artistName)
+            genresList.add(artistName)
         }
         cursor.close()
-        return artistArray
+        return genresList
+    }
+
+    private fun switchToActivity(className: Class<*>) {
+        val intent = Intent(this, className)
+        startActivity(intent)
     }
 }
 

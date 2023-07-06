@@ -15,7 +15,6 @@ class DBHelper(context: Context) :
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Constants.CREATE_PL_TABLE)
         db?.execSQL(Constants.FILLING_THE_PL_TABLE)
-        db?.close()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {

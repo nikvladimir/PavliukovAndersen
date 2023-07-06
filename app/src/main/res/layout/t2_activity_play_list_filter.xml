@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/artist"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/spinnerArtist"
         app:layout_constraintEnd_toEndOf="@+id/spinnerArtist"
         app:layout_constraintStart_toStartOf="@+id/spinnerArtist" />
@@ -30,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/genre"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/spinnerGenre"
         app:layout_constraintEnd_toEndOf="@+id/spinnerGenre"
         app:layout_constraintStart_toStartOf="@+id/spinnerGenre" />
@@ -45,7 +47,7 @@
 
 
     <Button
-        android:id="@+id/saveButtonPlaylistFilter"
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/back"
