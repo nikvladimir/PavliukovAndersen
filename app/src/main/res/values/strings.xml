@@ -45,8 +45,7 @@
     <string name="unknown_speed">-- Mb/sec</string>
     <string name="song_name">Song name</string>
     <string name="artist_name">Artist name</string>
-    <string name="genre">Genre</string>
-<!--    DB  strings for Task 2-->
-    <string name="dbColumn1">name</string>
-    <string name="dbColumn2">contact</string>
+    <string name="genre">Жанр:</string>
+    <string name="artist">Исполнитель:</string>
+    <string name="back">Back</string>
 </resources>
