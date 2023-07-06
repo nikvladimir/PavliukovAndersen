@@ -18,7 +18,8 @@ class Constants {
                 ")"
         const val DROP_PL_TABLE = "DROP TABLE IF EXISTS $PL_TABLE_NAME"
         const val SELECT_ALL_FROM_PL = "SELECT * FROM $PL_TABLE_NAME"
-        //            "CREATE TABLE IF NOT EXISTS Userdata (id INTEGER PRIMARY KEY, artist TEXT, song_name TEXT, genre TEXT, file_name TEXT)"
+        const val SELECT_ARTIST = "SELECT DISTINCT $PL_COLUMN_1 FROM $PL_TABLE_NAME"
+        const val SELECT_GENRE = "SELECT DISTINCT $PL_COLUMN_3 FROM $PL_TABLE_NAME"
 
         const val FILLING_THE_PL_TABLE = "INSERT INTO $PL_TABLE_NAME " +
                 "($PL_COLUMN_1, $PL_COLUMN_2, $PL_COLUMN_3, $PL_COLUMN_4) VALUES " +

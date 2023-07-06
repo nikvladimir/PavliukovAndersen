@@ -15,6 +15,7 @@ class DBHelper(context: Context) :
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(Constants.CREATE_PL_TABLE)
         db?.execSQL(Constants.FILLING_THE_PL_TABLE)
+        db?.close()
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
@@ -22,8 +23,18 @@ class DBHelper(context: Context) :
         onCreate(db)
     }
 
-    fun gettext(): Cursor? {
-        val db = this.writableDatabase
+    fun queryPlaylistTable(): Cursor? {
+        val db = this.readableDatabase
         return db.rawQuery(Constants.SELECT_ALL_FROM_PL, null)
+    }
+
+    fun queryArtist(): Cursor? {
+        val db = this.readableDatabase
+        return db.rawQuery(Constants.SELECT_ARTIST, null)
+    }
+
+    fun queryGenre(): Cursor? {
+        val db = this.readableDatabase
+        return db.rawQuery(Constants.SELECT_GENRE, null)
     }
 }

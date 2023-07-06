@@ -1,17 +1,76 @@
 package com.example.pavliukovandersen
 
-import androidx.appcompat.app.AppCompatActivity
+import android.R.layout.simple_spinner_item
+import android.R.layout.simple_spinner_dropdown_item
+import android.database.Cursor
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import androidx.appcompat.app.AppCompatActivity
+import com.example.pavliukovandersen.databinding.T2ActivityPlayListFilterBinding
+
 
 class T2PlayListFilterActivity : AppCompatActivity() {
 
-    private lateinit var db: DBHelper
+    private lateinit var dbh: DBHelper
+    private lateinit var artistSpinner: Spinner
+    private lateinit var genreSpinner: Spinner
+    private lateinit var binding: T2ActivityPlayListFilterBinding
+    private lateinit var artistArray: ArrayList<String>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.t2_activity_play_list_filter)
+        binding = T2ActivityPlayListFilterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        db = DBHelper(this)
+        dbh = DBHelper(this)
 
+        artistSpinner = binding.spinnerArtist
+        genreSpinner = binding.spinnerGenre
+
+        val artistAdapter = ArrayAdapter(this, simple_spinner_item, getArtistList())
+        val genreAdapter = ArrayAdapter(this, simple_spinner_item, getGenreList())
+
+        artistAdapter.setDropDownViewResource(simple_spinner_dropdown_item)
+        genreAdapter.setDropDownViewResource(simple_spinner_dropdown_item)
+
+        artistSpinner.adapter = artistAdapter
+        genreSpinner.adapter = genreAdapter
+
+//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(
+//                parent: AdapterView<*>, view: View?, position: Int, id: Long
+//            ) {
+//                val selectedItem = parent.getItemAtPosition(position).toString()
+//            }
+//
+//            override fun onNothingSelected(parent: AdapterView<*>) {
+//            }
+//        }
+//        val selected = spinner.selectedItem.toString()
+//        Toast.makeText(applicationContext, selected, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun getArtistList(): ArrayList<String> {
+        val cursor: Cursor? = dbh.queryArtist()
+        artistArray = ArrayList()
+        while (cursor!!.moveToNext()) {
+            val artistName = cursor.getString(0)
+            artistArray.add(artistName)
+        }
+        cursor.close()
+        return artistArray
+    }
+
+    private fun getGenreList(): ArrayList<String> {
+        val cursor: Cursor? = dbh.queryGenre()
+        artistArray = ArrayList()
+        while (cursor!!.moveToNext()) {
+            val artistName = cursor.getString(0)
+            artistArray.add(artistName)
+        }
+        cursor.close()
+        return artistArray
     }
 }
+
