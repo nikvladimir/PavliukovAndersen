@@ -18,13 +18,12 @@ import androidx.recyclerview.widget.RecyclerView
 
 class T2MusicPlayerFragment : Fragment() {
 
+    private lateinit var dbh: DBHelper
     private lateinit var recyclerView: RecyclerView
-    private lateinit var button: ImageButton
-    lateinit var dbh: DBHelper
-    private lateinit var newArray: ArrayList<T2DataPlayList>
+    private lateinit var tableDataArray: ArrayList<T2DataPlayList>
 
-    private var musicService: T2MusicPlayerService? = null
     private var isBound = false
+    private var musicService: T2MusicPlayerService? = null
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -40,7 +39,7 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        displayUser()
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
     }
 
     override fun onCreateView(
@@ -48,54 +47,44 @@ class T2MusicPlayerFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.task2_music_player, container, false)
 
-        recyclerView = view.findViewById(R.id.recycler)
-        button = view.findViewById(R.id.filterButton)
-
-        button.setOnClickListener {
-            val intent = Intent(requireActivity(), T2PlayListFilterActivity::class.java)
-            startActivity(intent)
-        }
-
         dbh = DBHelper(requireActivity().applicationContext)
+        recyclerView = view.findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.setHasFixedSize(true)
-        displayUser()
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
 
         val playButton = view.findViewById<Button>(R.id.play_button)
         val pauseButton = view.findViewById<Button>(R.id.pause_button)
         val stopButton = view.findViewById<Button>(R.id.stop_button)
+        val filterButton = view.findViewById<ImageButton>(R.id.filterButton)
 
-        playButton.setOnClickListener {
-            if (isBound) {
-                musicService?.playMusic()
-            }
-        }
-
-        pauseButton.setOnClickListener {
-            if (isBound) {
-                musicService?.pauseMusic()
-            }
-        }
+        playButton.setOnClickListener { if (isBound) musicService?.playMusic() }
+        pauseButton.setOnClickListener { if (isBound) musicService?.pauseMusic() }
         stopButton.setOnClickListener {
             if (isBound) {
                 requireActivity().unbindService(connection)
                 isBound = false
             }
         }
+        filterButton.setOnClickListener {
+            val intent = Intent(requireActivity(), T2PlayListFilterActivity::class.java)
+            startActivity(intent)
+        }
         return view
     }
 
-    private fun displayUser() {
-        var newCursor: Cursor? = dbh.gettext()
-        newArray = ArrayList()
-        while (newCursor!!.moveToNext()) {
-            val artistName = newCursor.getString(0)
-            val songName = newCursor.getString(1)
-            val genre = newCursor.getString(2)
-            val fileName = newCursor.getString(3)
-            newArray.add(T2DataPlayList(artistName, songName, genre))
+    private fun getArrayPlayList(): ArrayList<T2DataPlayList> {
+        val cursor: Cursor? = dbh.queryPlaylistTable()
+        tableDataArray = ArrayList()
+        while (cursor!!.moveToNext()) {
+            val artistName = cursor.getString(0)
+            val songName = cursor.getString(1)
+            val genre = cursor.getString(2)
+            val fileName = cursor.getString(3)
+            tableDataArray.add(T2DataPlayList(artistName, songName, genre))
         }
-        recyclerView.adapter = T2PlayListAdapter(newArray)
+        cursor.close()
+        return tableDataArray
     }
 
     override fun onStart() {
