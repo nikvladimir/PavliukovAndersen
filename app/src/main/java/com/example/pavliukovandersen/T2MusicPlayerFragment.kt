@@ -12,14 +12,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class T2MusicPlayerFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var button: FloatingActionButton
+    private lateinit var button: ImageButton
     lateinit var dbh: DBHelper
     private lateinit var newArray: ArrayList<T2DataPlayList>
 
@@ -49,10 +49,10 @@ class T2MusicPlayerFragment : Fragment() {
         val view = inflater.inflate(R.layout.task2_music_player, container, false)
 
         recyclerView = view.findViewById(R.id.recycler)
-        button = view.findViewById(R.id.floatingActionButton)
+        button = view.findViewById(R.id.filterButton)
 
         button.setOnClickListener {
-            val intent = Intent(requireActivity(), T2ViewPlayListFilter::class.java)
+            val intent = Intent(requireActivity(), T2PlayListFilterActivity::class.java)
             startActivity(intent)
         }
 

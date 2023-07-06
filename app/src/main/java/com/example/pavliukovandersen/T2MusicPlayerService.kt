@@ -7,8 +7,10 @@ import android.app.Service
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+
 
 class T2MusicPlayerService : Service() {
 
@@ -22,7 +24,9 @@ class T2MusicPlayerService : Service() {
     }
 
     override fun onBind(intent: Intent): IBinder {
-        player = MediaPlayer.create(this, R.raw.korol_i_shut_dva_druga)
+        val musicFileName = "eminem_lose_yourself"
+        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$musicFileName")
+        player = MediaPlayer.create(this, uriMusicFile)
         sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
         val position = sharedPreferences.getInt("position", 0)
         player.seekTo(position)

@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PavliukovAndersen">
         <activity
-            android:name=".T2ViewPlayListFilter"
+            android:name=".T2PlayListFilterActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
