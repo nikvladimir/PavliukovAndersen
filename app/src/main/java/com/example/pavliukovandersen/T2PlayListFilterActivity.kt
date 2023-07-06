@@ -4,8 +4,11 @@ import android.R.layout.simple_spinner_item
 import android.R.layout.simple_spinner_dropdown_item
 import android.database.Cursor
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pavliukovandersen.databinding.T2ActivityPlayListFilterBinding
 
@@ -37,18 +40,16 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         artistSpinner.adapter = artistAdapter
         genreSpinner.adapter = genreAdapter
 
-//        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onItemSelected(
-//                parent: AdapterView<*>, view: View?, position: Int, id: Long
-//            ) {
-//                val selectedItem = parent.getItemAtPosition(position).toString()
-//            }
-//
-//            override fun onNothingSelected(parent: AdapterView<*>) {
-//            }
-//        }
-//        val selected = spinner.selectedItem.toString()
-//        Toast.makeText(applicationContext, selected, Toast.LENGTH_SHORT).show()
+        artistSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, position: Int, id: Long
+            ) {
+                val selectedItem = parent.getItemAtPosition(position).toString()
+                Toast.makeText(applicationContext, selectedItem, Toast.LENGTH_SHORT).show()
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
     }
 
     private fun getArtistList(): ArrayList<String> {
