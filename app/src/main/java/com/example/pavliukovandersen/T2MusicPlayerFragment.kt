@@ -26,6 +26,8 @@ class T2MusicPlayerFragment : Fragment() {
     private lateinit var tableDataArray: ArrayList<T2DataPlayList>
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
+    private var sortByColumn: String = ""
+    private var sortByKey: String = ""
     private var isBound = false
     private var musicService: T2MusicPlayerService? = null
 
@@ -47,8 +49,8 @@ class T2MusicPlayerFragment : Fragment() {
             registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
                 if (result.resultCode == Activity.RESULT_OK) {
                     val data: Intent? = result.data
-                    val sortByColumn = data?.getStringExtra("type")
-                    val sortByKey = data?.getStringExtra("key")
+                    sortByColumn = data?.getStringExtra("type") ?: ""
+                    sortByKey = data?.getStringExtra("key") ?: ""
                 }
             }
     }
@@ -62,7 +64,7 @@ class T2MusicPlayerFragment : Fragment() {
         recyclerView = view.findViewById(R.id.recycler)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB())
 
         val playButton = view.findViewById<Button>(R.id.play_button)
         val pauseButton = view.findViewById<Button>(R.id.pause_button)
@@ -93,11 +95,16 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB(sortByColumn, sortByKey))
     }
 
-    private fun getArrayPlayList(): ArrayList<T2DataPlayList> {
-        val cursor: Cursor? = dbh.queryPlaylistTable()
+    private fun getArrayPlayListFromDB(column: String = "", value: String = ""):
+            ArrayList<T2DataPlayList> {
+        val cursor: Cursor? = if (column.isEmpty() && value.isEmpty()) {
+            dbh.queryAllPlaylistTable()
+        } else {
+            dbh.queryPlaylistTableByColumnAndValue(column, value)
+        }
         tableDataArray = ArrayList()
         while (cursor!!.moveToNext()) {
             val artistName = cursor.getString(0)
