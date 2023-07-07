@@ -32,11 +32,8 @@ class T2MusicPlayerService : Service() {
         trackName = intent.getStringExtra("trackName") ?: "Unknown"
         trackFileName = intent.getStringExtra("trackFileName") ?: "eminem_lose_yourself"
 
-        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$trackFileName")
-        player = MediaPlayer.create(this, uriMusicFile)
-        sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
-        val position = sharedPreferences.getInt("position", 0)
-        player.seekTo(position)
+        initMediaPlayer()
+
         return binder
     }
 
@@ -59,6 +56,24 @@ class T2MusicPlayerService : Service() {
             player.start()
             isPaused = false
         }
+    }
+
+    fun playNextTrack(trackData: T2DataPlayList) {
+        trackArtist = trackData.artist
+        trackName = trackData.trackName
+        trackFileName = trackData.trackFileName
+
+        player.release()
+        initMediaPlayer()
+        player.start()
+    }
+
+    private fun initMediaPlayer() {
+        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$trackFileName")
+        player = MediaPlayer.create(this, uriMusicFile)
+        sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
+        val position = sharedPreferences.getInt("position", 0)
+        player.seekTo(position)
     }
 
     override fun onDestroy() {

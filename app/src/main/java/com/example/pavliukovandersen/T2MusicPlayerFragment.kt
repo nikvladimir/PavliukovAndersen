@@ -26,7 +26,7 @@ class T2MusicPlayerFragment : Fragment() {
     private lateinit var tableDataArray: ArrayList<T2DataPlayList>
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
-    private val currentTrackIndex = 0
+    private var currentTrackIndex = 0
     private val tracksList = mutableListOf<String>()
     private var sortByColumn: String = ""
     private var sortByKey: String = ""
@@ -70,11 +70,18 @@ class T2MusicPlayerFragment : Fragment() {
 
         val playButton = view.findViewById<Button>(R.id.play_button)
         val pauseButton = view.findViewById<Button>(R.id.pause_button)
+        val nextButton = view.findViewById<Button>(R.id.next_button)
         val stopButton = view.findViewById<Button>(R.id.stop_button)
         val filterButton = view.findViewById<ImageButton>(R.id.filterButton)
 
         playButton.setOnClickListener { if (isBound) musicService?.playMusic() }
         pauseButton.setOnClickListener { if (isBound) musicService?.pauseMusic() }
+        nextButton.setOnClickListener {
+            if (isBound) {
+                currentTrackIndex += 1
+                musicService?.playNextTrack(tableDataArray[currentTrackIndex])
+            }
+        }
         stopButton.setOnClickListener {
             if (isBound) {
                 requireActivity().unbindService(connection)
@@ -90,19 +97,23 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        val currentComposition = tableDataArray[currentTrackIndex]
+        startMusicService()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB(sortByColumn, sortByKey))
+    }
+
+    private fun startMusicService() {
+        currentTrackIndex = 3
+        val currentComposition = tableDataArray[currentTrackIndex]
         Intent(requireActivity(), T2MusicPlayerService::class.java).also { intent ->
             intent.putExtra("trackArtist", currentComposition.artist)
             intent.putExtra("trackName", currentComposition.trackName)
             intent.putExtra("trackFileName", currentComposition.trackFileName)
             requireActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB(sortByColumn, sortByKey))
     }
 
     private fun getArrayPlayListFromDB(column: String = "", value: String = ""):

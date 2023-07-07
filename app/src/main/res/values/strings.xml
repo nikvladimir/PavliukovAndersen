@@ -26,6 +26,7 @@
     <string name="night_mode">Night Mode</string>
     <string name="play">play</string>
     <string name="pause">pause</string>
+    <string name="next">next</string>
     <string name="stop">stop</string>
     <string name="heading_song_name">song name</string>
     <string name="heading_artist">artist</string>
