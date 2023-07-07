@@ -14,18 +14,25 @@ import android.os.IBinder
 
 class T2MusicPlayerService : Service() {
 
-    private val binder = LocalBinder()
     private lateinit var player: MediaPlayer
-    private var isPaused: Boolean = false
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var trackArtist: String
+    private lateinit var trackName: String
+    private lateinit var trackFileName: String
+
+    private val binder = LocalBinder()
+    private var isPaused: Boolean = true
 
     inner class LocalBinder : Binder() {
         fun getService(): T2MusicPlayerService = this@T2MusicPlayerService
     }
 
     override fun onBind(intent: Intent): IBinder {
-        val musicFileName = "eminem_lose_yourself"
-        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$musicFileName")
+        trackArtist = intent.getStringExtra("trackArtist") ?: "Unknown"
+        trackName = intent.getStringExtra("trackName") ?: "Unknown"
+        trackFileName = intent.getStringExtra("trackFileName") ?: "eminem_lose_yourself"
+
+        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$trackFileName")
         player = MediaPlayer.create(this, uriMusicFile)
         sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
         val position = sharedPreferences.getInt("position", 0)
@@ -34,10 +41,13 @@ class T2MusicPlayerService : Service() {
     }
 
     fun playMusic() {
-        if (!player.isPlaying) {
+        if (isPaused) {
             player.start()
             isPaused = false
             startForegroundService()
+        } else {
+            player.pause()
+            isPaused = true
         }
     }
 
@@ -68,8 +78,8 @@ class T2MusicPlayerService : Service() {
         createNotificationChannel()
 
         val notification = Notification.Builder(this, "MusicServiceChannel")
-            .setContentTitle("Artist")
-            .setContentText("Composition")
+            .setContentTitle(trackArtist)
+            .setContentText(trackName)
             .setSmallIcon(R.drawable.arrow)
             .build()
 

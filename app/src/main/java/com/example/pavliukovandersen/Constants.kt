@@ -24,16 +24,16 @@ class Constants {
 
         const val FILLING_THE_PL_TABLE = "INSERT INTO $PL_TABLE_NAME " +
                 "($PL_COLUMN_1, $PL_COLUMN_2, $PL_COLUMN_3, $PL_COLUMN_4) VALUES " +
-                "('Rammstein', 'Links-2-3-4', 'Metal', 'rammstein_links_2_3_4.mp3'), " +
-                "('Rammstein', 'Du hast', 'Metal', 'rammstein_du_hast.mp3'), " +
-                "('Rammstein', 'Feuer-frei', 'Metal', 'rammstein_feuer_frei.mp3'), " +
-                "('Ария', 'Возьми моё сердце', 'Metal', 'arija_vozmi_mojo_serdce.mp3'), " +
-                "('Ария', 'Грязь', 'Metal', 'arija_grjaz.mp3'), " +
-                "('Король и шут', 'Кукла колдуна', 'Rock', 'korol_i_shut_kukla_kolduna.mp3'), " +
-                "('Король и шут', 'Лесник', 'Rock', 'korol_i_shut_lesnik.mp3'), " +
-                "('Король и шут', 'Два друга', 'Rock', 'korol_i_shut_dva_druga.mp3'), " +
-                "('Король и шут', 'Валет и дама', 'Rock', 'korol_i_shut_valet_i_dama.mp3'), " +
-                "('Alex Clare', 'Too close', 'Pop', 'alex_clare_too_close.mp3'), " +
-                "('Eminem', 'Lose yourself', 'Pop', 'eminem_lose_yourself.mp3');"
+                "('Rammstein', 'Links-2-3-4', 'Metal', 'rammstein_links_2_3_4'), " +
+                "('Rammstein', 'Du hast', 'Metal', 'rammstein_du_hast'), " +
+                "('Rammstein', 'Feuer-frei', 'Metal', 'rammstein_feuer_frei'), " +
+                "('Ария', 'Возьми моё сердце', 'Metal', 'arija_vozmi_mojo_serdce'), " +
+                "('Ария', 'Грязь', 'Metal', 'arija_grjaz'), " +
+                "('Король и шут', 'Кукла колдуна', 'Rock', 'korol_i_shut_kukla_kolduna'), " +
+                "('Король и шут', 'Лесник', 'Rock', 'korol_i_shut_lesnik'), " +
+                "('Король и шут', 'Два друга', 'Rock', 'korol_i_shut_dva_druga'), " +
+                "('Король и шут', 'Валет и дама', 'Rock', 'korol_i_shut_valet_i_dama'), " +
+                "('Alex Clare', 'Too close', 'Pop', 'alex_clare_too_close'), " +
+                "('Eminem', 'Lose yourself', 'Pop', 'eminem_lose_yourself');"
     }
 }

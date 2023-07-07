@@ -26,6 +26,8 @@ class T2MusicPlayerFragment : Fragment() {
     private lateinit var tableDataArray: ArrayList<T2DataPlayList>
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
+    private val currentTrackIndex = 0
+    private val tracksList = mutableListOf<String>()
     private var sortByColumn: String = ""
     private var sortByKey: String = ""
     private var isBound = false
@@ -88,7 +90,12 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        val currentComposition = tableDataArray[currentTrackIndex]
+
         Intent(requireActivity(), T2MusicPlayerService::class.java).also { intent ->
+            intent.putExtra("trackArtist", currentComposition.artist)
+            intent.putExtra("trackName", currentComposition.trackName)
+            intent.putExtra("trackFileName", currentComposition.trackFileName)
             requireActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE)
         }
     }
@@ -111,7 +118,7 @@ class T2MusicPlayerFragment : Fragment() {
             val songName = cursor.getString(1)
             val genre = cursor.getString(2)
             val fileName = cursor.getString(3)
-            tableDataArray.add(T2DataPlayList(artistName, songName, genre))
+            tableDataArray.add(T2DataPlayList(artistName, songName, genre, fileName))
         }
         cursor.close()
         return tableDataArray

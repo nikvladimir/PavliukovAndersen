@@ -28,7 +28,7 @@ class T2PlayListAdapter(var playList: ArrayList<T2DataPlayList>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val currentItem = playList[position]
         holder.tvArtist.text = currentItem.artist
-        holder.tvSongName.text = currentItem.songName
+        holder.tvSongName.text = currentItem.trackName
         holder.tvGenre.text = currentItem.genre
     }
 }
