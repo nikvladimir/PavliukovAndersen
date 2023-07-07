@@ -26,11 +26,10 @@ class T2MusicPlayerFragment : Fragment() {
     private lateinit var tableDataArray: ArrayList<T2DataPlayList>
     private lateinit var launcher: ActivityResultLauncher<Intent>
 
-    private var currentTrackIndex = 0
-    private val tracksList = mutableListOf<String>()
-    private var sortByColumn: String = ""
-    private var sortByKey: String = ""
     private var isBound = false
+    private var currentTrackIndex = 0
+    private var sortByKey: String = ""
+    private var sortByColumn: String = ""
     private var musicService: T2MusicPlayerService? = null
 
     private val connection = object : ServiceConnection {
@@ -47,14 +46,15 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        launcher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data: Intent? = result.data
-                    sortByColumn = data?.getStringExtra("type") ?: ""
-                    sortByKey = data?.getStringExtra("key") ?: ""
-                }
+        launcher = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data: Intent? = result.data
+                sortByColumn = data?.getStringExtra("type") ?: ""
+                sortByKey = data?.getStringExtra("key") ?: ""
             }
+        }
     }
 
     override fun onCreateView(
@@ -76,17 +76,10 @@ class T2MusicPlayerFragment : Fragment() {
 
         playButton.setOnClickListener { if (isBound) musicService?.playMusic() }
         pauseButton.setOnClickListener { if (isBound) musicService?.pauseMusic() }
-        nextButton.setOnClickListener {
-            if (isBound) {
-                currentTrackIndex += 1
-                musicService?.playNextTrack(tableDataArray[currentTrackIndex])
-            }
-        }
+        nextButton.setOnClickListener { if (isBound) musicService?.playNextTrack(tableDataArray[++currentTrackIndex]) }
         stopButton.setOnClickListener {
-            if (isBound) {
-                requireActivity().unbindService(connection)
-                isBound = false
-            }
+            if (isBound) requireActivity().unbindService(connection)
+            isBound = false
         }
         filterButton.setOnClickListener {
             val intent = Intent(requireActivity(), T2PlayListFilterActivity::class.java)
@@ -105,8 +98,16 @@ class T2MusicPlayerFragment : Fragment() {
         recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB(sortByColumn, sortByKey))
     }
 
+    override fun onStop() {
+        super.onStop()
+        // it stop music when app is hide
+//        if (isBound) {
+//            requireActivity().unbindService(connection)
+//            isBound = false
+//        }
+    }
+
     private fun startMusicService() {
-        currentTrackIndex = 3
         val currentComposition = tableDataArray[currentTrackIndex]
         Intent(requireActivity(), T2MusicPlayerService::class.java).also { intent ->
             intent.putExtra("trackArtist", currentComposition.artist)
@@ -133,15 +134,5 @@ class T2MusicPlayerFragment : Fragment() {
         }
         cursor.close()
         return tableDataArray
-    }
-
-
-    override fun onStop() {
-        super.onStop()
-        // it stop music when app is hide
-//        if (isBound) {
-//            requireActivity().unbindService(connection)
-//            isBound = false
-//        }
     }
 }

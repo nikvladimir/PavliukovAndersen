@@ -14,11 +14,11 @@ import android.os.IBinder
 
 class T2MusicPlayerService : Service() {
 
-    private lateinit var player: MediaPlayer
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var trackArtist: String
     private lateinit var trackName: String
+    private lateinit var player: MediaPlayer
+    private lateinit var trackArtist: String
     private lateinit var trackFileName: String
+    private lateinit var sharedPreferences: SharedPreferences
 
     private val binder = LocalBinder()
     private var isPaused: Boolean = true
