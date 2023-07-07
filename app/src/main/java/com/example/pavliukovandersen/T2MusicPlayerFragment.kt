@@ -1,5 +1,6 @@
 package com.example.pavliukovandersen
 
+import android.app.Activity
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -13,6 +14,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -21,6 +24,7 @@ class T2MusicPlayerFragment : Fragment() {
     private lateinit var dbh: DBHelper
     private lateinit var recyclerView: RecyclerView
     private lateinit var tableDataArray: ArrayList<T2DataPlayList>
+    private lateinit var launcher: ActivityResultLauncher<Intent>
 
     private var isBound = false
     private var musicService: T2MusicPlayerService? = null
@@ -37,9 +41,16 @@ class T2MusicPlayerFragment : Fragment() {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        launcher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data: Intent? = result.data
+                    val sortByColumn = data?.getStringExtra("type")
+                    val sortByKey = data?.getStringExtra("key")
+                }
+            }
     }
 
     override fun onCreateView(
@@ -68,9 +79,21 @@ class T2MusicPlayerFragment : Fragment() {
         }
         filterButton.setOnClickListener {
             val intent = Intent(requireActivity(), T2PlayListFilterActivity::class.java)
-            startActivity(intent)
+            launcher.launch(intent)
         }
         return view
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Intent(requireActivity(), T2MusicPlayerService::class.java).also { intent ->
+            requireActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recyclerView.adapter = T2PlayListAdapter(getArrayPlayList())
     }
 
     private fun getArrayPlayList(): ArrayList<T2DataPlayList> {
@@ -87,15 +110,10 @@ class T2MusicPlayerFragment : Fragment() {
         return tableDataArray
     }
 
-    override fun onStart() {
-        super.onStart()
-        Intent(requireActivity(), T2MusicPlayerService::class.java).also { intent ->
-            requireActivity().bindService(intent, connection, Context.BIND_AUTO_CREATE)
-        }
-    }
 
     override fun onStop() {
         super.onStop()
+        // it stop music when app is hide
 //        if (isBound) {
 //            requireActivity().unbindService(connection)
 //            isBound = false

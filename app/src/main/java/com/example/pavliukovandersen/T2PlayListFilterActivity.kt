@@ -2,6 +2,7 @@ package com.example.pavliukovandersen
 
 import android.R.layout.simple_spinner_item
 import android.R.layout.simple_spinner_dropdown_item
+import android.app.Activity
 import android.content.Intent
 import android.database.Cursor
 import android.os.Bundle
@@ -42,7 +43,8 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         artistSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, index: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(index).toString()
-                if (selectedItem != "Выберите исполнителя:") switchToActivity(MainActivity::class.java)
+                if (selectedItem != "Выберите исполнителя:")
+                    goToMainActivity(Constants.PL_COLUMN_1, selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -54,7 +56,8 @@ class T2PlayListFilterActivity : AppCompatActivity() {
                 parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                if (selectedItem != "Выберите жанр:") switchToActivity(MainActivity::class.java)
+                if (selectedItem != "Выберите жанр:")
+                    goToMainActivity(Constants.PL_COLUMN_3, selectedItem)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -62,7 +65,7 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         }
 
         val backButton = binding.backButton
-        backButton.setOnClickListener() { switchToActivity(MainActivity::class.java) }
+        backButton.setOnClickListener() { goToMainActivity() }
     }
 
     private fun getArtistList(): ArrayList<String> {
@@ -87,9 +90,12 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         return genresList
     }
 
-    private fun switchToActivity(className: Class<*>) {
-        val intent = Intent(this, className)
-        startActivity(intent)
+    private fun goToMainActivity(type: String = "", key: String = "") {
+        val resultIntent = Intent()
+        resultIntent.putExtra("type", type)
+        resultIntent.putExtra("key", key)
+        setResult(Activity.RESULT_OK, resultIntent)
+        finish()
     }
 }
 
