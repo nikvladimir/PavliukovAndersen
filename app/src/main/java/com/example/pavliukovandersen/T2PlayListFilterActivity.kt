@@ -9,7 +9,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pavliukovandersen.databinding.T2ActivityPlayListFilterBinding
 
@@ -17,8 +16,6 @@ import com.example.pavliukovandersen.databinding.T2ActivityPlayListFilterBinding
 class T2PlayListFilterActivity : AppCompatActivity() {
 
     private lateinit var dbh: DBHelper
-    private lateinit var artistSpinner: Spinner
-    private lateinit var genreSpinner: Spinner
     private lateinit var binding: T2ActivityPlayListFilterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,8 +25,8 @@ class T2PlayListFilterActivity : AppCompatActivity() {
 
         dbh = DBHelper(this)
 
-        artistSpinner = binding.spinnerArtist
-        genreSpinner = binding.spinnerGenre
+        var artistSpinner = binding.spinnerArtist
+        var genreSpinner = binding.spinnerGenre
 
         val artistAdapter = ArrayAdapter(this, simple_spinner_item, getArtistList())
         val genreAdapter = ArrayAdapter(this, simple_spinner_item, getGenreList())

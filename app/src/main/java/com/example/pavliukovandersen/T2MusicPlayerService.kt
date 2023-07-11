@@ -15,7 +15,6 @@ import android.os.IBinder
 
 class T2MusicPlayerService : Service() {
 
-    private lateinit var dbh: DBHelper
     private lateinit var trackName: String
     private lateinit var player: MediaPlayer
     private lateinit var trackArtist: String
@@ -123,7 +122,7 @@ class T2MusicPlayerService : Service() {
 
     private fun initializeStacksFromDB(column: String = "", value: String = ""):
             ArrayList<T2DataPlayList> {
-        dbh = DBHelper(this)
+        val dbh = DBHelper(this)
         val cursor: Cursor? = if (column.isEmpty() && value.isEmpty()) {
             dbh.queryAllPlaylistTable()
         } else {

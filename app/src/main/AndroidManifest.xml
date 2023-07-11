@@ -25,13 +25,6 @@
         </activity>
 
         <service android:name=".T2MusicPlayerService" />
-
-        <provider
-            android:name=".DBPlayListProvider"
-            android:authorities="pavliukovandersen.provider.playlist"
-            android:exported="false"
-            android:readPermission="true"
-            android:writePermission="false" />
     </application>
 
 </manifest>

@@ -110,11 +110,6 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        // it stop music when app is hide
-//        if (isBound) {
-//            requireActivity().unbindService(connection)
-//            isBound = false
-//        }
     }
 
     private fun bindMusicPlayerService(sortByColumn: String = "", sortByKey: String = "") {
