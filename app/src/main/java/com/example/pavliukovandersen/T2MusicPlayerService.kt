@@ -11,6 +11,7 @@ import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
 
 
 class T2MusicPlayerService : Service() {
@@ -22,6 +23,7 @@ class T2MusicPlayerService : Service() {
     private lateinit var sharedPreferences: SharedPreferences
     private lateinit var tracks: ArrayList<T2DataPlayList>
 
+    private var release = false
     private var currentTrackIndex = 0
     private val binder = LocalBinder()
     private var sortByKey: String = ""
@@ -55,10 +57,13 @@ class T2MusicPlayerService : Service() {
         player = MediaPlayer.create(this, uriMusicFile)
         sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
         val position = sharedPreferences.getInt("position", 0)
-        player.seekTo(position)
+        if (!release) player.seekTo(position)
+        release = false
     }
 
     fun playPauseMusic() {
+        if (release) initMediaPlayer()
+
         if (player.isPlaying) {
             player.pause()
         } else {
@@ -77,14 +82,19 @@ class T2MusicPlayerService : Service() {
         player.stop()
         player.release()
         currentTrackIndex = 0
-        initMediaPlayer()
+        release = true
     }
 
     fun playNextTrack() {
         player.release()
+        release = true
         currentTrackIndex = (currentTrackIndex + 1) % tracks.size
         initMediaPlayer()
+        player.setOnCompletionListener {
+            playNextTrack()
+        }
         player.start()
+        startForegroundService()
     }
 
     override fun onDestroy() {
