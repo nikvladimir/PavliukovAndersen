@@ -25,8 +25,8 @@ class T2PlayListFilterActivity : AppCompatActivity() {
 
         dbh = DBHelper(this)
 
-        var artistSpinner = binding.spinnerArtist
-        var genreSpinner = binding.spinnerGenre
+        var artistSpinner = binding.t2SpinnerArtist
+        var genreSpinner = binding.t2SpinnerGenre
 
         val artistAdapter = ArrayAdapter(this, simple_spinner_item, getArtistList())
         val genreAdapter = ArrayAdapter(this, simple_spinner_item, getGenreList())

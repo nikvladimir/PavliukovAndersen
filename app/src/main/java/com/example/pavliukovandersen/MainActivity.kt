@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T2MusicPlayerFragment())
+        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T3NewsListFragment())
             .commit()
 
         nightModeSwitch = binding.switch1
@@ -33,16 +33,20 @@ class MainActivity : AppCompatActivity() {
         binding.apply {
             navigationMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.Lesson1 -> fragmentManager.beginTransaction().replace(
+                    R.id.T1_VariousViews -> fragmentManager.beginTransaction().replace(
                         R.id.displayed_screen_fl, T1ViewPagerTvEtRvFragment()
                     ).commit()
 
-                    R.id.Lesson2 -> fragmentManager.beginTransaction().replace(
+                    R.id.T2_MusicPlayer -> fragmentManager.beginTransaction().replace(
                         R.id.displayed_screen_fl, T2MusicPlayerFragment()
                     ).commit()
 
-                    R.id.Lesson3 -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T3DiskInfoFragment()
+                    R.id.T3_NewsList -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, T3NewsListFragment()
+                    ).commit()
+
+                    R.id.T9_DiskInfo -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, T9DiskInfoFragment()
                     ).commit()
                 }
                 activityMainDrawer.closeDrawer(GravityCompat.START)

@@ -4,15 +4,19 @@
     tools:showIn="navigation_view">
     <group>
         <item
-            android:id="@+id/Lesson1"
+            android:id="@+id/T1_VariousViews"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/tv_et_rv" />
         <item
-            android:id="@+id/Lesson2"
+            android:id="@+id/T2_MusicPlayer"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/music_player" />
         <item
-            android:id="@+id/Lesson3"
+            android:id="@+id/T3_NewsList"
+            android:icon="@drawable/menu_drawer_picture"
+            android:title="@string/news_list" />
+        <item
+            android:id="@+id/T9_DiskInfo"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/disk_info" />
     </group>
