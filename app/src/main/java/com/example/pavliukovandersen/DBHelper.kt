@@ -22,8 +22,24 @@ class DBHelper(context: Context) :
         onCreate(db)
     }
 
-    fun gettext(): Cursor? {
-        val db = this.writableDatabase
+    fun queryAllPlaylistTable(): Cursor? {
+        val db = this.readableDatabase
         return db.rawQuery(Constants.SELECT_ALL_FROM_PL, null)
+    }
+
+    fun queryPlaylistTableByColumnAndValue(column: String, value: String): Cursor? {
+        val db = this.readableDatabase
+        val query = Constants.SELECT_COLUMN_KEY_FROM_PL.format(column, value)
+        return db.rawQuery(query, null)
+    }
+
+    fun queryArtist(): Cursor? {
+        val db = this.readableDatabase
+        return db.rawQuery(Constants.SELECT_ARTIST, null)
+    }
+
+    fun queryGenre(): Cursor? {
+        val db = this.readableDatabase
+        return db.rawQuery(Constants.SELECT_GENRE, null)
     }
 }

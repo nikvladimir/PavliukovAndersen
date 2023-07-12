@@ -5,6 +5,7 @@
     <color name="backGroundGray">#504F4F</color>
     <color name="navTextIconColor">#CDCDCD</color>
     <color name="switchThumbTint">#FF000000</color>
-    <color name="l1_tv_color">#C8C8C8</color>
-    <color name="l1_image_color">#CDCDCD</color>
+    <color name="t1_tv_color">#C8C8C8</color>
+    <color name="t1_image_color">#CDCDCD</color>
+    <color name="t2_filter_background_color">#787878</color>
 </resources>

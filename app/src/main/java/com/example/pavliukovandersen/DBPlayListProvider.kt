@@ -20,10 +20,10 @@ class DBPlayListProvider : ContentProvider() {
 
     override fun query(
         uri: Uri,
-        projection: Array<out String>?,  // какие поля вернутся после запроса
-        selection: String?,              // фильтры согласно которым будет запрос
-        selectionArgs: Array<out String>?, // перечада параметров ыудусешщты кот д.б. использованы
-        sortOrder: String?               // по какому ключу будет сортировка
+        projection: Array<out String>?,  // which fields will be returned after the request
+        selection: String?,              // filters according to which the request will be made
+        selectionArgs: Array<out String>?, // passing the selections parameters to be used
+        sortOrder: String?               // by which key will the sorting be done
     ): Cursor {
         return db.query(
             PL_TABLE_NAME, projection, selection,

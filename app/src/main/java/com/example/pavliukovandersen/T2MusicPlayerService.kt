@@ -6,33 +6,68 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.Cursor
 import android.media.MediaPlayer
+import android.net.Uri
 import android.os.Binder
 import android.os.IBinder
+import android.util.Log
+
 
 class T2MusicPlayerService : Service() {
 
-    private val binder = LocalBinder()
+    private lateinit var trackName: String
     private lateinit var player: MediaPlayer
-    private var isPaused: Boolean = false
+    private lateinit var trackArtist: String
+    private lateinit var trackFileName: String
     private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var tracks: ArrayList<T2DataPlayList>
+
+    private var release = false
+    private var currentTrackIndex = 0
+    private val binder = LocalBinder()
+    private var sortByKey: String = ""
+    private var sortByColumn: String = ""
 
     inner class LocalBinder : Binder() {
         fun getService(): T2MusicPlayerService = this@T2MusicPlayerService
     }
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        return super.onStartCommand(intent, flags, startId)
+    }
+
     override fun onBind(intent: Intent): IBinder {
-        player = MediaPlayer.create(this, R.raw.korol_i_shut_dva_druga)
-        sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
-        val position = sharedPreferences.getInt("position", 0)
-        player.seekTo(position)
+        sortByColumn = intent.getStringExtra("sortByColumn") ?: ""
+        sortByKey = intent.getStringExtra("sortByKey") ?: ""
+        trackFileName = intent.getStringExtra("trackFileName") ?: ""
+
+        initMediaPlayer(sortByColumn, sortByKey)
         return binder
     }
 
-    fun playMusic() {
-        if (!player.isPlaying) {
+    private fun initMediaPlayer(sortByColumn: String = "", sortByKey: String = "") {
+        initializeStacksFromDB(sortByColumn, sortByKey)
+
+        trackArtist = tracks[currentTrackIndex].artist
+        trackName = tracks[currentTrackIndex].trackName
+        trackFileName = tracks[currentTrackIndex].trackFileName
+
+        val uriMusicFile = Uri.parse("android.resource://$packageName/raw/$trackFileName")
+        player = MediaPlayer.create(this, uriMusicFile)
+        sharedPreferences = this.getSharedPreferences("MusicPlayerPref", MODE_PRIVATE)
+        val position = sharedPreferences.getInt("position", 0)
+        if (!release) player.seekTo(position)
+        release = false
+    }
+
+    fun playPauseMusic() {
+        if (release) initMediaPlayer()
+
+        if (player.isPlaying) {
+            player.pause()
+        } else {
             player.start()
-            isPaused = false
             startForegroundService()
         }
     }
@@ -40,11 +75,26 @@ class T2MusicPlayerService : Service() {
     fun pauseMusic() {
         if (player.isPlaying) {
             player.pause()
-            isPaused = true
-        } else if (isPaused) {
-            player.start()
-            isPaused = false
         }
+    }
+
+    fun stopMusic() {
+        player.stop()
+        player.release()
+        currentTrackIndex = 0
+        release = true
+    }
+
+    fun playNextTrack() {
+        player.release()
+        release = true
+        currentTrackIndex = (currentTrackIndex + 1) % tracks.size
+        initMediaPlayer()
+        player.setOnCompletionListener {
+            playNextTrack()
+        }
+        player.start()
+        startForegroundService()
     }
 
     override fun onDestroy() {
@@ -64,8 +114,8 @@ class T2MusicPlayerService : Service() {
         createNotificationChannel()
 
         val notification = Notification.Builder(this, "MusicServiceChannel")
-            .setContentTitle("Artist")
-            .setContentText("Composition")
+            .setContentTitle(trackArtist)
+            .setContentText(trackName)
             .setSmallIcon(R.drawable.arrow)
             .build()
 
@@ -78,5 +128,25 @@ class T2MusicPlayerService : Service() {
         )
         val manager = getSystemService(NotificationManager::class.java)
         manager.createNotificationChannel(channel)
+    }
+
+    private fun initializeStacksFromDB(column: String = "", value: String = ""):
+            ArrayList<T2DataPlayList> {
+        val dbh = DBHelper(this)
+        val cursor: Cursor? = if (column.isEmpty() && value.isEmpty()) {
+            dbh.queryAllPlaylistTable()
+        } else {
+            dbh.queryPlaylistTableByColumnAndValue(column, value)
+        }
+        tracks = ArrayList()
+        while (cursor!!.moveToNext()) {
+            val artistName = cursor.getString(0)
+            val songName = cursor.getString(1)
+            val genre = cursor.getString(2)
+            val fileName = cursor.getString(3)
+            tracks.add(T2DataPlayList(artistName, songName, genre, fileName))
+        }
+        cursor.close()
+        return tracks
     }
 }

@@ -11,5 +11,5 @@ class T3DiskInfoFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.task3_disk_info, container, false)
+    ): View? = inflater.inflate(R.layout.t3_fragment_disk_info, container, false)
 }

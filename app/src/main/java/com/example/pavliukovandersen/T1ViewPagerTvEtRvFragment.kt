@@ -18,7 +18,7 @@ class T1ViewPagerTvEtRvFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.task1_view_pager, container, false)
+        val view = inflater.inflate(R.layout.t1_fragment_view_pager, container, false)
         tabLayout = view.findViewById(R.id.t1_tab_layout_)
         return view
     }
