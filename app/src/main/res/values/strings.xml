@@ -4,7 +4,8 @@
     <string name="alert_button">Alert button</string>
 
     <string name="tv_et_rv">TextV EditT RecyclerV</string>
-    <string name="music_player">Music player</string>
+    <string name="music_player">Music Player</string>
+    <string name="news_list">News list</string>
     <string name="disk_info">Disk info</string>
 
     <string name="arrow">arrow</string>
@@ -49,4 +50,12 @@
     <string name="genre">Жанр:</string>
     <string name="artist">Исполнитель:</string>
     <string name="back">Back</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="spinner_items">
+        <item>Software 1</item>
+        <item>Software 2</item>
+        <item>Software 3</item>
+        <item>Software 4</item>
+        <item>Software 5</item>
+    </string-array>
 </resources>
