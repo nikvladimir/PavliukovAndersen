@@ -44,7 +44,7 @@ class T3NewsListFragment : Fragment() {
 
         // Toolbar and spinner filter logic
         toolbar = binding.t3ToolBar
-        spinner = binding.t3Spinner
+        spinner = binding.t3NewsThemeSpinner
         val spinnerAdapter = ArrayAdapter.createFromResource(
             requireContext(), R.array.spinner_items, android.R.layout.simple_spinner_item
         )
@@ -56,17 +56,19 @@ class T3NewsListFragment : Fragment() {
             ) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
                 toolbar.title = selectedItem
+                getNewsAndApply(selectedItem)
+
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
             }
         }
         // GET data from internet and apply to Fragment
-        getNewsAndApply()
+        getNewsAndApply("software")
         return binding.root
     }
 
-    private fun getNewsAndApply() {
+    private fun getNewsAndApply(theme: String) {
         val interceptor = HttpLoggingInterceptor()
         interceptor.level = HttpLoggingInterceptor.Level.BODY
         val httpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
@@ -81,7 +83,6 @@ class T3NewsListFragment : Fragment() {
         binding.t3RecyclerViewNewsFragment.adapter = adapter
 
         val pageSize = Constants.NUMB_OF_NEWS
-        val theme = "software"
 
         CoroutineScope(Dispatchers.IO).launch {
             val news = newsApi.test3(theme, pageSize, apiKey)
