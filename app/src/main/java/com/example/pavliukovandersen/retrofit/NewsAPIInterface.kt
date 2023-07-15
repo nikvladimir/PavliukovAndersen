@@ -5,8 +5,9 @@ import retrofit2.http.Query
 
 interface NewsAPIInterface {
     @GET("everything")
-    suspend fun test3(
+    suspend fun queryAPI(
         @Query("q") theme: String,
+        @Query("from") date: String,
         @Query("pageSize") pageSize: Int = 20,
         @Query("apiKey") apiKey: String
     ): Articles

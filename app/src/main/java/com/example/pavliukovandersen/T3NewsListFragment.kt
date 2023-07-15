@@ -22,6 +22,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 import java.util.Base64
+import java.util.Calendar
 
 class T3NewsListFragment : Fragment() {
     private lateinit var toolbar: Toolbar
@@ -29,6 +30,7 @@ class T3NewsListFragment : Fragment() {
     private lateinit var binding: T3FragmentNewsListBinding
     private lateinit var adapter: T3NewsAdapter
     private lateinit var apiKey: String
+    private lateinit var currentDate: String
 
     private val baseNewsUrl = ("https://newsapi.org/v2/")
 
@@ -36,6 +38,7 @@ class T3NewsListFragment : Fragment() {
         super.onCreate(savedInstanceState)
         binding = T3FragmentNewsListBinding.inflate(layoutInflater)
         apiKey = getKey()
+        currentDate = getCurrentDate()
     }
 
     override fun onCreateView(
@@ -85,7 +88,8 @@ class T3NewsListFragment : Fragment() {
         val pageSize = Constants.NUMB_OF_NEWS
 
         CoroutineScope(Dispatchers.IO).launch {
-            val news = newsApi.test3(theme, pageSize, apiKey)
+            val news = newsApi.queryAPI(theme, currentDate, pageSize, apiKey)
+//            val news = newsApi.queryAPI(theme, "2023-07-10", pageSize, apiKey)
 
             requireActivity().runOnUiThread {
                 adapter.submitList(news.articles)
@@ -97,5 +101,10 @@ class T3NewsListFragment : Fragment() {
         val cipher = Cipher.getInstance("AES/ECB/PKCS5Padding")
         cipher.init(Cipher.DECRYPT_MODE, SecretKeySpec("0123456789abcdef".toByteArray(), "AES"))
         return String(cipher.doFinal(Base64.getDecoder().decode(Constants.KEY)))
+    }
+
+    private fun getCurrentDate(): String {
+        val c = Calendar.getInstance()
+        return "${c.get(Calendar.YEAR)}-${c.get(Calendar.MONTH) + 1}-${c.get(Calendar.DAY_OF_MONTH)}"
     }
 }
