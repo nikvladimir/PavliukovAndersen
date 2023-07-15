@@ -35,5 +35,8 @@ class Constants {
                 "('Король и шут', 'Валет и дама', 'Rock', 'korol_i_shut_valet_i_dama'), " +
                 "('Alex Clare', 'Too close', 'Pop', 'alex_clare_too_close'), " +
                 "('Eminem', 'Lose yourself', 'Pop', 'eminem_lose_yourself');"
+        // T3NewsListFragment
+        const val NUMB_OF_NEWS = 20
+        const val KEY = "QuuWbby6dkfDiSowsESnZiyBa2JZX0VllzR2HenvCg83ciLgYakkxZHNnCfqFj7U"
     }
 }
