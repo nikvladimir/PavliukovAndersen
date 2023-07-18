@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pavliukovandersen.databinding.T3FragmentNewsListBinding
 import com.example.pavliukovandersen.retrofit.ArticleDto
 import com.example.pavliukovandersen.retrofit.NewsAPIInterface
@@ -34,6 +35,7 @@ class T3NewsListFragment : Fragment() {
     private lateinit var adapter: T3NewsAdapter
     private lateinit var apiKey: String
     private lateinit var currentDate: String
+    private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
     private val baseNewsUrl = ("https://newsapi.org/v2/")
 
@@ -72,6 +74,16 @@ class T3NewsListFragment : Fragment() {
         // GET data from internet and apply to Fragment
         getNewsAndApply("software")
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        swipeRefreshLayout = binding.t3SwipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            getNewsAndApply(toolbar.title.toString())
+            swipeRefreshLayout.isRefreshing = false
+        }
     }
 
     private fun getNewsAndApply(theme: String) {
