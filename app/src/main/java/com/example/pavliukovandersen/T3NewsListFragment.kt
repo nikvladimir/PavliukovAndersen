@@ -9,8 +9,11 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.widget.Toolbar
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pavliukovandersen.databinding.T3FragmentNewsListBinding
+import com.example.pavliukovandersen.retrofit.ArticleDto
 import com.example.pavliukovandersen.retrofit.NewsAPIInterface
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -81,20 +84,31 @@ class T3NewsListFragment : Fragment() {
         val newsApi = retrofit.create(NewsAPIInterface::class.java)
 
         // recyclerView logic
-        adapter = T3NewsAdapter()
+        adapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
         binding.t3RecyclerViewNewsFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.t3RecyclerViewNewsFragment.adapter = adapter
 
         val pageSize = Constants.NUMB_OF_NEWS
 
         CoroutineScope(Dispatchers.IO).launch {
-            val news = newsApi.queryAPI(theme, currentDate, pageSize, apiKey)
-//            val news = newsApi.queryAPI(theme, "2023-07-10", pageSize, apiKey)
-
+//            val news = newsApi.queryAPI(theme, currentDate, pageSize, apiKey)
+            val news = newsApi.queryAPI(theme, "2023-07-10", pageSize, apiKey)
             requireActivity().runOnUiThread {
                 adapter.submitList(news.articles)
             }
         }
+    }
+
+    private fun openFragment(item: ArticleDto) {
+
+        val fragmentManager = this@T3NewsListFragment.parentFragmentManager
+        val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name)
+
+        fragmentManager.beginTransaction().replace(
+            R.id.displayed_screen_fl, new
+        )
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun getKey(): String {

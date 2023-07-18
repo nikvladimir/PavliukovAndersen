@@ -50,7 +50,9 @@
     <string name="genre">Жанр:</string>
     <string name="artist">Исполнитель:</string>
     <string name="back">Back</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="publishedat">publishedAt</string>
     <string-array name="spinner_items">
         <item>Software</item>
         <item>Hardware</item>

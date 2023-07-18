@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recycler_view_item"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:background="#878282"
-    android:foreground="?android:attr/selectableItemBackground"
+    android:layout_height="match_parent"
+    tools:context=".T3FragmentArticle"
     android:orientation="vertical">
 
-
     <TextView
-        android:id="@+id/newsTitle"
+        android:id="@+id/articleTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
@@ -21,7 +18,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/newsAuthor"
+        android:id="@+id/articleDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"
@@ -31,7 +28,7 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/newsPublishedAt"
+        android:id="@+id/articleSourceName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_small"

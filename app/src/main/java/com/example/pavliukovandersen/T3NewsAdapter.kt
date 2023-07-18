@@ -9,15 +9,22 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pavliukovandersen.databinding.T3RecyclerViewNewsItemBinding
 import com.example.pavliukovandersen.retrofit.ArticleDto
 
-class T3NewsAdapter : ListAdapter<ArticleDto, T3NewsAdapter.Holder>(Comparator()) {
+class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
+    ListAdapter<ArticleDto, T3NewsAdapter.ViewHolder>(Comparator()) {
 
-    class Holder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding = T3RecyclerViewNewsItemBinding.bind(view)
+    class ViewHolder(
+        itemView: View,
+        private val itemClick: (ArticleDto) -> Unit
+    ) :
+        RecyclerView.ViewHolder(itemView) {
+
+        private val binding = T3RecyclerViewNewsItemBinding.bind(itemView)
 
         fun bind(articleDto: ArticleDto) = with(binding) {
-            tvTitle.text = articleDto.title
-            tvSouse.text = articleDto.source.name
-            tvDescription.text = articleDto.description
+            newsTitle.text = articleDto.title
+            newsAuthor.text = articleDto.author
+            newsPublishedAt.text = articleDto.publishedAt
+            itemView.setOnClickListener { itemClick(articleDto) }
         }
     }
 
@@ -32,13 +39,13 @@ class T3NewsAdapter : ListAdapter<ArticleDto, T3NewsAdapter.Holder>(Comparator()
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.t3_recycler_view_news_item, parent, false)
-        return Holder(view)
+        return ViewHolder(view, itemClick)
     }
 
-    override fun onBindViewHolder(holder: Holder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 }
