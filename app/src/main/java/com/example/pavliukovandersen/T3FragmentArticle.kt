@@ -15,21 +15,24 @@ class T3FragmentArticle : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = T3FragmentArticleBinding.inflate(layoutInflater)
-
         articleTitle = arguments?.getString("title") ?: ""
         articleDescription = arguments?.getString("description") ?: ""
         articleSourceName = arguments?.getString("sourceName") ?: ""
 
-        binding.articleTitle.text = articleTitle
-        binding.articleDescription.text = articleDescription
-        binding.articleSourceName.text = articleSourceName
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        binding = T3FragmentArticleBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.articleTitle.text = articleTitle
+        binding.articleDescription.text = articleDescription
+        binding.articleSourceName.text = articleSourceName
     }
 
     companion object {

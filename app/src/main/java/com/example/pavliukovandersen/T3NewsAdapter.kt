@@ -27,7 +27,7 @@ class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
 
     class Comparator : DiffUtil.ItemCallback<ArticleDto>() {
         override fun areItemsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
-            return oldItem.author == newItem.author
+            return oldItem.author == newItem.author && oldItem.title == newItem.title
         }
         override fun areContentsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem == newItem
