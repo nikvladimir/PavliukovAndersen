@@ -1,6 +1,11 @@
 package com.example.pavliukovandersen
 
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.Network
+import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,8 +33,8 @@ class T3NewsListFragment : Fragment() {
     private lateinit var newsAdapter: T3NewsAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    private var currentDate: String = DateUtil.getCurrentDate()
     private val apiKey: String get() = CryptoUtil.getDecryptedKey()
-    private val currentDate: String get() = DateUtil.getCurrentDate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -65,18 +71,25 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun getNewsAndRefreshPosts(topic: String) {
-        lifecycleScope.launch {
-            val response =
-                RetrofitInstance.api.queryAPI(topic, "2023-07-15", Constants.NUMB_OF_TOPICS, apiKey)
-//                RetrofitInstance.api.queryAPI(topic, currentDate, Constants.NUMB_OF_TOPICS, apiKey)
+        currentDate = "2023-07-15"                  //       !!!!!!
+        val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), ""))
 
-            if (response.isSuccessful) newsAdapter.submitList(response.body()?.articles)
-            else newsAdapter.submitList(
-                listOf(
-                    ArticleDto("", "", "", SourceDto(""), "")
-                )
-            )
+        if (isNetworkAvailable()) {
+            lifecycleScope.launch {
+                try {
+                    val response = RetrofitInstance
+                        .api
+                        .queryAPI(topic, currentDate, Constants.NUMB_OF_TOPICS, apiKey)
 
+                    if (response.isSuccessful) newsAdapter.submitList(response.body()?.articles)
+                    else newsAdapter.submitList(emptyData)
+
+                } catch (e: Exception) {
+                    Log.d("Alfavoland", "Error is:\n$e")
+                }
+            }
+        } else {
+            Toast.makeText(requireContext(), "Network is not available", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -90,19 +103,27 @@ class T3NewsListFragment : Fragment() {
 
     private fun setupRecyclerView() {
         newsAdapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
-        binding.t3RecyclerViewNewsFragment.layoutManager = LinearLayoutManager(requireContext())
-        binding.t3RecyclerViewNewsFragment.adapter = newsAdapter
+        binding.t3RecyclerViewNewsFragment.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = newsAdapter
+        }
     }
 
-
     private fun openFragment(item: ArticleDto) {
-        val fragmentManager = this@T3NewsListFragment.parentFragmentManager
         val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name)
-
-        fragmentManager
-            .beginTransaction()
+        parentFragmentManager.beginTransaction()
             .replace(R.id.displayed_screen_fl, new)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun isNetworkAvailable(): Boolean {
+        val connectivityManager =
+            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork: Network? = connectivityManager.activeNetwork
+        val networkCapabilities: NetworkCapabilities? =
+            connectivityManager.getNetworkCapabilities(activeNetwork)
+        return networkCapabilities != null &&
+                networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
     }
 }
