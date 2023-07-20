@@ -38,5 +38,6 @@ class Constants {
         // T3NewsListFragment
         const val NUMB_OF_NEWS = 20
         const val KEY = "QuuWbby6dkfDiSowsESnZiyBa2JZX0VllzR2HenvCg83ciLgYakkxZHNnCfqFj7U"
+        const val baseNewsUrl = ("https://newsapi.org/v2/")
     }
 }

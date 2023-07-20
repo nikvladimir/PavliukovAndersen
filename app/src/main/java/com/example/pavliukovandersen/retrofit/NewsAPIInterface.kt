@@ -1,5 +1,6 @@
 package com.example.pavliukovandersen.retrofit
 
+import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -10,6 +11,5 @@ interface NewsAPIInterface {
         @Query("from") date: String,
         @Query("pageSize") pageSize: Int = 20,
         @Query("apiKey") apiKey: String
-    ): Articles
-
+    ): Response<Articles>
 }

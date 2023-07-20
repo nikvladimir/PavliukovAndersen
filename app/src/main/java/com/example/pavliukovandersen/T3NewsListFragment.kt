@@ -8,21 +8,15 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
-import androidx.core.os.bundleOf
-import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pavliukovandersen.databinding.T3FragmentNewsListBinding
 import com.example.pavliukovandersen.retrofit.ArticleDto
-import com.example.pavliukovandersen.retrofit.NewsAPIInterface
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import com.example.pavliukovandersen.retrofit.RetrofitInstance
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
 import java.util.Base64
@@ -37,7 +31,6 @@ class T3NewsListFragment : Fragment() {
     private lateinit var currentDate: String
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private val baseNewsUrl = ("https://newsapi.org/v2/")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +57,7 @@ class T3NewsListFragment : Fragment() {
             ) {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
                 toolbar.title = selectedItem
-                getNewsAndApply(selectedItem)
+                getNewsAndRefreshPosts(selectedItem)
 
             }
 
@@ -72,7 +65,7 @@ class T3NewsListFragment : Fragment() {
             }
         }
         // GET data from internet and apply to Fragment
-        getNewsAndApply("software")
+        getNewsAndRefreshPosts("software")
         return binding.root
     }
 
@@ -81,32 +74,25 @@ class T3NewsListFragment : Fragment() {
 
         swipeRefreshLayout = binding.t3SwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
-            getNewsAndApply(toolbar.title.toString())
+            getNewsAndRefreshPosts(toolbar.title.toString())
             swipeRefreshLayout.isRefreshing = false
         }
     }
 
-    private fun getNewsAndApply(theme: String) {
-        val interceptor = HttpLoggingInterceptor()
-        interceptor.level = HttpLoggingInterceptor.Level.BODY
-        val httpClient = OkHttpClient.Builder().addInterceptor(interceptor).build()
-
-        val retrofit = Retrofit.Builder().baseUrl(baseNewsUrl).client(httpClient)
-            .addConverterFactory(GsonConverterFactory.create()).build()
-        val newsApi = retrofit.create(NewsAPIInterface::class.java)
-
+    private fun getNewsAndRefreshPosts(topic: String) {
         // recyclerView logic
         adapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
         binding.t3RecyclerViewNewsFragment.layoutManager = LinearLayoutManager(requireContext())
         binding.t3RecyclerViewNewsFragment.adapter = adapter
 
-        val pageSize = Constants.NUMB_OF_NEWS
-
-        CoroutineScope(Dispatchers.IO).launch {
-//            val news = newsApi.queryAPI(theme, currentDate, pageSize, apiKey)
-            val news = newsApi.queryAPI(theme, "2023-07-10", pageSize, apiKey)
-            requireActivity().runOnUiThread {
-                adapter.submitList(news.articles)
+        lifecycleScope.launch {
+            val maxPosts = Constants.NUMB_OF_NEWS
+            val response = RetrofitInstance.api.queryAPI(topic, "2023-07-10", maxPosts, apiKey)
+//            val response = RetrofitInstance.api.queryAPI(theme, currentDate, maxPosts, apiKey)
+            if (response.isSuccessful) {
+                adapter.submitList(response.body()?.articles)
+            } else {
+                Toast.makeText(context, "Failed to load posts", Toast.LENGTH_SHORT).show()
             }
         }
     }
