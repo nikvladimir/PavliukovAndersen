@@ -12,10 +12,7 @@ import com.example.pavliukovandersen.retrofit.ArticleDto
 class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
     ListAdapter<ArticleDto, T3NewsAdapter.ViewHolder>(Comparator()) {
 
-    class ViewHolder(
-        itemView: View,
-        private val itemClick: (ArticleDto) -> Unit
-    ) :
+    class ViewHolder(itemView: View, private val itemClick: (ArticleDto) -> Unit) :
         RecyclerView.ViewHolder(itemView) {
 
         private val binding = T3RecyclerViewNewsItemBinding.bind(itemView)
@@ -32,7 +29,6 @@ class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
         override fun areItemsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem.author == newItem.author
         }
-
         override fun areContentsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem == newItem
         }

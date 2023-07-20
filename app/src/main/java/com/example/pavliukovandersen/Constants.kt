@@ -36,7 +36,7 @@ class Constants {
                 "('Alex Clare', 'Too close', 'Pop', 'alex_clare_too_close'), " +
                 "('Eminem', 'Lose yourself', 'Pop', 'eminem_lose_yourself');"
         // T3NewsListFragment
-        const val NUMB_OF_NEWS = 20
+        const val NUMB_OF_TOPICS = 20
         const val KEY = "QuuWbby6dkfDiSowsESnZiyBa2JZX0VllzR2HenvCg83ciLgYakkxZHNnCfqFj7U"
         const val baseNewsUrl = ("https://newsapi.org/v2/")
     }

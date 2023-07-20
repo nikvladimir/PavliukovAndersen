@@ -1,6 +1,7 @@
 package com.example.pavliukovandersen
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.pavliukovandersen.databinding.T3FragmentNewsListBinding
 import com.example.pavliukovandersen.retrofit.ArticleDto
 import com.example.pavliukovandersen.retrofit.RetrofitInstance
+import com.example.pavliukovandersen.retrofit.SourceDto
 import kotlinx.coroutines.launch
 import javax.crypto.Cipher
 import javax.crypto.spec.SecretKeySpec
@@ -26,24 +27,29 @@ class T3NewsListFragment : Fragment() {
     private lateinit var toolbar: Toolbar
     private lateinit var spinner: Spinner
     private lateinit var binding: T3FragmentNewsListBinding
-    private lateinit var adapter: T3NewsAdapter
-    private lateinit var apiKey: String
-    private lateinit var currentDate: String
+    private lateinit var newsAdapter: T3NewsAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
+    private val apiKey: String get() = getKey()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = T3FragmentNewsListBinding.inflate(layoutInflater)
-        apiKey = getKey()
-        currentDate = getCurrentDate()
-    }
+    @get:JvmName("retrieveCurrentDate")
+    val currentDate: String
+        get() = getCurrentDate()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View? {
+        binding = T3FragmentNewsListBinding.inflate(layoutInflater)
 
-        // Toolbar and spinner filter logic
+        setupSpinner()
+        setupRecyclerView()
+        setupSwipeRefreshLayout()
+        getNewsAndRefreshPosts("software")
+
+        return binding.root
+    }
+
+    private fun setupSpinner() {
         toolbar = binding.t3ToolBar
         spinner = binding.t3NewsThemeSpinner
         val spinnerAdapter = ArrayAdapter.createFromResource(
@@ -58,20 +64,29 @@ class T3NewsListFragment : Fragment() {
                 val selectedItem = parent?.getItemAtPosition(position).toString()
                 toolbar.title = selectedItem
                 getNewsAndRefreshPosts(selectedItem)
-
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {
-            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
-        // GET data from internet and apply to Fragment
-        getNewsAndRefreshPosts("software")
-        return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private fun getNewsAndRefreshPosts(topic: String) {
+        lifecycleScope.launch {
+            val response =
+                RetrofitInstance.api.queryAPI(topic, "2023-07-15", Constants.NUMB_OF_TOPICS, apiKey)
+//                RetrofitInstance.api.queryAPI(topic, currentDate, Constants.NUMB_OF_TOPICS, apiKey)
 
+            if (response.isSuccessful) newsAdapter.submitList(response.body()?.articles)
+            else newsAdapter.submitList(
+                listOf(
+                    ArticleDto("", "", "", SourceDto(""), "")
+                )
+            )
+
+        }
+    }
+
+    private fun setupSwipeRefreshLayout() {
         swipeRefreshLayout = binding.t3SwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             getNewsAndRefreshPosts(toolbar.title.toString())
@@ -79,32 +94,20 @@ class T3NewsListFragment : Fragment() {
         }
     }
 
-    private fun getNewsAndRefreshPosts(topic: String) {
-        // recyclerView logic
-        adapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
+    private fun setupRecyclerView() {
+        newsAdapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
         binding.t3RecyclerViewNewsFragment.layoutManager = LinearLayoutManager(requireContext())
-        binding.t3RecyclerViewNewsFragment.adapter = adapter
-
-        lifecycleScope.launch {
-            val maxPosts = Constants.NUMB_OF_NEWS
-            val response = RetrofitInstance.api.queryAPI(topic, "2023-07-10", maxPosts, apiKey)
-//            val response = RetrofitInstance.api.queryAPI(theme, currentDate, maxPosts, apiKey)
-            if (response.isSuccessful) {
-                adapter.submitList(response.body()?.articles)
-            } else {
-                Toast.makeText(context, "Failed to load posts", Toast.LENGTH_SHORT).show()
-            }
-        }
+        binding.t3RecyclerViewNewsFragment.adapter = newsAdapter
     }
 
-    private fun openFragment(item: ArticleDto) {
 
+    private fun openFragment(item: ArticleDto) {
         val fragmentManager = this@T3NewsListFragment.parentFragmentManager
         val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name)
 
-        fragmentManager.beginTransaction().replace(
-            R.id.displayed_screen_fl, new
-        )
+        fragmentManager
+            .beginTransaction()
+            .replace(R.id.displayed_screen_fl, new)
             .addToBackStack(null)
             .commit()
     }
