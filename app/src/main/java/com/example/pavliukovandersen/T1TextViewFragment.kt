@@ -5,22 +5,22 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import com.example.pavliukovandersen.databinding.T1FragmentTextViewBinding
 
 
 class T1TextViewFragment : Fragment() {
+    private lateinit var binding: T1FragmentTextViewBinding
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.t1_fragment_text_view, container, false)
-        val tvHello: TextView = view.findViewById(R.id.tvHello)
-        val tvAndersen: TextView = view.findViewById(R.id.tvAndersen)
+        binding = T1FragmentTextViewBinding.inflate(layoutInflater)
 
-        tvHello.text = getString(R.string.hello)
-        tvAndersen.text = getString(R.string.company_name)
+        binding.tvHello.text = getString(R.string.hello)
+        binding.tvAndersen.text = getString(R.string.company_name)
 
-        return view
+        return binding.root
     }
 }
