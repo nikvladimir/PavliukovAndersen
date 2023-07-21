@@ -60,4 +60,9 @@
         <item>AI</item>
         <item>Games</item>
     </string-array>
+
+    <string name="no_news_this_date">There is no news on this date</string>
+    <string name="site_not_available">Site can`t be reached at this moment</string>
+    <string name="no_network">Network is not available</string>
+
 </resources>

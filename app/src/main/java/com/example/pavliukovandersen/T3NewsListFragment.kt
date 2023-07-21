@@ -76,20 +76,33 @@ class T3NewsListFragment : Fragment() {
 
         if (isNetworkAvailable()) {
             lifecycleScope.launch {
-                try {
                     val response = RetrofitInstance
                         .api
                         .queryAPI(topic, currentDate, Constants.NUMB_OF_TOPICS, apiKey)
 
-                    if (response.isSuccessful) newsAdapter.submitList(response.body()?.articles)
-                    else newsAdapter.submitList(emptyData)
+                    if (response.isSuccessful) {
+                        val articles = response.body()?.articles
+                        newsAdapter.submitList(articles)
 
-                } catch (e: Exception) {
-                    Log.d("Alfavoland", "Error is:\n$e")
-                }
+                        if (articles?.size == 0) {
+                            binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+                            binding.notificationTV.text = resources
+                                .getString(R.string.no_news_this_date)
+                        } else {
+                            binding.t3RecyclerViewNewsFragment.visibility = View.VISIBLE
+                            binding.notificationTV.text = ""
+                        }
+
+                    } else {
+                        newsAdapter.submitList(emptyData)
+                        binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+                        binding.notificationTV.text = resources
+                            .getString(R.string.site_not_available)
+                    }
             }
         } else {
-            Toast.makeText(requireContext(), "Network is not available", Toast.LENGTH_LONG).show()
+            binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+            binding.notificationTV.text = resources.getString(R.string.no_network)
         }
     }
 
