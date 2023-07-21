@@ -12,6 +12,8 @@ swiperefreshlayout = "1.1.0"
 
 okhttp3 = "4.7.2"
 lifecycle = "2.6.1"
+picasso = "2.8"
+glide = "4.15.1"
 
 junit = "4.13.2"
 test-junit = "1.1.5"
@@ -39,6 +41,8 @@ okhttp3-okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref 
 okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3" }
 lifecycle-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
 lifecycle-runtime = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+picasso = { group = "com.squareup.picasso", name = "picasso", version.ref = "picasso" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 test-junit = { group = "androidx.test.ext", name = "junit", version.ref = "test-junit" }

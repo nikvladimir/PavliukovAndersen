@@ -65,4 +65,7 @@
     <string name="site_not_available">Site can`t be reached at this moment</string>
     <string name="no_network">Network is not available</string>
 
+    <string name="picasso_imageview">Picasso ImageView:</string>
+    <string name="glide_imageview">Glide ImageView:</string>
+
 </resources>

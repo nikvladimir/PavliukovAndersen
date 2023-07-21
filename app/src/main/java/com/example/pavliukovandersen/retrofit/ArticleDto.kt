@@ -6,4 +6,5 @@ data class ArticleDto(
     val publishedAt: String,
     val source: SourceDto,
     val title: String,
+    val urlToImage: String,
 )

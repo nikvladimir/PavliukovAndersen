@@ -5,7 +5,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -72,7 +70,7 @@ class T3NewsListFragment : Fragment() {
 
     private fun getNewsAndRefreshPosts(topic: String) {
         currentDate = "2023-07-15"                  //       !!!!!!
-        val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), ""))
+        val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
 
         if (isNetworkAvailable()) {
             lifecycleScope.launch {
@@ -123,7 +121,7 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun openFragment(item: ArticleDto) {
-        val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name)
+        val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name, item.urlToImage)
         parentFragmentManager.beginTransaction()
             .replace(R.id.displayed_screen_fl, new)
             .addToBackStack(null)

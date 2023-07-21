@@ -5,20 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.pavliukovandersen.databinding.T3FragmentArticleBinding
+import com.squareup.picasso.Picasso
+import kotlinx.coroutines.launch
 
 class T3FragmentArticle : Fragment() {
     private lateinit var binding: T3FragmentArticleBinding
-    private lateinit var articleTitle: String
-    private lateinit var articleDescription: String
-    private lateinit var articleSourceName: String
+    private lateinit var title: String
+    private lateinit var description: String
+    private lateinit var sourceName: String
+    private lateinit var urlToImage: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        articleTitle = arguments?.getString("title") ?: ""
-        articleDescription = arguments?.getString("description") ?: ""
-        articleSourceName = arguments?.getString("sourceName") ?: ""
-
+        title = arguments?.getString("title") ?: ""
+        description = arguments?.getString("description") ?: ""
+        sourceName = arguments?.getString("sourceName") ?: ""
+        urlToImage = arguments?.getString("urlToImage") ?: ""
     }
 
     override fun onCreateView(
@@ -30,18 +35,33 @@ class T3FragmentArticle : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.articleTitle.text = articleTitle
-        binding.articleDescription.text = articleDescription
-        binding.articleSourceName.text = articleSourceName
+        binding.articleTitle.text = title
+        binding.articleDescription.text = description
+        binding.articleSourceName.text = sourceName
+
+        if (urlToImage.isNotEmpty()) {
+            lifecycleScope.launch {
+                Picasso.get().load(urlToImage).into(binding.picassoIv)
+                Glide.with(requireActivity()).load(urlToImage).into(binding.glideIv)
+            }
+            binding.picassoTv.visibility = View.VISIBLE
+            binding.glideTv.visibility = View.VISIBLE
+        }
     }
 
     companion object {
-        fun newInstance(title: String, description: String, sourceName: String) =
+        fun newInstance(
+            title: String,
+            description: String,
+            sourceName: String,
+            urlToImage: String
+        ) =
             T3FragmentArticle().apply {
                 arguments = Bundle().apply {
                     putString("title", title)
                     putString("description", description)
                     putString("sourceName", sourceName)
+                    putString("urlToImage", urlToImage)
                 }
             }
     }
