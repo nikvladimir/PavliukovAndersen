@@ -4,7 +4,8 @@
     <string name="alert_button">Alert button</string>
 
     <string name="tv_et_rv">TextV EditT RecyclerV</string>
-    <string name="music_player">Music player</string>
+    <string name="music_player">Music Player</string>
+    <string name="news_list">News list</string>
     <string name="disk_info">Disk info</string>
 
     <string name="arrow">arrow</string>
@@ -49,4 +50,22 @@
     <string name="genre">Жанр:</string>
     <string name="artist">Исполнитель:</string>
     <string name="back">Back</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="publishedat">publishedAt</string>
+    <string-array name="spinner_items">
+        <item>Software</item>
+        <item>Hardware</item>
+        <item>Technology</item>
+        <item>AI</item>
+        <item>Games</item>
+    </string-array>
+
+    <string name="no_news_this_date">There is no news on this date</string>
+    <string name="site_not_available">Site can`t be reached at this moment</string>
+    <string name="no_network">Network is not available</string>
+
+    <string name="picasso_imageview">Picasso ImageView:</string>
+    <string name="glide_imageview">Glide ImageView:</string>
+
 </resources>

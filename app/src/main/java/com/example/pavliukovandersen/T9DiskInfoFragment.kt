@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-class T3DiskInfoFragment : Fragment() {
+class T9DiskInfoFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.t3_fragment_disk_info, container, false)
+    ): View? = inflater.inflate(R.layout.t9_fragment_disk_info, container, false)
 }
