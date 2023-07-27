@@ -6,6 +6,7 @@
     <string name="tv_et_rv">TextV EditT RecyclerV</string>
     <string name="music_player">Music Player</string>
     <string name="news_list">News list</string>
+    <string name="custom_view">Custom View</string>
     <string name="disk_info">Disk info</string>
 
     <string name="arrow">arrow</string>

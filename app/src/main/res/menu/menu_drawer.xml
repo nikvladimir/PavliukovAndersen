@@ -16,6 +16,10 @@
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />
         <item
+        android:id="@+id/T4_CustomView"
+        android:icon="@drawable/menu_drawer_picture"
+        android:title="@string/custom_view" />
+        <item
             android:id="@+id/T9_DiskInfo"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/disk_info" />
