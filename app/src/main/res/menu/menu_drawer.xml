@@ -15,9 +15,9 @@
             android:id="@+id/T3_NewsList"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />
-        <item
-            android:id="@+id/T9_DiskInfo"
-            android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/disk_info" />
+<!--        <item-->
+<!--            android:id="@+id/T9_DiskInfo"-->
+<!--            android:icon="@drawable/menu_drawer_picture"-->
+<!--            android:title="@string/disk_info" />-->
     </group>
 </menu>
