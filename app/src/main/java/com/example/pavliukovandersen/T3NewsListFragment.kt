@@ -105,6 +105,8 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun setupSwipeRefreshLayout() {
+
+        
         swipeRefreshLayout = binding.t3SwipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             getNewsAndRefreshPosts(toolbar.title.toString())
@@ -121,7 +123,7 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun openFragment(item: ArticleDto) {
-        val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name, item.urlToImage)
+        val new = T3ArticleFragment.newInstance(item.author, item.description, item.source.name, item.urlToImage)
         parentFragmentManager.beginTransaction()
             .replace(R.id.displayed_screen_fl, new)
             .addToBackStack(null)

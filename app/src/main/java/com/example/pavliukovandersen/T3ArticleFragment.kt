@@ -11,7 +11,7 @@ import com.example.pavliukovandersen.databinding.T3FragmentArticleBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
-class T3FragmentArticle : Fragment() {
+class T3ArticleFragment : Fragment() {
     private lateinit var binding: T3FragmentArticleBinding
     private lateinit var title: String
     private lateinit var description: String
@@ -56,7 +56,7 @@ class T3FragmentArticle : Fragment() {
             sourceName: String,
             urlToImage: String
         ) =
-            T3FragmentArticle().apply {
+            T3ArticleFragment().apply {
                 arguments = Bundle().apply {
                     putString("title", title)
                     putString("description", description)

@@ -4,9 +4,10 @@
     <string name="alert_button">Alert button</string>
 
     <string name="tv_et_rv">TextV EditT RecyclerV</string>
-    <string name="music_player">Music Player</string>
-    <string name="news_list">News list</string>
+    <string name="music_player">Service: Music Player</string>
+    <string name="news_list">Network: News list</string>
     <string name="custom_view">Custom View</string>
+    <string name="google_maps">Google Maps</string>
     <string name="disk_info">Disk info</string>
 
     <string name="arrow">arrow</string>
@@ -68,5 +69,7 @@
 
     <string name="picasso_imageview">Picasso ImageView:</string>
     <string name="glide_imageview">Glide ImageView:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_map_api_key">AIzaSyAKu-A9viOhzDO33wIuuudOKD7x70oW7lg</string>
 
 </resources>
