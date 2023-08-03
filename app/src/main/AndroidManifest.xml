@@ -13,9 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PavliukovAndersen">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_map_api_key"/>
+
         <activity
             android:name=".T2PlayListFilterActivity"
             android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -26,7 +32,8 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".T2MusicPlayerService" />
+        <service
+            android:name=".T2MusicPlayerService" />
     </application>
 
 </manifest>
