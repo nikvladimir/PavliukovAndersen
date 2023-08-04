@@ -33,7 +33,8 @@ class T5GoogleMapsFragment : Fragment() {
         checkLocationServicesEnabled()
 
         if (ActivityCompat.checkSelfPermission(
-                requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
@@ -54,12 +55,27 @@ class T5GoogleMapsFragment : Fragment() {
                     .addOnSuccessListener { location ->
                         location?.let {
                             val currentLocation = LatLng(it.latitude, it.longitude)
-                            googleMap.addMarker(
-                                MarkerOptions().position(currentLocation).title("You are here")
-                            )
-                            googleMap.moveCamera(
-                                CameraUpdateFactory.newLatLngZoom(currentLocation, 15f)
-                            )
+
+                            val cLLat = currentLocation.latitude
+                            val cLLong = currentLocation.longitude
+                            val radiusInDegrees = 10 / 111.32
+
+
+                            val marker1 = LatLng(cLLat + radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
+                            val marker2 = LatLng(cLLat - radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
+                            val marker3 = LatLng(cLLat - radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
+                            val marker4 = LatLng(cLLat + radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
+                            val marker5 = LatLng(cLLat + radiusInDegrees / 4, cLLong - radiusInDegrees / 4)
+
+                            googleMap.addMarker(MarkerOptions().position(currentLocation).title("You are here"))
+                            googleMap.addMarker(MarkerOptions().position(marker1).title("Marker 1"))
+                            googleMap.addMarker(MarkerOptions().position(marker2).title("Marker 2"))
+                            googleMap.addMarker(MarkerOptions().position(marker3).title("Marker 3"))
+                            googleMap.addMarker(MarkerOptions().position(marker4).title("Marker 4"))
+                            googleMap.addMarker(MarkerOptions().position(marker5).title("Marker 5"))
+
+                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12f))
+//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
                         }
                     }
             } catch (e: SecurityException) {
