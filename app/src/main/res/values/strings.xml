@@ -54,7 +54,9 @@
     <string name="back">Back</string>
     <string name="title">Title</string>
     <string name="author">Author</string>
-    <string name="publishedat">publishedAt</string>
+    <string name="description">Description</string>
+    <string name="source_name">Source:name</string>
+    <string name="published_at">publishedAt</string>
     <string-array name="spinner_items">
         <item>Software</item>
         <item>Hardware</item>

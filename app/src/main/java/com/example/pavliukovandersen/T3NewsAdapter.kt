@@ -9,19 +9,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.pavliukovandersen.databinding.T3RecyclerViewNewsItemBinding
 import com.example.pavliukovandersen.retrofit.ArticleDto
 
-class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
-    ListAdapter<ArticleDto, T3NewsAdapter.ViewHolder>(Comparator()) {
+class T3NewsAdapter(
+    private val itemClick: (ArticleDto, View, String) -> Unit
+) : ListAdapter<ArticleDto, T3NewsAdapter.ViewHolder>(Comparator()) {
 
-    class ViewHolder(itemView: View, private val itemClick: (ArticleDto) -> Unit) :
-        RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(
+        itemView: View,
+        private val itemClick: (ArticleDto, View, String) -> Unit
+    ) : RecyclerView.ViewHolder(itemView) {
 
         private val binding = T3RecyclerViewNewsItemBinding.bind(itemView)
 
-        fun bind(articleDto: ArticleDto) = with(binding) {
-            newsTitle.text = articleDto.title
+        fun bind(articleDto: ArticleDto, position: Int) = with(binding) {
+
             newsAuthor.text = articleDto.author
             newsPublishedAt.text = articleDto.publishedAt
-            itemView.setOnClickListener { itemClick(articleDto) }
+            newsTitle.text = articleDto.title
+            newsTitle.transitionName = "shared_element_transition_$position"
+
+            itemView.setOnClickListener {
+                itemClick(articleDto, newsTitle, "shared_element_transition_$position")
+            }
         }
     }
 
@@ -29,6 +37,7 @@ class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
         override fun areItemsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem.author == newItem.author && oldItem.title == newItem.title
         }
+
         override fun areContentsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem == newItem
         }
@@ -42,6 +51,6 @@ class T3NewsAdapter(private val itemClick: (ArticleDto) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), position)
     }
 }

@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T5GoogleMapsFragment())
+        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T3NewsListFragment())
             .commit()
 
         nightModeSwitch = binding.switch1
