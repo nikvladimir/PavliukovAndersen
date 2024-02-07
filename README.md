@@ -1,5 +1,3 @@
-# Vladimir project
-
 ## Содержание
 - [Общая информация](#general_info)
 - [Основной функционал](#main_app_func)
@@ -158,7 +156,6 @@
   - Picasso, Glide
   - Dagger 2
   - Clean Architecture
-  - [MVVM]
   - Kotlin Coroutines
   - Retrofit2
     
