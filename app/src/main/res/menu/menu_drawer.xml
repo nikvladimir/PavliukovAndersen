@@ -6,7 +6,7 @@
         <item
             android:id="@+id/T1_VariousViews"
             android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/tv_et_rv" />
+            android:title="@string/et_tv_rv_cv" />
 
         <item
             android:id="@+id/T2_MusicPlayer"
@@ -17,11 +17,6 @@
             android:id="@+id/T3_NewsList"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />
-
-        <item
-            android:id="@+id/T4_CustomView"
-            android:icon="@drawable/menu_drawer_picture"
-            android:title="@string/custom_view" />
 
         <item
             android:id="@+id/T5_GoogleMapsView"

@@ -12,7 +12,6 @@ import com.google.android.material.tabs.TabLayoutMediator
 class T1ViewPagerTvEtRvFragment : Fragment() {
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-    private var tabNames: Array<String> = arrayOf("TextView", "EditText", "RecyclerView")
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,6 +25,12 @@ class T1ViewPagerTvEtRvFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val tabNames: Array<String> = arrayOf(
+            getString(R.string.editText),
+            getString(R.string.textView),
+            getString(R.string.recyclerView),
+            getString(R.string.customView)
+        )
         viewPager = view.findViewById(R.id.t1_viewpager)
         viewPager.adapter = T1PagerAdapter(this)
 

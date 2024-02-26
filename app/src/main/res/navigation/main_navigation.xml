@@ -3,35 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/Lesson1Fragment">
+    app:startDestination="@id/textViewFr">
 
     <fragment
-        android:id="@+id/Lesson1Fragment"
+        android:id="@+id/textViewFr"
         android:name="com.example.pavliukovandersen.T1TextViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_text_view" >
+        tools:layout="@layout/t1_fragment_text_view">
         <action
-            android:id="@+id/action_Lesson1_to_Lesson2"
-            app:destination="@id/Lesson2Fragment" />
+            android:id="@+id/action_textViewFr_to_recyclerViewFr"
+            app:destination="@id/recyclerViewFr" />
     </fragment>
 
     <fragment
-        android:id="@+id/Lesson2Fragment"
+        android:id="@+id/editTextFr"
         android:name="com.example.pavliukovandersen.T1EditTextFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_edit_text" >
+        tools:layout="@layout/t1_fragment_edit_text">
         <action
-            android:id="@+id/action_Lesson2_to_Lesson3"
-            app:destination="@id/Lesson3Fragment" />
+            android:id="@+id/action_editTextFr_to_textViewFr"
+            app:destination="@id/textViewFr" />
     </fragment>
 
     <fragment
-        android:id="@+id/Lesson3Fragment"
+        android:id="@+id/recyclerViewFr"
         android:name="com.example.pavliukovandersen.T1RecyclerViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_recycler_view" >
+        tools:layout="@layout/t1_fragment_recycler_view">
         <action
-                android:id="@+id/action_Lesson3_to_Lesson2"
-            app:destination="@id/Lesson1Fragment" />
+            android:id="@+id/action_recyclerView_to_customView"
+            app:destination="@id/customViewFr" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/customViewFr"
+        android:name="com.example.pavliukovandersen.T1CustomViewFragment"
+        android:label="fragment_edit_text"
+        tools:layout="@layout/t1_fragment_custom_view">
+        <action
+            android:id="@+id/action_customViewFr_to_editTextFr"
+            app:destination="@id/editTextFr" />
     </fragment>
 </navigation>

@@ -5,18 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.pavliukovandersen.databinding.T4FragmentCustomViewBinding
+import com.example.pavliukovandersen.databinding.T1FragmentCustomViewBinding
 
 
-class T4CustomViewFragment : Fragment() {
-    private lateinit var binding: T4FragmentCustomViewBinding
+class T1CustomViewFragment : Fragment() {
+    private lateinit var binding: T1FragmentCustomViewBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = T4FragmentCustomViewBinding.inflate(layoutInflater)
+    ): View {
+        binding = T1FragmentCustomViewBinding.inflate(layoutInflater)
         return binding.root
     }
 }

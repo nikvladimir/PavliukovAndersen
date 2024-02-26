@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T3NewsListFragment())
+        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T1ViewPagerTvEtRvFragment())
             .commit()
 
         nightModeSwitch = binding.switch1
@@ -43,10 +43,6 @@ class MainActivity : AppCompatActivity() {
 
                     R.id.T3_NewsList -> fragmentManager.beginTransaction().replace(
                         R.id.displayed_screen_fl, T3NewsListFragment()
-                    ).commit()
-
-                    R.id.T4_CustomView -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T4CustomViewFragment()
                     ).commit()
 
                     R.id.T5_GoogleMapsView -> fragmentManager.beginTransaction().replace(

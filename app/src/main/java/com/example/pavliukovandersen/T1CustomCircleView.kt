@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.withStyledAttributes
 
 
-class T4CustomCircleView @JvmOverloads constructor(
+class T1CustomCircleView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

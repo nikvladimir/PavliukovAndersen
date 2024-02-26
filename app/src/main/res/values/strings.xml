@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">PavliukovAndersen</string>
+    <string name="app_name">PavliukovExamples</string>
     <string name="enter_text">Enter text</string>
     <string name="alert_button">Alert button</string>
 
-    <string name="tv_et_rv">TextV EditT RecyclerV</string>
+    <string name="et_tv_rv_cv">EdT TxtV RecV CustV</string>
     <string name="music_player">Service: Music Player</string>
     <string name="news_list">Network: News list</string>
     <string name="custom_view">Custom View</string>
@@ -73,5 +73,9 @@
     <string name="glide_imageview">Glide ImageView:</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="google_map_api_key">AIzaSyAKu-A9viOhzDO33wIuuudOKD7x70oW7lg</string>
+    <string name="textView">TextView</string>
+    <string name="editText">EditText</string>
+    <string name="recyclerView">RecyclerView</string>
+    <string name="customView">CustomView</string>
 
 </resources>
