@@ -41,7 +41,6 @@ class T3NewsAdapter(
         override fun areContentsTheSame(oldItem: ArticleDto, newItem: ArticleDto): Boolean {
             return oldItem == newItem
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

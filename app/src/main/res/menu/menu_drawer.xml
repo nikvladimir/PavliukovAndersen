@@ -32,6 +32,5 @@
         <!--            android:id="@+id/T9_DiskInfo"-->
         <!--            android:icon="@drawable/menu_drawer_picture"-->
         <!--            android:title="@string/disk_info" />-->
-
     </group>
 </menu>

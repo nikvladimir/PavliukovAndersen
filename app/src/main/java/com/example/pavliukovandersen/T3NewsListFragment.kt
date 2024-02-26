@@ -23,6 +23,8 @@ import com.example.pavliukovandersen.retrofit.ArticleDto
 import com.example.pavliukovandersen.retrofit.RetrofitInstance
 import com.example.pavliukovandersen.retrofit.SourceDto
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 class T3NewsListFragment : Fragment() {
     private lateinit var toolbar: Toolbar
@@ -31,13 +33,13 @@ class T3NewsListFragment : Fragment() {
     private lateinit var newsAdapter: T3NewsAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private var currentDate: String = DateUtil.getCurrentDate()
+    private var yesterdayDate: String = DateUtil.getCurrentDate()
     private val apiKey: String get() = CryptoUtil.getDecryptedKey()
     private var emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = T3FragmentNewsListBinding.inflate(layoutInflater)
 
         setupSpinner()
@@ -70,13 +72,14 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun getNewsAndRefreshPosts(topic: String) {
-        currentDate = "2023-07-15"                  //       !!!!!!
+        yesterdayDate = getYesterdayDateFormatted()
+        val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
 
         if (isNetworkAvailable()) {
             lifecycleScope.launch {
                     val response = RetrofitInstance
                         .api
-                        .queryAPI(topic, currentDate, Constants.NUMB_OF_TOPICS, apiKey)
+                        .queryAPI(topic, yesterdayDate, Constants.NUMB_OF_TOPICS, apiKey)
 
                     if (response.isSuccessful) {
                         val articles = response.body()?.articles
@@ -144,5 +147,11 @@ class T3NewsListFragment : Fragment() {
             connectivityManager.getNetworkCapabilities(activeNetwork)
         return networkCapabilities != null &&
                 networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET)
+    }
+
+    private fun getYesterdayDateFormatted(): String {
+        val yesterdayDate = LocalDate.now().minusDays(1)
+        val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+        return yesterdayDate.format(formatter)
     }
 }

@@ -53,9 +53,6 @@ class MainActivity : AppCompatActivity() {
                         R.id.displayed_screen_fl, T5GoogleMapsFragment()
                     ).commit()
 
-//                    R.id.T9_DiskInfo -> fragmentManager.beginTransaction().replace(
-//                        R.id.displayed_screen_fl, T9DiskInfoFragment()
-//                    ).commit()
                 }
                 activityMainDrawer.closeDrawer(GravityCompat.START)
                 true
