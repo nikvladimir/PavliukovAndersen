@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/textViewFr"
-        android:name="com.example.pavliukovandersen.T1TextViewFragment"
+        android:name="com.example.pavliukovexamples.T1TextViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/t1_fragment_text_view">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/editTextFr"
-        android:name="com.example.pavliukovandersen.T1EditTextFragment"
+        android:name="com.example.pavliukovexamples.T1EditTextFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/t1_fragment_edit_text">
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/recyclerViewFr"
-        android:name="com.example.pavliukovandersen.T1RecyclerViewFragment"
+        android:name="com.example.pavliukovexamples.T1RecyclerViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/t1_fragment_recycler_view">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/customViewFr"
-        android:name="com.example.pavliukovandersen.T1CustomViewFragment"
+        android:name="com.example.pavliukovexamples.T1CustomViewFragment"
         android:label="fragment_edit_text"
         tools:layout="@layout/t1_fragment_custom_view">
         <action

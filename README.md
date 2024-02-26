@@ -161,4 +161,4 @@
     
 ## <a name="setup">Установка</a>
   
-    git clone https://github.com/nikvladimir/PavliukovAndersen.git
+    git clone https://github.com/nikvladimir/PavliukovExamples.git

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.pavliukovandersen'
+    namespace 'com.example.pavliukovexamples'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.pavliukovandersen"
+        applicationId 'com.example.pavliukovexamples'
         minSdk 29
         targetSdk 33
         versionCode 1
