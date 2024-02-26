@@ -1,6 +1,7 @@
 package com.example.pavliukovandersen
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,19 +12,27 @@ import com.example.pavliukovandersen.databinding.T3FragmentArticleBinding
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.launch
 
-class T3FragmentArticle : Fragment() {
+class T3ArticleFragment : Fragment() {
     private lateinit var binding: T3FragmentArticleBinding
     private lateinit var title: String
     private lateinit var description: String
     private lateinit var sourceName: String
     private lateinit var urlToImage: String
+    private lateinit var itemTitle: String
+    private lateinit var transitionName: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sharedElementEnterTransition = TransitionInflater.from(requireContext())
+            .inflateTransition(android.R.transition.move)
+
         title = arguments?.getString("title") ?: ""
         description = arguments?.getString("description") ?: ""
         sourceName = arguments?.getString("sourceName") ?: ""
         urlToImage = arguments?.getString("urlToImage") ?: ""
+        itemTitle = arguments?.getString("itemTitle") ?: ""
+        transitionName = arguments?.getString("transitionName") ?: ""
     }
 
     override fun onCreateView(
@@ -35,7 +44,12 @@ class T3FragmentArticle : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.articleTitle.text = title
+
+        val articleTitle = binding.articleTitle
+
+        articleTitle.text = itemTitle
+        articleTitle.transitionName = transitionName
+
         binding.articleDescription.text = description
         binding.articleSourceName.text = sourceName
 
@@ -47,6 +61,9 @@ class T3FragmentArticle : Fragment() {
             binding.picassoTv.visibility = View.VISIBLE
             binding.glideTv.visibility = View.VISIBLE
         }
+
+        sharedElementEnterTransition = TransitionInflater.from(context)
+            .inflateTransition(android.R.transition.move)
     }
 
     companion object {
@@ -54,14 +71,18 @@ class T3FragmentArticle : Fragment() {
             title: String,
             description: String,
             sourceName: String,
-            urlToImage: String
+            urlToImage: String,
+            itemTitle: String,
+            transitionName: String
         ) =
-            T3FragmentArticle().apply {
+            T3ArticleFragment().apply {
                 arguments = Bundle().apply {
                     putString("title", title)
                     putString("description", description)
                     putString("sourceName", sourceName)
                     putString("urlToImage", urlToImage)
+                    putString("itemTitle", itemTitle)
+                    putString("transitionName", transitionName)
                 }
             }
     }

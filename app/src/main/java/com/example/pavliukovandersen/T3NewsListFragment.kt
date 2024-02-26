@@ -35,6 +35,7 @@ class T3NewsListFragment : Fragment() {
 
     private var yesterdayDate: String = DateUtil.getCurrentDate()
     private val apiKey: String get() = CryptoUtil.getDecryptedKey()
+    private var emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -115,16 +116,24 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = T3NewsAdapter { selectedItem -> openFragment(selectedItem) }
+        newsAdapter = T3NewsAdapter {
+                selectedItem,
+                view,
+                transitionName ->
+            openFragment(selectedItem, view, transitionName) }
         binding.t3RecyclerViewNewsFragment.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
         }
     }
 
-    private fun openFragment(item: ArticleDto) {
-        val new = T3FragmentArticle.newInstance(item.author, item.description, item.source.name, item.urlToImage)
+    private fun openFragment(item: ArticleDto, view: View, transitionName: String) {
+        val new = T3ArticleFragment.newInstance(
+            item.author, item.description, item.source.name,
+            item.urlToImage, item.title, transitionName
+        )
         parentFragmentManager.beginTransaction()
+            .addSharedElement(view, transitionName)
             .replace(R.id.displayed_screen_fl, new)
             .addToBackStack(null)
             .commit()

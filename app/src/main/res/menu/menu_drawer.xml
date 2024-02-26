@@ -7,17 +7,26 @@
             android:id="@+id/T1_VariousViews"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/tv_et_rv" />
+
         <item
             android:id="@+id/T2_MusicPlayer"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/music_player" />
+
         <item
             android:id="@+id/T3_NewsList"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />
-<!--        <item-->
-<!--            android:id="@+id/T9_DiskInfo"-->
-<!--            android:icon="@drawable/menu_drawer_picture"-->
-<!--            android:title="@string/disk_info" />-->
+
+        <item
+            android:id="@+id/T4_CustomView"
+            android:icon="@drawable/menu_drawer_picture"
+            android:title="@string/custom_view" />
+
+        <item
+            android:id="@+id/T5_GoogleMapsView"
+            android:icon="@drawable/menu_drawer_picture"
+            android:title="@string/google_maps" />
+
     </group>
 </menu>

@@ -45,6 +45,14 @@ class MainActivity : AppCompatActivity() {
                         R.id.displayed_screen_fl, T3NewsListFragment()
                     ).commit()
 
+                    R.id.T4_CustomView -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, T4CustomViewFragment()
+                    ).commit()
+
+                    R.id.T5_GoogleMapsView -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, T5GoogleMapsFragment()
+                    ).commit()
+
                 }
                 activityMainDrawer.closeDrawer(GravityCompat.START)
                 true
