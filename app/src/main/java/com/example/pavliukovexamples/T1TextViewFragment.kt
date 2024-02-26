@@ -15,7 +15,7 @@ class T1TextViewFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = T1FragmentTextViewBinding.inflate(layoutInflater)
 
         binding.tvHello.text = getString(R.string.hello)

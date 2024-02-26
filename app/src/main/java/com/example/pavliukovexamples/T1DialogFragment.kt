@@ -20,8 +20,8 @@ class T1DialogFragment : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog =
         AlertDialog.Builder(requireActivity())
-            .setTitle("Shape is")
-            .setMessage(arguments?.getString(SHAPE_NAME_KEY) ?: "no message")
-            .setPositiveButton("Thanks") { _, _ -> }
+            .setTitle(getString(R.string.shape_is))
+            .setMessage(arguments?.getString(SHAPE_NAME_KEY) ?: getString(R.string.no_message))
+            .setPositiveButton(getString(R.string.thanks)) { _, _ -> }
             .create()
 }

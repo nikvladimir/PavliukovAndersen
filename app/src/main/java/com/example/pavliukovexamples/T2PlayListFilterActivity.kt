@@ -40,7 +40,7 @@ class T2PlayListFilterActivity : AppCompatActivity() {
         artistSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, index: Int, id: Long) {
                 val selectedItem = parent.getItemAtPosition(index).toString()
-                if (selectedItem != "Выберите исполнителя:")
+                if (selectedItem != getString(R.string.select_an_artist))
                     goToMainActivity(Constants.PL_COLUMN_1, selectedItem)
             }
 
@@ -53,7 +53,7 @@ class T2PlayListFilterActivity : AppCompatActivity() {
                 parent: AdapterView<*>, view: View?, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position).toString()
-                if (selectedItem != "Выберите жанр:")
+                if (selectedItem != getString(R.string.choose_genre))
                     goToMainActivity(Constants.PL_COLUMN_3, selectedItem)
             }
 
@@ -67,7 +67,7 @@ class T2PlayListFilterActivity : AppCompatActivity() {
 
     private fun getArtistList(): ArrayList<String> {
         val cursor: Cursor? = dbh.queryArtist()
-        val artistsList = arrayListOf("Выберите исполнителя:")
+        val artistsList = arrayListOf(getString(R.string.select_an_artist))
         while (cursor!!.moveToNext()) {
             val artistName = cursor.getString(0)
             artistsList.add(artistName)
@@ -78,7 +78,7 @@ class T2PlayListFilterActivity : AppCompatActivity() {
 
     private fun getGenreList(): ArrayList<String> {
         val cursor: Cursor? = dbh.queryGenre()
-        val genresList = arrayListOf("Выберите жанр:")
+        val genresList = arrayListOf(getString(R.string.choose_genre))
         while (cursor!!.moveToNext()) {
             val artistName = cursor.getString(0)
             genresList.add(artistName)

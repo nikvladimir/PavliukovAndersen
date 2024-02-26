@@ -1,7 +1,6 @@
 package com.example.pavliukovexamples
 
 import android.os.Bundle
-import android.os.Environment
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.LayoutInflater
@@ -10,18 +9,20 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.example.pavliukovexamples.databinding.T1FragmentEditTextBinding
 
 
 class T1EditTextFragment : Fragment() {
-    private lateinit var editText: EditText
+    private lateinit var binding: T1FragmentEditTextBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.t1_fragment_edit_text, container, false)
-        editText = view.findViewById(R.id.editText)
-        editText.toastTextListener { s -> Toast.makeText(context, s, Toast.LENGTH_SHORT).show() }
-        return view
+    ): View {
+        binding = T1FragmentEditTextBinding.inflate(layoutInflater)
+        binding.editText.toastTextListener { s -> Toast.makeText(context, s, Toast.LENGTH_SHORT).show() }
+
+        return binding.root
     }
 
     private fun EditText.toastTextListener(afterTextChanged: (String) -> Unit) {
@@ -33,10 +34,4 @@ class T1EditTextFragment : Fragment() {
             }
         })
     }
-
-    private fun isExternalStorageAvailable(): Boolean {
-        val extStorageState = Environment.getExternalStorageState()
-        return Environment.MEDIA_MOUNTED == extStorageState
-    }
-
 }

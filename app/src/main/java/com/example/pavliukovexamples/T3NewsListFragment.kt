@@ -35,7 +35,6 @@ class T3NewsListFragment : Fragment() {
 
     private var yesterdayDate: String = DateUtil.getCurrentDate()
     private val apiKey: String get() = CryptoUtil.getDecryptedKey()
-    private var emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -77,29 +76,28 @@ class T3NewsListFragment : Fragment() {
 
         if (isNetworkAvailable()) {
             lifecycleScope.launch {
-                    val response = RetrofitInstance
-                        .api
-                        .queryAPI(topic, yesterdayDate, Constants.NUMB_OF_TOPICS, apiKey)
+                val response = RetrofitInstance.api.queryAPI(
+                    topic, yesterdayDate, Constants.NUMB_OF_TOPICS, apiKey
+                )
+                if (response.isSuccessful) {
+                    val articles = response.body()?.articles
+                    newsAdapter.submitList(articles)
 
-                    if (response.isSuccessful) {
-                        val articles = response.body()?.articles
-                        newsAdapter.submitList(articles)
-
-                        if (articles?.size == 0) {
-                            binding.t3RecyclerViewNewsFragment.visibility = View.GONE
-                            binding.notificationTV.text = resources
-                                .getString(R.string.no_news_this_date)
-                        } else {
-                            binding.t3RecyclerViewNewsFragment.visibility = View.VISIBLE
-                            binding.notificationTV.text = ""
-                        }
-
-                    } else {
-                        newsAdapter.submitList(emptyData)
+                    if (articles?.size == 0) {
                         binding.t3RecyclerViewNewsFragment.visibility = View.GONE
-                        binding.notificationTV.text = resources
-                            .getString(R.string.site_not_available)
+                        binding.notificationTV.text =
+                            resources.getString(R.string.no_news_this_date)
+                    } else {
+                        binding.t3RecyclerViewNewsFragment.visibility = View.VISIBLE
+                        binding.notificationTV.text = ""
                     }
+
+                } else {
+                    newsAdapter.submitList(emptyData)
+                    binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+                    binding.notificationTV.text = resources
+                        .getString(R.string.site_not_available)
+                }
             }
         } else {
             binding.t3RecyclerViewNewsFragment.visibility = View.GONE
@@ -116,11 +114,9 @@ class T3NewsListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = T3NewsAdapter {
-                selectedItem,
-                view,
-                transitionName ->
-            openFragment(selectedItem, view, transitionName) }
+        newsAdapter = T3NewsAdapter { selectedItem, view, transitionName ->
+            openFragment(selectedItem, view, transitionName)
+        }
         binding.t3RecyclerViewNewsFragment.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = newsAdapter
