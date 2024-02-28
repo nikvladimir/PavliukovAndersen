@@ -87,13 +87,11 @@
 
 
 
-
-
 #### Меню навигации NavigationView и ViewPager2
 
 <div style="display: flex; justify-content: center;">
-    <img src="https://user-images.githubusercontent.com/71027706/256142595-6109a3aa-091c-436e-8b7f-52276360bb6b.png" alt="Image 1" height="500px">
-    <img src="https://user-images.githubusercontent.com/71027706/256148497-29863bd6-5a0c-4b3d-a1fd-132f98758086.png" alt="Image 2" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/e70b4ef0-8896-4763-9c77-683328d9d47b" alt="Image 1" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/11c3bcf8-76a3-44aa-a906-53e26d5d6080" alt="Image 2" height="500px">
 </div>
 
 ####
@@ -101,24 +99,25 @@
 - FragmentStateAdapter
 
 ###
-#### Фрагменты: EditText, TextView, RecyclerView и CustomView 
+#### Различные элементы Activity и Fragments
 
 <div style="display: flex; justify-content: center;">
-    <img src="https://user-images.githubusercontent.com/71027706/256142620-56e871b5-676b-4696-a776-b924f85aa533.png" alt="Image 1" height="500px">
-    <img src="https://user-images.githubusercontent.com/71027706/256142600-2f892400-d283-43a7-992e-65cad2c500aa.png" alt="Image 1" height="500px">
-    <img src="https://user-images.githubusercontent.com/71027706/256142608-9518af7f-b6ca-418e-b9b1-218ed8962db2.png" alt="Image 1" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/2606fedb-2cfb-4e95-9690-1a86b5cd4082" alt="Image 3" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/11c3bcf8-76a3-44aa-a906-53e26d5d6080" alt="Image 4" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/283f293c-3319-48e3-b951-6250b5e12d74" alt="Image 5" height="500px">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/56aa714c-471c-4640-80b6-88d41e2f9e87" alt="Image 6" height="500px">
 </div>
+
 
 #### 
 пример работы с такими элементами как:
-- AlertDialog
-- TextVIew, EditText, RecyclerView
-- Toast and toastTextListener
-- setOnClickListener
+- EditText с Toast и toastTextListener
+- RecyclerView с AlertDialog
+- TextVIew, CustomView, setOnClickListener
 
 
 #### 
-##### Работа Сервиса на примере музыкального проигрывателя
+##### Работа Сервиса на примере музыкального проигрывателя с реализацией фильтров по исполнителю либо по жанру
 
 <div style="display: flex; justify-content: center;">
     <img src="https://user-images.githubusercontent.com/71027706/256142603-ddcd3581-5f7f-4884-a3cd-458190ddf1f6.png" alt="Image 1" height="500px">
@@ -133,7 +132,7 @@
 - Spinner
   
 #### 
-##### Выход в сеть, работа с многопоточностью и отобржение изображений
+##### Новостная страничка с фильтрацией новостей по жанрам за вчерашний день
 
 <div style="display: flex; justify-content: center;">
     <img src="https://user-images.githubusercontent.com/71027706/256142597-5b2f0293-662b-458a-9a51-07007e4b37ff.png" alt="Image 1" height="500px">
@@ -142,16 +141,29 @@
 
 
 #### 
-- Picasso, Glide
+- выход в сеть: retrofit2, okhttp3
+- работа с многопоточностью: coroutines
+- отобржение изображений: Picasso, Glide
 - lifecycle
-- retrofit2, okhttp3
+
+
+##### Реализация GoogleMaps с заранее выставленными 5 точками
+
+<div style="display: flex; justify-content: center;">
+    <img src="https://github.com/nikvladimir/PavliukovExamples/assets/71027706/90c639bc-595d-402a-8ddb-b6d19953b4da" alt="Image 1" height="500px">
+</div>
+
+
+#### 
+- Maps Services, Location Services
+- MapView
 
 
 ## <a name="technologies">Технологии</a>
   
   - Kotlin
   - Firebase
-  - Picasso, Glide
+  - Picasso, Glide, Maps
   - Dagger 2
   - Clean Architecture
   - Kotlin Coroutines
