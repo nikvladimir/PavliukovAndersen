@@ -1,11 +1,9 @@
 package com.example.pavliukovexamples
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavliukovexamples.databinding.T1RecyclerViewItemBinding
 
 class T1RecyclerViewAdapter(
     private val elements: List<T1DataShapeElement>,
@@ -14,22 +12,27 @@ class T1RecyclerViewAdapter(
 
     override fun getItemCount() = elements.size
 
-    inner class ElementViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class ElementViewHolder(private val binding: T1RecyclerViewItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(element: T1DataShapeElement) {
-            itemView.findViewById<TextView>(R.id.tvElementName).text = element.shapeName
-            itemView.findViewById<ImageView>(R.id.ivImage).setImageResource(element.imageResId)
-            itemView.setOnClickListener { showDialog(element.shapeName) }
+            with(binding) {
+                tvElementName.text = element.shapeName
+                ivImage.setImageResource(element.imageResId)
+                root.setOnClickListener { showDialog(element.shapeName) }
+            }
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ElementViewHolder(
-            LayoutInflater
-                .from(parent.context)
-                .inflate(R.layout.t1_recycler_view_item, parent, false)
+            T1RecyclerViewItemBinding
+                .inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
         )
 
-    override fun onBindViewHolder(holder: ElementViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ElementViewHolder, position: Int) =
         holder.bind(elements[position])
-    }
 }

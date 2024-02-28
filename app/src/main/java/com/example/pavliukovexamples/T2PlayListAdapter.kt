@@ -1,32 +1,36 @@
 package com.example.pavliukovexamples
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavliukovexamples.databinding.T2SongItemBinding
 
-class T2PlayListAdapter(var playList: ArrayList<T2DataPlayList>) :
+class T2PlayListAdapter(private var playList: ArrayList<T2DataPlayList>) :
     RecyclerView.Adapter<T2PlayListAdapter.MyViewHolder>() {
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val tvArtist: TextView = itemView.findViewById(R.id.artist_tv)
-        val tvSongName: TextView = itemView.findViewById(R.id.song_name_tv)
-        val tvGenre: TextView = itemView.findViewById(R.id.genre_tv)
+
+    class MyViewHolder(private val binding: T2SongItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(item: T2DataPlayList) {
+            with(binding) {
+                artistTv.text = item.artist
+                songNameTv.text = item.trackName
+                genreTv.text = item.genre
+            }
+        }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.t2_song_item, parent, false)
-        return MyViewHolder(itemView)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        MyViewHolder(
+            T2SongItemBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
+
 
     override fun getItemCount(): Int = playList.size
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = playList[position]
-        holder.tvArtist.text = currentItem.artist
-        holder.tvSongName.text = currentItem.trackName
-        holder.tvGenre.text = currentItem.genre
-    }
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) =
+        holder.bind(playList[position])
 }

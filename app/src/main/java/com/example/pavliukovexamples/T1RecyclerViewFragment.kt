@@ -32,7 +32,7 @@ class T1RecyclerViewFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        recyclerView = view.findViewById(R.id.t3RecyclerViewNewsFragment)
+        recyclerView = binding.t3RecyclerViewNewsFragment
         recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)

@@ -18,6 +18,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavliukovexamples.databinding.T2FragmentMusicPlayerBinding
 
 class T2MusicPlayerFragment : Fragment() {
 
@@ -30,6 +31,7 @@ class T2MusicPlayerFragment : Fragment() {
     private var sortByKey: String = ""
     private var sortByColumn: String = ""
     private var musicService: T2MusicPlayerService? = null
+    private lateinit var binding: T2FragmentMusicPlayerBinding
 
     private val connection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
@@ -59,20 +61,20 @@ class T2MusicPlayerFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.t2_fragment_music_player, container, false)
+    ): View {
+        binding = T2FragmentMusicPlayerBinding.inflate(layoutInflater)
 
         dbh = DBHelper(requireActivity().applicationContext)
-        recyclerView = view.findViewById(R.id.recycler)
+        recyclerView = binding.recycler
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = T2PlayListAdapter(getArrayPlayListFromDB())
 
-        val playButton = view.findViewById<Button>(R.id.play_button)
-        val pauseButton = view.findViewById<Button>(R.id.pause_button)
-        val nextButton = view.findViewById<Button>(R.id.next_button)
-        val stopButton = view.findViewById<Button>(R.id.stop_button)
-        val filterButton = view.findViewById<ImageButton>(R.id.filterButton)
+        val playButton = binding.playButton
+        val pauseButton = binding.pauseButton
+        val nextButton = binding.nextButton
+        val stopButton = binding.stopButton
+        val filterButton = binding.filterButton
 
         playButton.setOnClickListener {
             if (isBound) {
@@ -94,7 +96,7 @@ class T2MusicPlayerFragment : Fragment() {
         filterButton.setOnClickListener {
             launcher.launch(Intent(requireActivity(), T2PlayListFilterActivity::class.java))
         }
-        return view
+        return binding.root
     }
 
     override fun onStart() {

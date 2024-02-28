@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import com.example.pavliukovexamples.databinding.T5FragmentGoogleMapsBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -25,8 +26,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class T5GoogleMapsFragment : Fragment() {
 
-    private lateinit var mapView: MapView
     private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var binding: T5FragmentGoogleMapsBinding
 
     private val mapReadyCallback = OnMapReadyCallback { googleMap ->
 
@@ -61,20 +62,32 @@ class T5GoogleMapsFragment : Fragment() {
                             val radiusInDegrees = 10 / 111.32
 
 
-                            val marker1 = LatLng(cLLat + radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
-                            val marker2 = LatLng(cLLat - radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
-                            val marker3 = LatLng(cLLat - radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
-                            val marker4 = LatLng(cLLat + radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
-                            val marker5 = LatLng(cLLat + radiusInDegrees / 4, cLLong - radiusInDegrees / 4)
+                            val marker1 =
+                                LatLng(cLLat + radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
+                            val marker2 =
+                                LatLng(cLLat - radiusInDegrees / 2, cLLong + radiusInDegrees / 2)
+                            val marker3 =
+                                LatLng(cLLat - radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
+                            val marker4 =
+                                LatLng(cLLat + radiusInDegrees / 2, cLLong - radiusInDegrees / 2)
+                            val marker5 =
+                                LatLng(cLLat + radiusInDegrees / 4, cLLong - radiusInDegrees / 4)
 
-                            googleMap.addMarker(MarkerOptions().position(currentLocation).title("You are here"))
+                            googleMap.addMarker(
+                                MarkerOptions().position(currentLocation).title("You are here")
+                            )
                             googleMap.addMarker(MarkerOptions().position(marker1).title("Marker 1"))
                             googleMap.addMarker(MarkerOptions().position(marker2).title("Marker 2"))
                             googleMap.addMarker(MarkerOptions().position(marker3).title("Marker 3"))
                             googleMap.addMarker(MarkerOptions().position(marker4).title("Marker 4"))
                             googleMap.addMarker(MarkerOptions().position(marker5).title("Marker 5"))
 
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12f))
+                            googleMap.animateCamera(
+                                CameraUpdateFactory.newLatLngZoom(
+                                    currentLocation,
+                                    12f
+                                )
+                            )
                         }
                     }
             } catch (e: SecurityException) {
@@ -92,32 +105,31 @@ class T5GoogleMapsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val rootView = inflater.inflate(R.layout.t5_fragment_google_maps, container, false)
-        mapView = rootView.findViewById(R.id.mapView)
-        mapView.onCreate(savedInstanceState)
-        mapView.getMapAsync(mapReadyCallback)
-        return rootView
+    ): View {
+        binding = T5FragmentGoogleMapsBinding.inflate(layoutInflater)
+        binding.mapView.onCreate(savedInstanceState)
+        binding.mapView.getMapAsync(mapReadyCallback)
+        return binding.root
     }
 
     override fun onResume() {
         super.onResume()
-        mapView.onResume()
+        binding.mapView.onResume()
     }
 
     override fun onPause() {
-        mapView.onPause()
+        binding.mapView.onPause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        mapView.onDestroy()
+        binding.mapView.onDestroy()
         super.onDestroy()
     }
 
     override fun onLowMemory() {
         super.onLowMemory()
-        mapView.onLowMemory()
+        binding.mapView.onLowMemory()
     }
 
     override fun onRequestPermissionsResult(
