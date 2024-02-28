@@ -75,7 +75,6 @@ class T5GoogleMapsFragment : Fragment() {
                             googleMap.addMarker(MarkerOptions().position(marker5).title("Marker 5"))
 
                             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 12f))
-//                            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLocation, 15f))
                         }
                     }
             } catch (e: SecurityException) {

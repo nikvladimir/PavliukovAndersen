@@ -3,13 +3,14 @@
     <string name="enter_text">Enter text</string>
     <string name="alert_button">Alert button</string>
 
-    <string name="et_tv_rv_cv">EdT TxtV RecV CustV</string>
+<!--    drawerLayout strings-->
+    <string name="et_tv_rv_cv">EdiT TxtV RecV CustV</string>
     <string name="music_player">Service: Music Player</string>
     <string name="news_list">Network: News list</string>
     <string name="custom_view">Custom View</string>
     <string name="google_maps">Google Maps</string>
-    <string name="disk_info">Disk info</string>
 
+<!--    recyclerView strings-->
     <string name="arrow">arrow</string>
     <string name="circle">circle</string>
     <string name="hexagon">hexagon</string>
@@ -82,5 +83,6 @@
     <string name="thanks">Thanks</string>
     <string name="select_an_artist">Выберите исполнителя:</string>
     <string name="choose_genre">Выберите жанр:</string>
+    <string name="recycler_view_notification">Tap on item for\nAlertDialog with description</string>
 
 </resources>

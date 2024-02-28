@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.pavliukovexamples.databinding.T1FragmentRecyclerViewBinding
 
 
 class T1RecyclerViewFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var shapesArrayList: List<T1DataShapeElement>
+    private lateinit var binding: T1FragmentRecyclerViewBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +23,12 @@ class T1RecyclerViewFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.t1_fragment_recycler_view, container, false)
+    ): View {
+        binding = T1FragmentRecyclerViewBinding.inflate(layoutInflater)
+
+        binding.tvRecyclerViewNotification.text = getString(R.string.recycler_view_notification)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

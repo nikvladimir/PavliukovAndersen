@@ -44,6 +44,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/night_mode"
+                android:textSize="@dimen/text_size_medium"
                 android:textColor="@color/navTextIconColor"
                 app:thumbTint="@color/switchThumbTint" />
         </LinearLayout>

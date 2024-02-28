@@ -97,11 +97,11 @@
 </div>
 
 ####
-- реализован переключатель смены темы
+- переключатель смены темы
 - FragmentStateAdapter
 
 ###
-#### Фрагменты ViewPager, TextView и RecyclerView
+#### Фрагменты: EditText, TextView, RecyclerView и CustomView 
 
 <div style="display: flex; justify-content: center;">
     <img src="https://user-images.githubusercontent.com/71027706/256142620-56e871b5-676b-4696-a776-b924f85aa533.png" alt="Image 1" height="500px">
@@ -111,12 +111,10 @@
 
 #### 
 пример работы с такими элементами как:
-- TextVIew
-- EditText
+- AlertDialog
+- TextVIew, EditText, RecyclerView
 - Toast and toastTextListener
-- RecyclerView
-- setOnClickListener в RecyclerView
-- DialogFragment
+- setOnClickListener
 
 
 #### 
