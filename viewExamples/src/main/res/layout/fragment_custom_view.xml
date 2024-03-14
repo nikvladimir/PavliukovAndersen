@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.example.viewexamples.presentation.T1CustomCircleView
+    <com.example.viewexamples.CustomCircleView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:circleRadius="50dp"/>
