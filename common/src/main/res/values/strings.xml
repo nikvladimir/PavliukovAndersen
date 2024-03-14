@@ -1,0 +1,91 @@
+<resources>
+    <string name="app_name">PavliukovExamples</string>
+    <string name="enter_text">Enter text</string>
+    <string name="alert_button">Alert button</string>
+
+<!--    drawerLayout strings-->
+    <string name="et_tv_rv_cv">EdiT TxtV RecV CustV</string>
+    <string name="music_player">Service: Music Player</string>
+    <string name="news_list">Network: News list</string>
+    <string name="custom_view">Custom View</string>
+    <string name="google_maps">Google Maps</string>
+
+<!--    recyclerView strings-->
+    <string name="arrow">arrow</string>
+    <string name="circle">circle</string>
+    <string name="hexagon">hexagon</string>
+    <string name="kite">kite</string>
+    <string name="oval">oval</string>
+    <string name="octagon">octagon</string>
+    <string name="rectangle">rectangle</string>
+    <string name="shape">shape</string>
+    <string name="square">square</string>
+    <string name="triangle">triangle</string>
+
+    <string name="tv_form_name">some form name</string>
+    <string name="hello">Hello</string>
+    <string name="company_name">World</string>
+    <string name="creators_name">Vladimir Pavliukov</string>
+    <string name="default_text">default text</string>
+    <string name="night_mode">Night Mode</string>
+    <string name="play">play</string>
+    <string name="pause">pause</string>
+    <string name="next">next</string>
+    <string name="stop">stop</string>
+    <string name="heading_song_name">song name</string>
+    <string name="heading_artist">artist</string>
+    <string name="heading_genre">genre</string>
+    <string name="generate_file_int_st">Generate file in\nInternal storage</string>
+    <string name="generate_file_ext_st">Generate file in\nExternal storage</string>
+    <string name="test_internal_storage">Test\nInternal storage</string>
+    <string name="test_external_storage">Test\nExternal storage</string>
+    <string name="write_speed">Write speed</string>
+    <string name="read_speed">Read speed</string>
+    <string name="write_time">Write time</string>
+    <string name="read_time">Read time</string>
+    <string name="here_is_toast_listener">Here is Toast Listener:</string>
+    <string name="file_size">File size</string>
+    <string name="unknown_mb">--- Mb</string>
+    <string name="unknown_sec">-- sec</string>
+    <string name="unknown_speed">-- Mb/sec</string>
+    <string name="song_name">Song name</string>
+    <string name="artist_name">Artist name</string>
+    <string name="genre">Жанр:</string>
+    <string name="artist">Исполнитель:</string>
+    <string name="back">Back</string>
+    <string name="title">Title</string>
+    <string name="author">Author</string>
+    <string name="description">Description</string>
+    <string name="source_name">Source:name</string>
+    <string name="published_at">publishedAt</string>
+    <string-array name="spinner_items">
+        <item>Software</item>
+        <item>Hardware</item>
+        <item>Technology</item>
+        <item>AI</item>
+        <item>Games</item>
+    </string-array>
+
+    <string name="no_news_this_date">There is no news on this date</string>
+    <string name="site_not_available">Site can`t be reached at this moment</string>
+    <string name="no_network">Network is not available</string>
+
+    <string name="picasso_imageview">Picasso ImageView:</string>
+    <string name="glide_imageview">Glide ImageView:</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="google_map_api_key">AIzaSyAKu-A9viOhzDO33wIuuudOKD7x70oW7lg</string>
+    <string name="textView">TextView</string>
+    <string name="editText">EditText</string>
+    <string name="recyclerView">RecyclerView</string>
+    <string name="customView">CustomView</string>
+    <string name="shape_is">Shape is</string>
+    <string name="no_message">no message</string>
+    <string name="thanks">Thanks</string>
+    <string name="select_an_artist">Выберите исполнителя:</string>
+    <string name="choose_genre">Выберите жанр:</string>
+    <string name="recycler_view_notification">Tap on item for\nAlertDialog with description</string>
+
+    <!--    GoogleMaps strings-->
+    <string name="message_location_service">Location Services are disabled. Would you like to enable them?</string>
+
+</resources>

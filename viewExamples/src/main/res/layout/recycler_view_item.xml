@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="8dp"
+    android:background="@color/backGroundGray"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="horizontal">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivImage"
+        android:layout_width="@dimen/rec_v_image_size"
+        android:layout_height="@dimen/rec_v_image_size"
+        android:layout_margin="@dimen/margin_small"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/arrow" />
+
+    <TextView
+        android:id="@+id/tvElementName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/rec_v_text_height"
+        android:layout_margin="@dimen/margin_small"
+        android:gravity="fill_vertical"
+        android:text="@string/tv_form_name"
+        android:textColor="@color/tv_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+</LinearLayout>

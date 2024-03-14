@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/textViewFr"
-        android:name="com.example.pavliukovexamples.T1TextViewFragment"
+        android:name="com.example.viewexamples.TextViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_text_view">
+        tools:layout="@layout/fragment_text_view">
         <action
             android:id="@+id/action_textViewFr_to_recyclerViewFr"
             app:destination="@id/recyclerViewFr" />
@@ -17,9 +17,9 @@
 
     <fragment
         android:id="@+id/editTextFr"
-        android:name="com.example.pavliukovexamples.T1EditTextFragment"
+        android:name="com.example.viewexamples.EditTextFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_edit_text">
+        tools:layout="@layout/fragment_edit_text">
         <action
             android:id="@+id/action_editTextFr_to_textViewFr"
             app:destination="@id/textViewFr" />
@@ -27,9 +27,9 @@
 
     <fragment
         android:id="@+id/recyclerViewFr"
-        android:name="com.example.pavliukovexamples.T1RecyclerViewFragment"
+        android:name="com.example.viewexamples.RecyclerViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_recycler_view">
+        tools:layout="@layout/fragment_recycler_view">
         <action
             android:id="@+id/action_recyclerView_to_customView"
             app:destination="@id/customViewFr" />
@@ -37,9 +37,9 @@
 
     <fragment
         android:id="@+id/customViewFr"
-        android:name="com.example.pavliukovexamples.T1CustomViewFragment"
+        android:name="com.example.viewexamples.CustomViewFragment"
         android:label="fragment_edit_text"
-        tools:layout="@layout/t1_fragment_custom_view">
+        tools:layout="@layout/fragment_custom_view">
         <action
             android:id="@+id/action_customViewFr_to_editTextFr"
             app:destination="@id/editTextFr" />

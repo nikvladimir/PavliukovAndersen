@@ -21,8 +21,8 @@ junit = "4.13.2"
 test-junit = "1.1.5"
 test-espresso-core = "3.5.1"
 
-android-application = "8.1.0"
-android-library = "8.1.0"
+android-application = "8.3.0"
+android-library = "8.3.0"
 kotlin-android = "1.8.20"
 
 [libraries]

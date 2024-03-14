@@ -5,7 +5,11 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
+import com.example.googlemaps.GoogleMapsFragment
+import com.example.networknewsfragment.NewsListFragment
 import com.example.pavliukovexamples.databinding.ActivityMainBinding
+import com.example.servicemusicplayer.MusicPlayerFragment
+import com.example.viewexamples.ViewPagerTvEtRvFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,36 +21,37 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fragmentManager = supportFragmentManager
-        fragmentManager.beginTransaction().replace(R.id.displayed_screen_fl, T1ViewPagerTvEtRvFragment())
-            .commit()
+        val fragmentManager = (supportFragmentManager).also {
+            it.beginTransaction().replace(
+                R.id.displayed_screen_fl, ViewPagerTvEtRvFragment()
+            ).commitNow()
+        }
 
         nightModeSwitch = binding.switch1
         nightModeSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
+            if (isChecked)
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
+            else
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
         }
 
         binding.apply {
             navigationMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
-                    R.id.T1_VariousViews -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T1ViewPagerTvEtRvFragment()
+                    R.id.VariousViews -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, ViewPagerTvEtRvFragment()
                     ).commit()
 
-                    R.id.T2_MusicPlayer -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T2MusicPlayerFragment()
+                    R.id.MusicPlayer -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, MusicPlayerFragment()
                     ).commit()
 
-                    R.id.T3_NewsList -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T3NewsListFragment()
+                    R.id.NewsList -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, NewsListFragment()
                     ).commit()
 
-                    R.id.T5_GoogleMapsView -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, T5GoogleMapsFragment()
+                    R.id.GoogleMapsView -> fragmentManager.beginTransaction().replace(
+                        R.id.displayed_screen_fl, GoogleMapsFragment()
                     ).commit()
 
                 }

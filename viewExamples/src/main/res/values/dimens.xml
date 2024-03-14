@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_v_width">235dp</dimen>
+    <dimen name="rec_v_image_size">80dp</dimen>
+    <dimen name="rec_v_text_height">80dp</dimen>
+    <dimen name="draw_h_image_size">70dp</dimen>
+    <dimen name="drawer_tv_margin_small">15dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="indicator_height">4dp</dimen>
+    <dimen name="text_size_very_big">55sp</dimen>
+    <dimen name="text_size_big">35sp</dimen>
+    <dimen name="text_size_medium">20sp</dimen>
+    <dimen name="text_size_little">18sp</dimen>
+</resources>

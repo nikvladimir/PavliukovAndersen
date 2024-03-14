@@ -4,22 +4,22 @@
     tools:showIn="navigation_view">
     <group>
         <item
-            android:id="@+id/T1_VariousViews"
+            android:id="@+id/VariousViews"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/et_tv_rv_cv" />
 
         <item
-            android:id="@+id/T2_MusicPlayer"
+            android:id="@+id/MusicPlayer"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/music_player" />
 
         <item
-            android:id="@+id/T3_NewsList"
+            android:id="@+id/NewsList"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />
 
         <item
-            android:id="@+id/T5_GoogleMapsView"
+            android:id="@+id/GoogleMapsView"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/google_maps" />
 

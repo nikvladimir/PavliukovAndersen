@@ -36,6 +36,12 @@ android {
 }
 
 dependencies {
+    implementation(project(":common"))
+    implementation(project(":googleMaps"))
+    implementation(project(":networkNewsFragment"))
+    implementation(project(":serviceMusicPlayer"))
+    implementation(project(":viewExamples"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material.material)
@@ -48,16 +54,6 @@ dependencies {
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
     implementation(libs.swiperefreshlayout)
-
-    implementation(libs.play.services.maps)
-    implementation(libs.play.services.location)
-
-    implementation(libs.okhttp3.okhttp)
-    implementation(libs.okhttp3.logging.interceptor)
-    implementation(libs.lifecycle.viewmodel)
-    implementation(libs.lifecycle.runtime)
-    implementation(libs.picasso)
-    implementation(libs.glide)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.test.junit)

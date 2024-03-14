@@ -1,0 +1,8 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Base.Theme.PavliukovExamples" parent="Theme.Material3.DayNight.NoActionBar" />
+
+    <style name="Theme.PavliukovExamples" parent="Base.Theme.PavliukovExamples" >
+        <item name="android:statusBarColor">@color/backGroundGray</item>
+    </style>
+</resources>

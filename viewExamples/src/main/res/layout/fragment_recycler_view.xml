@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.viewexamples.RecyclerViewFragment">
+
+    <TextView
+        android:id="@+id/tvRecyclerViewNotification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/default_text"
+        android:layout_marginTop="@dimen/margin_small"
+        android:textColor="@color/tv_color"
+        android:textSize="@dimen/text_size_medium" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/t3RecyclerViewNewsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:listitem="@layout/recycler_view_item" />
+</LinearLayout>

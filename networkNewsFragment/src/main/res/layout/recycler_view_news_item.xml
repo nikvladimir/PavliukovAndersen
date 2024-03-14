@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/recycler_view_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:background="#878282"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/newsAuthor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:gravity="fill_vertical"
+        android:text="@string/author"
+        android:textColor="@color/tv_color"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/newsTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:gravity="fill_vertical"
+        android:text="@string/title"
+        android:textColor="@color/tv_color"
+        android:textSize="16sp"
+        android:transitionName="shared_element_transition" />
+
+    <TextView
+        android:id="@+id/newsPublishedAt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_small"
+        android:gravity="right|fill_vertical"
+        android:text="@string/published_at"
+        android:textColor="@color/tv_color"
+        android:textSize="12sp" />
+
+</LinearLayout>

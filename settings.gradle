@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "PavliukovExamples"
 include ':app'
+include ':viewExamples'
+include ':serviceMusicPlayer'
+include ':networkNewsFragment'
+include ':googleMaps'
+include ':common'
