@@ -8,6 +8,7 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.networknewsfragment.databinding.FragmentNewsListBinding
 import com.example.networknewsfragment.objects.CryptoUtil
@@ -24,7 +26,6 @@ import com.example.networknewsfragment.objects.DateUtil
 import com.example.networknewsfragment.retrofit.ArticleDto
 import com.example.networknewsfragment.retrofit.RetrofitInstance
 import com.example.networknewsfragment.retrofit.SourceDto
-import com.example.common.R
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -45,7 +46,7 @@ class NewsListFragment : Fragment() {
         binding = FragmentNewsListBinding.inflate(layoutInflater)
 
         setupSpinner()
-//        setupRecyclerView()                                                  // ПРОБЛЕМА 3
+        setupRecyclerView()
         setupSwipeRefreshLayout()
         getNewsAndRefreshPosts("software")
 
@@ -53,10 +54,12 @@ class NewsListFragment : Fragment() {
     }
 
     private fun setupSpinner() {
-        toolbar = binding.t3ToolBar
-        spinner = binding.t3NewsThemeSpinner
+        toolbar = binding.toolBar
+        spinner = binding.newsThemeSpinner
         val spinnerAdapter = ArrayAdapter.createFromResource(
-            requireContext(), R.array.spinner_items, android.R.layout.simple_spinner_item
+            requireContext(),
+            com.example.common.R.array.spinner_items,
+            android.R.layout.simple_spinner_item
         )
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item)
         spinner.adapter = spinnerAdapter
@@ -87,63 +90,66 @@ class NewsListFragment : Fragment() {
                     newsAdapter.submitList(articles)
 
                     if (articles?.size == 0) {
-                        binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+                        binding.recyclerViewNewsFragment.visibility = View.GONE
                         binding.notificationTV.text =
-                            resources.getString(R.string.no_news_this_date)
+                            resources.getString(com.example.common.R.string.no_news_this_date)
                     } else {
-                        binding.t3RecyclerViewNewsFragment.visibility = View.VISIBLE
+                        binding.recyclerViewNewsFragment.visibility = View.VISIBLE
                         binding.notificationTV.text = ""
                     }
 
                 } else {
                     newsAdapter.submitList(emptyData)
-                    binding.t3RecyclerViewNewsFragment.visibility = View.GONE
+                    binding.recyclerViewNewsFragment.visibility = View.GONE
                     binding.notificationTV.text = resources
-                        .getString(R.string.site_not_available)
+                        .getString(com.example.common.R.string.site_not_available)
                 }
             }
         } else {
-            binding.t3RecyclerViewNewsFragment.visibility = View.GONE
-            binding.notificationTV.text = resources.getString(R.string.no_network)
+            binding.recyclerViewNewsFragment.visibility = View.GONE
+            binding.notificationTV.text =
+                resources.getString(com.example.common.R.string.no_network)
         }
     }
 
     private fun setupSwipeRefreshLayout() {
-        swipeRefreshLayout = binding.t3SwipeRefreshLayout
+        swipeRefreshLayout = binding.swipeRefreshLayout
         swipeRefreshLayout.setOnRefreshListener {
             getNewsAndRefreshPosts(toolbar.title.toString())
             swipeRefreshLayout.isRefreshing = false
         }
     }
 
-//    private fun setupRecyclerView() {
-//        newsAdapter = NewsAdapter { selectedItem, view, transitionName ->
-//            openFragment(
-//                selectedItem,
-//                view,
-//                transitionName
-//            )                             // ПРОБЛЕМА 2
-//        }
-//        binding.t3RecyclerViewNewsFragment.apply {
-//            layoutManager = LinearLayoutManager(requireContext())
-//            adapter = newsAdapter
-//        }
-//    }
-//
-//    private fun openFragment(item: ArticleDto, view: View, transitionName: String) {
-//        val new = ArticleFragment.newInstance(
-//            item.author, item.description, item.source.name,
-//            item.urlToImage, item.title, transitionName
-//        )
-//        parentFragmentManager.beginTransaction()
-//            .addSharedElement(view, transitionName)
-//            .replace(
-//                com.example.pavliukovexamples.R.id.displayed_screen_fl,
-//                new
-//            )       // ПРОБЛЕМА 1
-//            .addToBackStack(null)
-//            .commit()
-//    }
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter { selectedItem, view, transitionName ->
+            openFragment(
+                selectedItem,
+                view,
+                transitionName
+            )
+        }
+        binding.recyclerViewNewsFragment.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = newsAdapter
+        }
+    }
+
+    private fun openFragment(item: ArticleDto, view: View, transitionName: String) {
+        val articleFragment = ArticleFragment.newInstance(
+            title = item.author,
+            description = item.description,
+            sourceName = item.source.name,
+            urlToImage = item.urlToImage,
+            itemTitle = item.title,
+            transitionName = transitionName,
+        )
+        parentFragmentManager.beginTransaction().apply {
+//            addSharedElement(view, transitionName)
+            replace(R.id.newsListFragmentLayout, articleFragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
 
     private fun isNetworkAvailable(): Boolean {
         val connectivityManager =

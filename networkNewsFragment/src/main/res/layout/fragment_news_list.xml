@@ -2,13 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/newsListFragmentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.networknewsfragment.NewsListFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/t3_ToolBar"
+        android:id="@+id/toolBar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:title="News Title">
@@ -20,7 +21,7 @@
             android:gravity="center">
 
             <Spinner
-                android:id="@+id/t3_NewsThemeSpinner"
+                android:id="@+id/newsThemeSpinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
@@ -29,7 +30,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/t3_swipe_refresh_layout"
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -38,7 +39,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/t3RecyclerViewNewsFragment"
+                android:id="@+id/recyclerViewNewsFragment"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:visibility="visible"
