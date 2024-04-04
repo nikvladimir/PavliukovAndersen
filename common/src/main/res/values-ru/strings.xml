@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ПавлюковПримеры</string>
+    <string name="song_name">Название песни</string>
+    <string name="artist_name">Имя исполнителя</string>
+    <string name="genre">Жанр:</string>
+    <string name="title">Заглавие</string>
+    <string name="author">Автор</string>
+    <string name="description">Description</string>
+    <string name="no_network">Сеть недоступна</string>
+    <string name="select_an_artist">Выберите исполнителя:</string>
+    <string name="choose_genre">Выберите жанр:</string>
+</resources>

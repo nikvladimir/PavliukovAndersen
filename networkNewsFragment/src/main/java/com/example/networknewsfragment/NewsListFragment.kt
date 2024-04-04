@@ -8,7 +8,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -37,7 +36,6 @@ class NewsListFragment : Fragment() {
     private lateinit var newsAdapter: NewsAdapter
     private lateinit var swipeRefreshLayout: SwipeRefreshLayout
 
-    private var yesterdayDate: String = DateUtil.getCurrentDate()
     private val apiKey: String get() = CryptoUtil.getDecryptedKey()
 
     override fun onCreateView(
@@ -48,7 +46,7 @@ class NewsListFragment : Fragment() {
         setupSpinner()
         setupRecyclerView()
         setupSwipeRefreshLayout()
-        getNewsAndRefreshPosts("software")
+        getNewsAndRefreshPosts()
 
         return binding.root
     }
@@ -73,50 +71,6 @@ class NewsListFragment : Fragment() {
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
-    }
-
-    private fun getNewsAndRefreshPosts(topic: String) {
-        yesterdayDate = getYesterdayDateFormatted()
-        val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
-
-        if (isNetworkAvailable()) {
-            lifecycleScope.launch {
-                val response = RetrofitInstance.api.queryAPI(
-                    topic, yesterdayDate, Constants.NUMB_OF_TOPICS, apiKey
-                )
-                if (response.isSuccessful) {
-                    val articles = response.body()?.articles
-                    newsAdapter.submitList(articles)
-
-                    if (articles?.size == 0) {
-                        binding.recyclerViewNewsFragment.visibility = View.GONE
-                        binding.notificationTV.text =
-                            resources.getString(com.example.common.R.string.no_news_this_date)
-                    } else {
-                        binding.recyclerViewNewsFragment.visibility = View.VISIBLE
-                        binding.notificationTV.text = ""
-                    }
-
-                } else {
-                    newsAdapter.submitList(emptyData)
-                    binding.recyclerViewNewsFragment.visibility = View.GONE
-                    binding.notificationTV.text = resources
-                        .getString(com.example.common.R.string.site_not_available)
-                }
-            }
-        } else {
-            binding.recyclerViewNewsFragment.visibility = View.GONE
-            binding.notificationTV.text =
-                resources.getString(com.example.common.R.string.no_network)
-        }
-    }
-
-    private fun setupSwipeRefreshLayout() {
-        swipeRefreshLayout = binding.swipeRefreshLayout
-        swipeRefreshLayout.setOnRefreshListener {
-            getNewsAndRefreshPosts(toolbar.title.toString())
-            swipeRefreshLayout.isRefreshing = false
         }
     }
 
@@ -148,6 +102,51 @@ class NewsListFragment : Fragment() {
             replace(R.id.newsListFragmentLayout, articleFragment)
             addToBackStack(null)
             commit()
+        }
+    }
+
+    private fun setupSwipeRefreshLayout() {
+        swipeRefreshLayout = binding.swipeRefreshLayout
+        swipeRefreshLayout.setOnRefreshListener {
+            getNewsAndRefreshPosts(toolbar.title.toString())
+            swipeRefreshLayout.isRefreshing = false
+        }
+    }
+
+    private fun getNewsAndRefreshPosts(topic: String = "software") {
+
+        if (isNetworkAvailable()) {
+
+            lifecycleScope.launch {
+
+                val response = RetrofitInstance.api.queryAPI(
+                    topic, getYesterdayDateFormatted(), Constants.NUMB_OF_TOPICS, apiKey
+                )
+                if (response.isSuccessful) {
+                    val articles = response.body()?.articles
+                    newsAdapter.submitList(articles)
+
+                    if (articles?.size == 0) {
+                        binding.recyclerViewNewsFragment.visibility = View.GONE
+                        binding.notificationTV.text =
+                            resources.getString(com.example.common.R.string.no_news_this_date)
+                    } else {
+                        binding.recyclerViewNewsFragment.visibility = View.VISIBLE
+                        binding.notificationTV.text = ""
+                    }
+
+                } else {
+                    val emptyData = listOf(ArticleDto("", "", "", SourceDto(""), "", ""))
+                    newsAdapter.submitList(emptyData)
+                    binding.recyclerViewNewsFragment.visibility = View.GONE
+                    binding.notificationTV.text = resources
+                        .getString(com.example.common.R.string.site_not_available)
+                }
+            }
+        } else {
+            binding.recyclerViewNewsFragment.visibility = View.GONE
+            binding.notificationTV.text =
+                resources.getString(com.example.common.R.string.no_network)
         }
     }
 

@@ -39,10 +39,6 @@
     <string name="generate_file_ext_st">Generate file in\nExternal storage</string>
     <string name="test_internal_storage">Test\nInternal storage</string>
     <string name="test_external_storage">Test\nExternal storage</string>
-    <string name="write_speed">Write speed</string>
-    <string name="read_speed">Read speed</string>
-    <string name="write_time">Write time</string>
-    <string name="read_time">Read time</string>
     <string name="here_is_toast_listener">Here is Toast Listener:</string>
     <string name="file_size">File size</string>
     <string name="unknown_mb">--- Mb</string>

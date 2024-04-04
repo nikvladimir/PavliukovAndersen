@@ -40,14 +40,8 @@
     <string name="test_internal_storage">Test\nInternal storage</string>
     <string name="test_external_storage">Test\nExternal storage</string>
     <string name="write_speed">Write speed</string>
-    <string name="read_speed">Read speed</string>
-    <string name="write_time">Write time</string>
-    <string name="read_time">Read time</string>
     <string name="here_is_toast_listener">Here is Toast Listener:</string>
     <string name="file_size">File size</string>
-    <string name="unknown_mb">--- Mb</string>
-    <string name="unknown_sec">-- sec</string>
-    <string name="unknown_speed">-- Mb/sec</string>
     <string name="song_name">Song name</string>
     <string name="artist_name">Artist name</string>
     <string name="genre">Жанр:</string>

@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val fragmentManager = (supportFragmentManager).also {
             it.beginTransaction().replace(
-                R.id.displayed_screen_fl, ViewPagerTvEtRvFragment()
+                binding.displayedScreenFL.id, ViewPagerTvEtRvFragment()
             ).commitNow()
         }
 
@@ -39,19 +39,19 @@ class MainActivity : AppCompatActivity() {
             navigationMenu.setNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.VariousViews -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, ViewPagerTvEtRvFragment()
+                        binding.displayedScreenFL.id, ViewPagerTvEtRvFragment()
                     ).commit()
 
                     R.id.MusicPlayer -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, MusicPlayerFragment()
+                        binding.displayedScreenFL.id, MusicPlayerFragment()
                     ).commit()
 
                     R.id.NewsList -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, NewsListFragment()
+                        binding.displayedScreenFL.id, NewsListFragment()
                     ).commit()
 
                     R.id.GoogleMapsView -> fragmentManager.beginTransaction().replace(
-                        R.id.displayed_screen_fl, GoogleMapsFragment()
+                        binding.displayedScreenFL.id, GoogleMapsFragment()
                     ).commit()
 
                 }

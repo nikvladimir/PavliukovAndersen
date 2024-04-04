@@ -11,7 +11,7 @@
     tools:openDrawer="start">
 
     <FrameLayout
-        android:id="@+id/displayed_screen_fl"
+        android:id="@+id/displayedScreenFL"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/backGroundGray"

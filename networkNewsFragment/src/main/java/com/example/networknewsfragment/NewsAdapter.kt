@@ -10,7 +10,7 @@ import com.example.networknewsfragment.databinding.RecyclerViewNewsItemBinding
 import com.example.networknewsfragment.retrofit.ArticleDto
 
 class NewsAdapter(
-    private val itemClick: (ArticleDto, View, String) -> Unit
+    private val onItemClick: (ArticleDto, View, String) -> Unit
 ) : ListAdapter<ArticleDto, NewsAdapter.ViewHolder>(Comparator()) {
 
     class ViewHolder(
@@ -46,7 +46,7 @@ class NewsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.recycler_view_news_item, parent, false)
-        return ViewHolder(view, itemClick)
+        return ViewHolder(view, onItemClick)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
