@@ -98,8 +98,7 @@ class NewsListFragment : Fragment() {
             transitionName = transitionName,
         )
         parentFragmentManager.beginTransaction().apply {
-//            addSharedElement(view, transitionName)
-            replace(R.id.newsListFragmentLayout, articleFragment)
+            replace(R.id.hostNewsListFragment, articleFragment)
             addToBackStack(null)
             commit()
         }

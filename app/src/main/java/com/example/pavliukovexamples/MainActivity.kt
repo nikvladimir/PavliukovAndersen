@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import com.example.googlemaps.GoogleMapsFragment
-import com.example.networknewsfragment.NewsListFragment
+import com.example.networknewsfragment.HostNewsListFragment
 import com.example.pavliukovexamples.databinding.ActivityMainBinding
 import com.example.servicemusicplayer.MusicPlayerFragment
 import com.example.viewexamples.ViewPagerTvEtRvFragment
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                     ).commit()
 
                     R.id.NewsList -> fragmentManager.beginTransaction().replace(
-                        binding.displayedScreenFL.id, NewsListFragment()
+                        binding.displayedScreenFL.id, HostNewsListFragment()
                     ).commit()
 
                     R.id.GoogleMapsView -> fragmentManager.beginTransaction().replace(
