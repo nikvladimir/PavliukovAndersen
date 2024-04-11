@@ -41,12 +41,11 @@ dependencies {
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material.material)
+    implementation(libs.material)
     implementation(libs.swiperefreshlayout)
 
     implementation(libs.okhttp3.okhttp)
     implementation(libs.okhttp3.logging.interceptor)
-
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
 

@@ -39,7 +39,7 @@ android {
 dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
-    implementation(libs.material.material)
+    implementation(libs.material)
 
     implementation(libs.picasso)
     implementation(libs.glide)
