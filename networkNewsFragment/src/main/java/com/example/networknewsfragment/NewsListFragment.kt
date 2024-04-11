@@ -21,7 +21,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.networknewsfragment.databinding.FragmentNewsListBinding
 import com.example.networknewsfragment.objects.CryptoUtil
-import com.example.networknewsfragment.objects.DateUtil
 import com.example.networknewsfragment.retrofit.ArticleDto
 import com.example.networknewsfragment.retrofit.RetrofitInstance
 import com.example.networknewsfragment.retrofit.SourceDto
