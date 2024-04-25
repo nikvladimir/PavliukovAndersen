@@ -14,6 +14,11 @@
             android:title="@string/music_player" />
 
         <item
+            android:id="@+id/GitHubUsers"
+            android:icon="@drawable/menu_drawer_picture"
+            android:title="@string/github_users" />
+
+        <item
             android:id="@+id/NewsList"
             android:icon="@drawable/menu_drawer_picture"
             android:title="@string/news_list" />

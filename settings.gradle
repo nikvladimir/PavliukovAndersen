@@ -16,6 +16,7 @@ rootProject.name = "PavliukovExamples"
 include ':app'
 include ':viewExamples'
 include ':serviceMusicPlayer'
+include ':networkGitHubUsers'
 include ':networkNewsFragment'
 include ':googleMaps'
 include ':common'

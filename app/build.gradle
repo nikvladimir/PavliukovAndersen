@@ -38,6 +38,7 @@ android {
 dependencies {
     implementation(project(":common"))
     implementation(project(":googleMaps"))
+    implementation(project(":networkGitHubUsers"))
     implementation(project(":networkNewsFragment"))
     implementation(project(":serviceMusicPlayer"))
     implementation(project(":viewExamples"))

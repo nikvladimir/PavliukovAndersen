@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.view.GravityCompat
 import com.example.googlemaps.GoogleMapsFragment
+import com.example.networkgithubusers.HostGitHubUsersFragment
 import com.example.networknewsfragment.HostNewsListFragment
 import com.example.pavliukovexamples.databinding.ActivityMainBinding
 import com.example.servicemusicplayer.MusicPlayerFragment
@@ -44,6 +45,10 @@ class MainActivity : AppCompatActivity() {
 
                     R.id.MusicPlayer -> fragmentManager.beginTransaction().replace(
                         binding.displayedScreenFL.id, MusicPlayerFragment()
+                    ).commit()
+
+                    R.id.GitHubUsers -> fragmentManager.beginTransaction().replace(
+                        binding.displayedScreenFL.id, HostGitHubUsersFragment()
                     ).commit()
 
                     R.id.NewsList -> fragmentManager.beginTransaction().replace(
