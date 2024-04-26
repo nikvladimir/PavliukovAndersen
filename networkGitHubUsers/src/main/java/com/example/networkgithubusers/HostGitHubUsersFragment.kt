@@ -23,10 +23,10 @@ class HostGitHubUsersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        parentFragmentManager.beginTransaction().apply {
-//            replace(binding.hostGitHubUsersFragment, GitHubUserFragment)
-//            commit()
-//        }
+        parentFragmentManager.beginTransaction().apply {
+            replace(binding.hostGitHubUsersFragment.id, GitHubUsersFragment())
+            commit()
+        }
 
     }
 }

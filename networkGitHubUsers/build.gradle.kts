@@ -36,11 +36,9 @@ android {
 }
 
 dependencies {
-
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.test.junit)
-    androidTestImplementation(libs.test.espresso.core)
+    implementation(libs.swiperefreshlayout)
+
 }
